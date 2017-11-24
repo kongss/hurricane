@@ -8,7 +8,7 @@
 	   http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <!-- 提供方应用信息，用于计算依赖关系 -->
-    <dubbo:application name="demo-provider"/>
+    <dubbo:application name="hurricane-provider"/>
 
     <!-- 使用multicast广播注册中心暴露服务地址 -->
     <dubbo:registry address="multicast://224.5.6.7:1234"/>
@@ -22,5 +22,5 @@
     <bean id="demoService" class="com.hurricane.note.api.impl.UserServiceImpl"/>
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.hurricane.note.api.UserService" ref="demoService"/>
+    <dubbo:service interface="com.hurricane.note.api.UserService" ref="userService"/>
 </beans>

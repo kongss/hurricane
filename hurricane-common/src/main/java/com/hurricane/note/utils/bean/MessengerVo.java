@@ -2,12 +2,13 @@ package com.hurricane.note.utils.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Map;
 
 public class MessengerVo implements Serializable{
 
     /** 业务参数集合 */
-    private Map<String, Object> map;
+    private Map<String, Object> map =  new HashMap<String, Object>();
     /** 响应码 */
     private String resCode;
     /** 描述信息 */
