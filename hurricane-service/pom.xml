@@ -14,6 +14,7 @@
     <url>http://maven.apache.org</url>
 
     <properties>
+        <loc_version>1.0-SNAPSHOT</loc_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -25,7 +26,12 @@
         <dependency>
             <groupId>com.hurricane</groupId>
             <artifactId>hurricane-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${loc_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hurricane</groupId>
+            <artifactId>hurricane-dao</artifactId>
+            <version>${loc_version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
