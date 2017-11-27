@@ -1,12 +1,13 @@
 package com.hurricane.note.api.impl;
 
-import com.hurricane.note.api.UserService;
+import com.hurricane.note.api.DUserService;
+import com.hurricane.note.service.UserService;
 import com.hurricane.note.utils.bean.MessengerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class DUserServiceImpl implements DUserService {
 
     @Autowired
     UserService userService;

@@ -24,7 +24,9 @@
     <!-- Common libs -->
     <spring_version>4.3.10.RELEASE</spring_version>
     <mybatis_version>3.2.6</mybatis_version>
+    <mysql_version>5.1.6</mysql_version>
     <mybatis_spring_version>1.2.2</mybatis_spring_version>
+    <aspectj_version>1.5.3</aspectj_version>
     <javassist_version>3.20.0-GA</javassist_version>
     <netty_version>3.2.5.Final</netty_version>
     <mina_version>1.1.7</mina_version>
@@ -95,11 +97,21 @@
         <artifactId>mybatis</artifactId>
         <version>${mybatis_version}</version>
       </dependency>
+      <dependency>
+        <groupId>aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+        <version>${aspectj_version}</version>
+      </dependency>
       <!-- mybatis/spring包 -->
       <dependency>
         <groupId>org.mybatis</groupId>
         <artifactId>mybatis-spring</artifactId>
         <version>${mybatis_spring_version}</version>
+      </dependency>
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql_version}</version>
       </dependency>
       <dependency>
         <groupId>com.alibaba</groupId>
