@@ -1,4 +1,4 @@
-package com.hurricane.note.web;
+package com.hurricane;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
