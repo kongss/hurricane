@@ -7,6 +7,8 @@
        http://code.alibabatech.com/schema/dubbo
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:registry id="hurricane-service-provider" protocol="zookeeper" address="zookeeper://10.112.179.149:2181"/>
-    <dubbo:reference id="dUserService" registry="hurricane-service-provider" interface="com.hurricane.note.api.DUserService"/>
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="hurricane-web" />
+    <dubbo:registry id="hurricane-service-consumer" protocol="zookeeper" address="zookeeper://10.112.179.149:2181"/>
+    <dubbo:reference id="dUserService" registry="hurricane-service-consumer" interface="com.hurricane.note.api.DUserService"/>
 </beans>
