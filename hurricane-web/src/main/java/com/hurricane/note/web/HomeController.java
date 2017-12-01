@@ -21,7 +21,7 @@ public class HomeController {
     @ResponseBody String home(){
         MessengerVo vo = new MessengerVo();
         MessengerVo info = dUserService.getUserInfo(vo);
-        info.getString("ttttt");
-        return "Hello "+sp ;
+        String string = info.getString("ttttt");
+        return "Hello "+string ;
     }
 }
