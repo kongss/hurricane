@@ -9,6 +9,6 @@
 
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="hurricane-web" />
-    <dubbo:registry id="hurricane-service-consumer" protocol="zookeeper" address="zookeeper://10.112.179.149:2181"/>
+    <dubbo:registry id="hurricane-service-consumer" protocol="multicast" address="multicast://224.5.6.7:1234"/>
     <dubbo:reference id="dUserService" registry="hurricane-service-consumer" interface="com.hurricane.note.api.DUserService"/>
 </beans>
