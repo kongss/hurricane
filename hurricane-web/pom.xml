@@ -24,12 +24,24 @@
 		<zookeeper_version>3.4.9</zookeeper_version>
 		<zkclient_version>0.2</zkclient_version>
 		<slf4j_version>1.7.25</slf4j_version>
+		<httpclient_version>4.5.3</httpclient_version>
+		<fastjson_version>1.2.39</fastjson_version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.7</java.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient_version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson_version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>

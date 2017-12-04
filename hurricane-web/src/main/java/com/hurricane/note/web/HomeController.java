@@ -11,17 +11,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
 
-    @Value("${name}")
-    String sp;
-
-    @Autowired
-    DUserService dUserService;
+    //@Autowired
+    //DUserService dUserService;
 
     @RequestMapping("/")
     @ResponseBody String home(){
         MessengerVo vo = new MessengerVo();
-        MessengerVo info = dUserService.getUserInfo(vo);
-        String string = info.getString("ttttt");
-        return "Hello "+string ;
+        //MessengerVo info = dUserService.getUserInfo(vo);
+        //String string = info.getString("ttttt");
+        return "Hello " ;
     }
 }
