@@ -15,4 +15,8 @@ public class DUserServiceImpl implements DUserService {
     public MessengerVo getUserInfo(MessengerVo messenger) {
         return userService.getUserInfo(messenger);
     }
+
+    public MessengerVo saveUser(MessengerVo messenger) {
+        return userService.saveUser(messenger);
+    }
 }

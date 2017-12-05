@@ -13,5 +13,5 @@
     <!--<dubbo:registry id="hurricane-service-consumer" protocol="multicast" address="multicast://224.5.6.7:1234"/>-->
     <dubbo:registry id="hurricane-service-consumer" protocol="zookeeper" address="zookeeper://10.112.179.149:2181"/>
 
-    <dubbo:reference id="dUserService" registry="hurricane-service-consumer" interface="com.hurricane.note.api.DUserService"/>
+    <dubbo:reference id="dUserService" timeout="6000" registry="hurricane-service-consumer" interface="com.hurricane.note.api.DUserService"/>
 </beans>

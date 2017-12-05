@@ -33,6 +33,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.hurricane</groupId>
+			<artifactId>hurricane-common</artifactId>
+			<version>${loc_version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>${httpclient_version}</version>

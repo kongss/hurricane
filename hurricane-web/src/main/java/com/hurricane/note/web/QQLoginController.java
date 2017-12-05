@@ -2,12 +2,15 @@ package com.hurricane.note.web;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.fastjson.JSONObject;
+import com.hurricane.note.api.DUserService;
+import com.hurricane.note.utils.bean.MessengerVo;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,18 +33,39 @@ public class QQLoginController {
     @Value("${OpenApiUrl}")
     String OpenApiUrl;
 
+    @Autowired
+    DUserService dUserService;
+
+    /**
+     * QQ第三方登陆
+     * @param code
+     * @param state
+     * @throws Exception
+     */
     @RequestMapping("user/qqLogin")
     void qQLogin(String code,String state) throws Exception{
         if (StringUtils.isEmpty(code)){
             System.out.println("QQ登陆异常,请联系管理员");
         }
         Map<String, Object> map = getOpenId(code);
-        String openId = String.valueOf(map.get("OpenId"));
         String AccessToken = String.valueOf(map.get("AccessToken"));
-        boolean isExist = checkIsExist(openId);
-        if (isExist){
+        String openId = String.valueOf(map.get("OpenId"));
+
+        /** 判断该openId是否存在-Start */
+        boolean flag = false;
+        MessengerVo vo = new MessengerVo();
+        vo.setInfo("openId",openId);
+        MessengerVo userInfo = dUserService.getUserInfo(vo);
+        //查询数据库是否存在
+        String user = userInfo.getString("user");
+        if (StringUtils.isEmpty(user)){
+            flag = true;
+        }
+        /** 判断该openId是否存在-End */
+
+        if (flag){
             //该用户已经存在，直接查询个人信息
-            System.out.println("该用户已经存在，直接查询个人信息");
+            System.out.println("该用户已经存在，直接查询个人信息"+user);
         }else {
             //调用OpenAPI接口，获取登陆人信息入库操作
             System.out.println("调用OpenAPI接口，获取登陆人信息入库操作");
@@ -56,16 +80,20 @@ public class QQLoginController {
             if (response_Api.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String res = EntityUtils.toString(response_Api.getEntity(), "utf-8");
                 System.out.println("调用OpenAPI接口 res:"+res);
+                MessengerVo saveVo = new MessengerVo();
+                saveVo.setInfo("userInfo",res);
+                saveVo.setInfo("openId",openId);
+                dUserService.saveUser(vo);
             }
 
         }
     }
-    boolean checkIsExist(String openId){
-        boolean flag = false;
-        System.out.println("查询数据库是否存在此openId:"+openId);
-        //查询数据库是否存在
-        return flag;
-    }
+
+    /**
+     * 根据code获取openId
+     * @param code
+     * @return
+     */
     Map<String, Object> getOpenId(String code){
         HashMap<String, Object> map = new HashMap<>();
         String OpenId = "";

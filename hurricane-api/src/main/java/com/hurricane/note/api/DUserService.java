@@ -4,5 +4,7 @@ import com.hurricane.note.utils.bean.MessengerVo;
 
 
 public interface DUserService {
-    MessengerVo getUserInfo(MessengerVo params);
+    MessengerVo getUserInfo(MessengerVo messenger);
+
+    MessengerVo saveUser(MessengerVo messenger);
 }
