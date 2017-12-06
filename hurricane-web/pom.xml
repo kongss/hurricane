@@ -32,11 +32,18 @@
 	</properties>
 
 	<dependencies>
+		<!--项目依赖-->
 		<dependency>
 			<groupId>com.hurricane</groupId>
 			<artifactId>hurricane-common</artifactId>
 			<version>${loc_version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.hurricane</groupId>
+			<artifactId>hurricane-api</artifactId>
+			<version>${loc_version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
@@ -88,17 +95,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.hurricane</groupId>
-			<artifactId>hurricane-api</artifactId>
-			<version>${loc_version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf</artifactId>
 		</dependency>
 	</dependencies>
 
