@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,27 +44,24 @@ public class QQLoginController {
      * @throws Exception
      */
     @RequestMapping("user/qqLogin")
-    void qQLogin(String code,String state) throws Exception{
+    @ResponseBody String qQLogin(String code, String state) throws Exception{
         if (StringUtils.isEmpty(code)){
             System.out.println("QQ登陆异常,请联系管理员");
         }
+        System.out.println("code=================="+code);
         Map<String, Object> map = getOpenId(code);
         String AccessToken = String.valueOf(map.get("AccessToken"));
         String openId = String.valueOf(map.get("OpenId"));
 
         /** 判断该openId是否存在-Start */
-        boolean flag = false;
         MessengerVo vo = new MessengerVo();
         vo.setInfo("openId",openId);
         MessengerVo userInfo = dUserService.getUserInfo(vo);
         //查询数据库是否存在
         String user = userInfo.getString("user");
-        if (StringUtils.isEmpty(user)){
-            flag = true;
-        }
         /** 判断该openId是否存在-End */
 
-        if (flag){
+        if (StringUtils.isEmpty(user)){
             //该用户已经存在，直接查询个人信息
             System.out.println("该用户已经存在，直接查询个人信息"+user);
         }else {
@@ -83,10 +81,11 @@ public class QQLoginController {
                 MessengerVo saveVo = new MessengerVo();
                 saveVo.setInfo("userInfo",res);
                 saveVo.setInfo("openId",openId);
-                dUserService.saveUser(vo);
+                dUserService.saveUser(saveVo);
             }
 
         }
+        return "登录成功";
     }
 
     /**
@@ -107,6 +106,7 @@ public class QQLoginController {
             HttpClient httpClient_Token = new DefaultHttpClient();
             // 通过请求对象获取响应对象
             HttpResponse response_Token = httpClient_Token.execute(request_Token);
+            System.out.println("response_Token=================="+response_Token);
             // 判断网络连接状态码是否正常(0--200都数正常)
             if (response_Token.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String res= EntityUtils.toString(response_Token.getEntity(),"utf-8");
@@ -119,6 +119,7 @@ public class QQLoginController {
                     String value = s[1];
                     if ("access_token".equals(key)){
                         AccessToken = value;
+                        System.out.println("AccessToken=================="+AccessToken);
                         map.put("AccessToken",AccessToken);
                     }
                 }
@@ -129,6 +130,7 @@ public class QQLoginController {
             HttpGet request_OpenID = new HttpGet(OpenIDUrl);//这里发送get请求
             HttpClient httpClient_OpenID = new DefaultHttpClient();
             HttpResponse response_OpenID = httpClient_OpenID.execute(request_OpenID);
+            System.out.println("response_OpenID=================="+response_OpenID);
             if (response_OpenID.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String res= EntityUtils.toString(response_OpenID.getEntity(),"utf-8");
                 System.out.println("获取用户OpenID："+res);
@@ -139,6 +141,7 @@ public class QQLoginController {
                 String openid = object.getString("openid");
                 System.out.println("client_id:"+client_id+"  openid:"+openid);
                 OpenId = openid;
+                System.out.println("OpenId=================="+OpenId);
                 map.put("OpenId",OpenId);
             }
         }catch (Exception e){

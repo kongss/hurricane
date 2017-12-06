@@ -55,4 +55,14 @@ public class MessengerVo implements Serializable{
     public void setClientIp(String clientIp) {
         this.clientIp = clientIp;
     }
+
+    @Override
+    public String toString() {
+        return "MessengerVo{" +
+                "map=" + map +
+                ", resCode='" + resCode + '\'' +
+                ", resDesc='" + resDesc + '\'' +
+                ", clientIp='" + clientIp + '\'' +
+                '}';
+    }
 }
