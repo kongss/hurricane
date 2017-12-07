@@ -6,6 +6,7 @@
   <artifactId>hurricane</artifactId>
   <version>1.0-SNAPSHOT</version>
   <modules>
+    <module>hurricane-admin</module>
     <module>hurricane-service</module>
     <module>hurricane-dao</module>
     <module>hurricane-api</module>
