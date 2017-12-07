@@ -11,7 +11,6 @@
     <module>hurricane-api</module>
     <module>hurricane-common</module>
     <module>hurricane-redis-service</module>
-    <module>hurricane-admin</module>
     <module>hurricane-web</module>
   </modules>
   <packaging>pom</packaging>
