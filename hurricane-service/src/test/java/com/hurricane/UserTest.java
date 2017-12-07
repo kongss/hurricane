@@ -1,7 +1,7 @@
 package com.hurricane;
 
-import com.hurricane.note.api.DUserService;
-import com.hurricane.note.utils.bean.MessengerVo;
+import com.hurricane.coupon.api.DUserService;
+import com.hurricane.coupon.utils.bean.MessengerVo;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class UserTest {

@@ -20,8 +20,8 @@
     <dubbo:protocol name="dubbo" port="20880"/>
 
     <!-- 和本地bean一样实现服务 -->
-    <bean id="userService" class="com.hurricane.note.api.impl.DUserServiceImpl"/>
+    <bean id="userService" class="com.hurricane.coupon.api.impl.DUserServiceImpl"/>
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service timeout="6000" interface="com.hurricane.note.api.DUserService" ref="userService"/>
+    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DUserService" ref="userService"/>
 </beans>
