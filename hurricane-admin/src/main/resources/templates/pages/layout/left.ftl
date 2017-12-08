@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 <div style="width:15%; height:600px; float:left; background-color: #e4e4e4;">
-
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Bootstrap 实例 - 折叠（Collapse）插件方法</title>
-        <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-    <body>
 
     <div class="panel-group" id="accordion" style="font-size: 15px">
         <div class="panel panel-default">
@@ -90,9 +72,5 @@
         $(function () { $('#collapseOne').collapse('hide')});
     </script>
 
-    </body>
-    </html>
 
 </div>
-</body>
-</html>
