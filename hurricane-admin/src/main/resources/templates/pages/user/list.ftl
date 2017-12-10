@@ -9,35 +9,88 @@
 
 </head>
 <body>
-
-    <div class="container">
+    <ol class="breadcrumb">
+        <li><a href="javascript:void(0)">Home</a></li>
+        <li><a href="javascript:void(0)">用户管理</a></li>
+        <li class="active">用户列表</li>
+    </ol>
+    <form class="bs-example bs-example-form" role="form" style="margin-left: 20px;">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+    </form>
+    <div class="container" style="overflow: auto;margin-left: 5px;margin-top: 10px;width: 98%;">
         <table class="table table-hover">
             <thead>
             <tr>
                 <th>Firstname</th>
+                <th>Firstname</th>
+                <th>Firstname</th>
                 <th>Lastname</th>
+                <th>Lastname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Email</th>
+                <th>Email</th>
+                <th>Email</th>
                 <th>Email</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td>John</td>
+                <td>John</td>
+                <td>John</td>
                 <td>Doe</td>
+                <td>Doe</td>
+                <td>Doe</td>
+                <td>john@example.com</td>
+                <td>john@example.com</td>
+                <td>john@example.com</td>
+                <td>john@example.com</td>
                 <td>john@example.com</td>
             </tr>
             <tr>
                 <td>Mary</td>
+                <td>Mary</td>
+                <td>Mary</td>
                 <td>Moe</td>
+                <td>Moe</td>
+                <td>Moe</td>
+                <td>mary@example.com</td>
+                <td>mary@example.com</td>
+                <td>mary@example.com</td>
+                <td>mary@example.com</td>
                 <td>mary@example.com</td>
             </tr>
             <tr>
                 <td>July</td>
+                <td>July</td>
+                <td>July</td>
                 <td>Dooley</td>
+                <td>Dooley</td>
+                <td>Dooley</td>
+                <td>july@example.com</td>
+                <td>july@example.com</td>
+                <td>july@example.com</td>
+                <td>july@example.com</td>
                 <td>july@example.com</td>
             </tr>
             </tbody>
         </table>
     </div>
-
+    <ul class="pagination" style="float: right; margin-right: 5px;">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+    </ul>
 </body>
 </html>
