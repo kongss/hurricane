@@ -12,10 +12,14 @@
 	    <#include "left.ftl">
 
 	    <#-- 在这里嵌入main content -->
-	    <#nested>
-
-	    <#--<#include "footer.ftl">-->
+	    <#--<#nested>-->
+        <div style="width:85%; height:600px; float:left; background-color: #ffffff;">
+        <iframe id="iframe-content" src="http://localhost:8080/home" width="100%"  frameborder="no" border="0" marginwidth="0"
+            marginheight=" 0" scrolling="no" allowtransparency="yes">111</iframe>
+        </div>
+        <#--<#include "footer.ftl">-->
 </div>
+
 </body>
 </html>
 </#macro>

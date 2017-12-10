@@ -1,5 +1,6 @@
 <div style="width:15%; height:600px; float:left; background-color: #e4e4e4;">
 
+    <a href="" style="font-size: 16px;" onclick="menuClick('http://localhost:8080/')">欢迎页面</a><br>
     <div class="panel-group" id="accordion" style="font-size: 15px">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -12,7 +13,8 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href="http://localhost:8080/userList">用户列表</a>
+
+                    <a href="#" onclick="menuClick('http://localhost:8080/userList')">用户列表</a>
                 </div>
             </div>
         </div>
@@ -42,7 +44,7 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href="#">优惠券列表</a>
+                    <a href="#" onclick="menuClick('http://localhost:8080/couponList')">优惠券列表</a>
                 </div>
             </div>
         </div>
@@ -57,19 +59,20 @@
             </div>
             <div id="collapseFour" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href="http://localhost:8080/">欢迎页面</a><br>
                     <a href="#">用户日点击量</a>
                 </div>
             </div>
         </div>
     </div>
     <script type="text/javascript">
-        $(function () { $('#collapseFour').collapse({
-            toggle: false
-        })});
-        $(function () { $('#collapseTwo').collapse('toggle')});
-        $(function () { $('#collapseThree').collapse('hide')});
-        $(function () { $('#collapseOne').collapse('hide')});
+        function menuClick(url) {
+            $("#iframe-content").attr('src',url);
+        }
+
+        $(function () { $('#collapseOne').collapse('show')});
+        $(function () { $('#collapseTwo').collapse('show')});
+        $(function () { $('#collapseThree').collapse('show')});
+        $(function () { $('#collapseFour').collapse('show')});
     </script>
 
 
