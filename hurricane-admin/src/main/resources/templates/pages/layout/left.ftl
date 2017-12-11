@@ -29,7 +29,7 @@
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href="#">商城列表</a>
+                    <a href="#"  onclick="menuClick('http://localhost:8080/sellerList')">商城列表</a>
                 </div>
             </div>
         </div>

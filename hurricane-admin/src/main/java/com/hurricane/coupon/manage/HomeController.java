@@ -1,7 +1,11 @@
 package com.hurricane.coupon.manage;
 
+import com.hurricane.coupon.utils.bean.HConstants;
+import com.hurricane.coupon.utils.bean.MessengerVo;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
@@ -24,6 +28,31 @@ public class HomeController {
         map.put("user","kong");
         map.put("pwd","123");
         return "pages/coupon/couponList";
+    }
+
+    @RequestMapping("/sellerList")
+    public String sellerList(Map<String, Object> map){
+        map.put("user","kong");
+        map.put("pwd","123");
+        return "pages/seller/sellerList";
+    }
+
+    @RequestMapping("/addSeller")
+    @ResponseBody
+    public MessengerVo addSeller(String name, String longUrl, String logoPicUrl, String siteUrl, String source, String status, String shortUrl){
+        System.out.println("保存"+name+" "+longUrl+" "+logoPicUrl+" "+siteUrl+" "+source+" "+status+" "+shortUrl);
+        if (StringUtils.isEmpty(name)){}
+        if (StringUtils.isEmpty(longUrl)){}
+        if (StringUtils.isEmpty(logoPicUrl)){}
+        if (StringUtils.isEmpty(siteUrl)){}
+        if (StringUtils.isEmpty(source)){}
+        if (StringUtils.isEmpty(status)){}
+        if (StringUtils.isEmpty(shortUrl)){}
+
+        MessengerVo messenger = new MessengerVo();
+        messenger.setResCode(HConstants.SUCCESS);
+        messenger.setResDesc("保存成功");
+        return messenger;
     }
 
     @RequestMapping("/userList")

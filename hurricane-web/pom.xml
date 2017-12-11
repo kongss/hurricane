@@ -19,7 +19,6 @@
 	</parent>
 
 	<properties>
-		<loc_version>1.0-SNAPSHOT</loc_version>
 		<dubbo_version>2.5.7</dubbo_version>
 		<zookeeper_version>3.4.9</zookeeper_version>
 		<zkclient_version>0.2</zkclient_version>
@@ -36,12 +35,12 @@
 		<dependency>
 			<groupId>com.hurricane</groupId>
 			<artifactId>hurricane-common</artifactId>
-			<version>${loc_version}</version>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.hurricane</groupId>
 			<artifactId>hurricane-api</artifactId>
-			<version>${loc_version}</version>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
