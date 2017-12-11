@@ -14,4 +14,5 @@
     <dubbo:registry id="hurricane-service-consumer" protocol="zookeeper" address="zookeeper://47.94.205.206:2181"/>
 
     <dubbo:reference id="dUserService" timeout="6000" registry="hurricane-service-consumer" interface="com.hurricane.coupon.api.DUserService"/>
+    <dubbo:reference id="dSellerService" timeout="6000" registry="hurricane-service-consumer" interface="com.hurricane.coupon.api.DSellerService"/>
 </beans>

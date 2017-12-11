@@ -21,7 +21,9 @@
 
     <!-- 和本地bean一样实现服务 -->
     <bean id="userService" class="com.hurricane.coupon.api.impl.DUserServiceImpl"/>
-
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DUserService" ref="userService"/>
+
+    <bean id="sellerService" class="com.hurricane.coupon.api.impl.DSellerServiceImpl"/>
+    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DSellerService" ref="sellerService"/>
 </beans>

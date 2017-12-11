@@ -2,6 +2,7 @@ package com.hurricane.coupon.web;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.fastjson.JSONObject;
+import com.hurricane.coupon.api.DSellerService;
 import com.hurricane.coupon.api.DUserService;
 import com.hurricane.coupon.utils.bean.MessengerVo;
 import org.apache.http.HttpResponse;
@@ -36,6 +37,9 @@ public class QQLoginController {
 
     @Autowired
     DUserService dUserService;
+
+    @Autowired
+    DSellerService dSellerService;
 
     /**
      * QQ第三方登陆
