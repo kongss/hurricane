@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="hurricane-admin" />
+
+    <!--<dubbo:registry id="hurricane-service-consumer" protocol="multicast" address="multicast://224.5.6.7:1234"/>-->
+    <dubbo:registry id="hurricane-service-consumer" protocol="zookeeper" address="zookeeper://47.94.205.206:2181"/>
+
+    <dubbo:reference id="dSellerService" timeout="6000" registry="hurricane-service-consumer" interface="com.hurricane.coupon.api.DSellerService"/>
+
+</beans>

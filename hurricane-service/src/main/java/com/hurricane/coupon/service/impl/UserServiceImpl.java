@@ -59,10 +59,10 @@ public class UserServiceImpl implements UserService{
         logger.info("UserServiceImpl-saveUser-保存数据:"+i);
         if (i>0){
             messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("保存成功");
+            messenger.setResDesc("保存用户成功");
         }else {
             messenger.setResCode(HConstants.ERROR);
-            messenger.setResDesc("保存失败");
+            messenger.setResDesc("保存用户失败");
         }
         return messenger;
     }

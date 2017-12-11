@@ -1,7 +1,9 @@
 package com.hurricane.coupon.manage;
 
+import com.hurricane.coupon.api.DSellerService;
 import com.hurricane.coupon.utils.bean.HConstants;
 import com.hurricane.coupon.utils.bean.MessengerVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,9 @@ import java.util.Map;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    DSellerService dSellerService;
 
     @RequestMapping("/")
     public String init(Map<String, Object> map){
@@ -50,6 +55,13 @@ public class HomeController {
         if (StringUtils.isEmpty(shortUrl)){}
 
         MessengerVo messenger = new MessengerVo();
+        MessengerVo vo = dSellerService.saveSeller(messenger);
+
+        if ("0000" != vo.getResCode()){
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("保存失败");
+
+        }
         messenger.setResCode(HConstants.SUCCESS);
         messenger.setResDesc("保存成功");
         return messenger;
