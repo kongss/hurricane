@@ -29,8 +29,8 @@ public class HomeController {
     @RequestMapping("/userList")
     public String Home(Map<String, Object> map){
         System.out.println("thymeleaf-start..........");
-        map.put("hello","Hello Thymeleaf !");
-        map.put("Thy","Hello Thymeleaf !");
+        map.put("hello","Hello freemarker !");
+        map.put("Thy","Hello freemarker !");
         System.out.println(map);
         return "pages/user/list";
     }

@@ -14,14 +14,10 @@
         <li><a href="javascript:void(0)">用户管理</a></li>
         <li class="active">用户列表</li>
     </ol>
-    <form class="bs-example bs-example-form" role="form" style="margin-left: 20px;">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="input-group">
-                    <input type="text" class="form-control">
-                </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
-        </div><!-- /.row -->
+    <form class="navbar-form navbar-left" role="search" style="margin-left: 6px;">
+        <div class="form-group">
+            <span style="font-size: 16px;">昵称：</span><input type="text" class="form-control" />
+        </div> <button type="submit" class="btn btn-default">搜索</button>
     </form>
     <div class="container" style="overflow: auto;margin-left: 5px;margin-top: 10px;width: 98%;">
         <table class="table table-hover">
@@ -93,4 +89,7 @@
         <li><a href="#">&raquo;</a></li>
     </ul>
 </body>
+<script type="text/javascript">
+
+</script>
 </html>
