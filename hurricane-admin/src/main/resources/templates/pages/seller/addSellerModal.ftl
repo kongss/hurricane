@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group">
                     <label for="inputfile">商城LOGO上传</label>
-                    <input type="file" id="">
+                    <input type="file" name="logoFile" id="logoFile" onchange="uploadLogo()">
                     <input type="text"  id="logoPicUrl" name="logoPicUrl">
                 </div>
                 <div class="form-group">
@@ -53,6 +53,19 @@
 </div>
 
 <script type="text/javascript">
+    function uploadLogo() {
+        var filePath = $("#logoFile").val();
+        console.log("filePath>>>>>>>>>>>>>>>>"+filePath)
+        $.ajax({
+            type:"post",
+            url:"http://101.200.235.166:8080//admin/seller/uploadLogo",
+            data:{'filePath':filePath},
+            dataType : 'json',
+            success:function(data){
+                console.log("over.."+data);
+            }
+        });
+    }
     function saveSeller() {
         var name = $("#name").val();
         var logoPicUrl = $("#logoPicUrl").val();

@@ -20,6 +20,7 @@
 
 	<properties>
 		<dubbo_version>2.5.7</dubbo_version>
+		<oss_version>2.2.1</oss_version>
 		<zookeeper_version>3.4.9</zookeeper_version>
 		<zkclient_version>0.2</zkclient_version>
 		<slf4j_version>1.7.25</slf4j_version>
@@ -40,6 +41,11 @@
 			<groupId>com.hurricane</groupId>
 			<artifactId>hurricane-api</artifactId>
 			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aliyun.oss</groupId>
+			<artifactId>aliyun-sdk-oss</artifactId>
+			<version>${oss_version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
