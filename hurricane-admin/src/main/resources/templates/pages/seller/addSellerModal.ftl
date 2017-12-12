@@ -54,7 +54,30 @@
 
 <script type="text/javascript">
     function uploadLogo() {
-        var filePath = $("#logoFile").val();
+        var formData = new FormData();
+        var name = "222222";
+        formData.append("file",$("#logoFile")[0].files[0]);
+        formData.append("name",name);
+        $.ajax({
+            url : 'http://101.200.235.166:8080//admin/seller/uploadLogo',
+            type : 'POST',
+            data : formData,
+            // 告诉jQuery不要去处理发送的数据
+            processData : false,
+            // 告诉jQuery不要去设置Content-Type请求头
+            contentType : false,
+            success : function(responseStr) {
+                if(responseStr.status===0){
+                    console.log("成功"+responseStr);
+                }else{
+                    console.log("失败");
+                }
+            },
+            error : function(responseStr) {
+                console.log("error "+responseStr);
+            }
+        });
+        /*var filePath = $("#logoFile").val();
         console.log("filePath>>>>>>>>>>>>>>>>"+filePath)
         $.ajax({
             type:"post",
@@ -64,7 +87,7 @@
             success:function(data){
                 console.log("over.."+data);
             }
-        });
+        });*/
     }
     function saveSeller() {
         var name = $("#name").val();

@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Date;
 import java.util.Map;
@@ -60,23 +63,26 @@ public class SellerController {
 
     @RequestMapping("/uploadLogo")
     @ResponseBody
-    MessengerVo uploadLogo(String filePath) throws Exception{
+    MessengerVo uploadLogo(@RequestParam("file") MultipartFile file)throws Exception{
         MessengerVo vo = new MessengerVo();
         vo.setResCode(HConstants.SUCCESS);
         vo.setResDesc("上传上传LOGO成功");
-        File file = new File(filePath);
-        String fileName = file.getName();
-        key = fileName;
+        System.out.println("file>>>>>>>>>>>>>>>>>>>>>>>>>>>"+file);
+        InputStream stream = file.getInputStream();
+        String fileName = file.getOriginalFilename();
+        System.out.println("fileName>>>>>>>>>>>>>>>>>>>>>>>>>>>"+fileName);
+        key = System.currentTimeMillis()+fileName;
         // 创建OSSClient实例
         OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
-        PutObjectResult res = ossClient.putObject(bucketName, key, file);
-        System.out.println("res====="+res.getETag());
+        PutObjectResult res = ossClient.putObject(bucketName, key, stream);
+        System.out.println("res>>>>>>>>>>>>>>>>>>>>>>>>>>>"+res.getETag());
         // 设置URL过期时间为1小时
+        Thread.sleep(300);
         //Date expiration = DateUtil.parseRfc822Date("Wed, 18 Mar 2018 14:20:00 GMT");
         Date expiration = new Date(new Date().getTime() + 10000);
         // 生成URL
         URL url = ossClient.generatePresignedUrl(bucketName, key, expiration);
-        System.out.println("url====="+url);
+        System.out.println("url>>>>>>>>>>>>>>>>>>>>>>>>>>>"+url);
         vo.setInfo("url",url);
         // 关闭client
         ossClient.shutdown();
