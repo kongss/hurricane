@@ -44,9 +44,10 @@ public class SellerController {
     String key;//初始为空值，存储时的文件名称
 
     @RequestMapping("/sellerList")
+    @ResponseBody
     MessengerVo sellerList(Map<String, Object> map){
         MessengerVo messenger = new MessengerVo();
-        dSellerService.getSellerList(messenger);
+        messenger = dSellerService.getSellerList(messenger);
         return messenger;
     }
 
@@ -81,6 +82,7 @@ public class SellerController {
             messenger.setResDesc("保存成功");
             System.out.println("保存商城信息成功");
         }
+        System.out.println("返回参数"+vo);
         return messenger;
     }
 

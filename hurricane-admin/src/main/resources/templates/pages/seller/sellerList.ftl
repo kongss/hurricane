@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <script src="/js/seller/seller.js"></script>
 </head>
 <body>
 <ol class="breadcrumb">
@@ -47,7 +47,7 @@
             <th style="white-space: nowrap;word-break: keep-all;">创建时间</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="sellerList">
         <tr>
             <td>John</td>
             <td>John</td>
@@ -57,16 +57,6 @@
             <td>Doe</td>
             <td>john@example.com</td>
             <td>john@example.com</td>
-        </tr>
-        <tr>
-            <td>July</td>
-            <td>July</td>
-            <td>July</td>
-            <td>Dooley</td>
-            <td>Dooley</td>
-            <td>Dooley</td>
-            <td>july@example.com</td>
-            <td>july@example.com</td>
         </tr>
         </tbody>
     </table>
