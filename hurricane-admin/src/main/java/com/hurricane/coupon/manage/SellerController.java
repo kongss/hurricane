@@ -44,8 +44,10 @@ public class SellerController {
     String key;//初始为空值，存储时的文件名称
 
     @RequestMapping("/sellerList")
-    void sellerList(Map<String, Object> map){
-
+    MessengerVo sellerList(Map<String, Object> map){
+        MessengerVo messenger = new MessengerVo();
+        dSellerService.getSellerList(messenger);
+        return messenger;
     }
 
     @RequestMapping("/addSeller")

@@ -17,7 +17,7 @@ public class DSellerServiceImpl implements DSellerService {
     }
 
     public MessengerVo getSellerList(MessengerVo messenger) {
-        return null;
+        return sellerService.getSellerList(messenger);
     }
 
     public MessengerVo saveSeller(MessengerVo messenger) {

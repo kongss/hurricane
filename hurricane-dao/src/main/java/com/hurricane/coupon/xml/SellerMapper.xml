@@ -193,4 +193,9 @@
       remark = #{remark,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
+  <select id="selectSellerList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    select
+    <include refid="Base_Column_List" />
+    from seller
+  </select>
 </mapper>

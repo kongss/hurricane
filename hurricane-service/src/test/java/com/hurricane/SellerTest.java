@@ -5,7 +5,7 @@ import com.hurricane.coupon.api.DUserService;
 import com.hurricane.coupon.utils.bean.MessengerVo;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class UserTest {
+public class SellerTest {
     static ClassPathXmlApplicationContext context;
     static DSellerService service;
     static {
@@ -14,8 +14,16 @@ public class UserTest {
     }
 
     public static void main(String[] args) {
-        MessengerVo vo = new MessengerVo();
+        sellerList();
+    }
 
-        //System.out.printf("user==="+userInfo.getString("ttttt"));
+    public static void addSeller(){
+
+    }
+
+    public static void sellerList(){
+        MessengerVo vo = new MessengerVo();
+        MessengerVo sellerList = service.getSellerList(vo);
+        System.out.println(sellerList);
     }
 }

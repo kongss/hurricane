@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class SellerServiceImpl implements SellerService {
@@ -22,7 +25,13 @@ public class SellerServiceImpl implements SellerService {
     }
 
     public MessengerVo getSellerList(MessengerVo messenger) {
-        return null;
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        List<Map<String, Object>> sellerList = sellerMapper.selectSellerList(map);
+        messenger = new MessengerVo();
+        messenger.setResCode(HConstants.SUCCESS);
+        messenger.setResDesc("查询成功");
+        messenger.setInfo("sellerList",sellerList);
+        return messenger;
     }
 
     public MessengerVo saveSeller(MessengerVo messenger) {
