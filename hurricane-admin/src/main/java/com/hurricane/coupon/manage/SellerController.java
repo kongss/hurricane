@@ -61,6 +61,13 @@ public class SellerController {
         if (StringUtils.isEmpty(shortUrl)){}
 
         MessengerVo messenger = new MessengerVo();
+        messenger.setInfo("name",name);
+        messenger.setInfo("longUrl",longUrl);
+        messenger.setInfo("logoPicUrl",logoPicUrl);
+        messenger.setInfo("siteUrl",siteUrl);
+        messenger.setInfo("source",source);
+        messenger.setInfo("status",status);
+        messenger.setInfo("shortUrl",shortUrl);
         MessengerVo vo = dSellerService.saveSeller(messenger);
 
         if ("0000" != vo.getResCode()){

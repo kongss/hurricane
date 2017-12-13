@@ -89,8 +89,6 @@
         if (checkNotEmpty(name) && checkNotEmpty(longUrl) && checkNotEmpty(logoPicUrl) && checkNotEmpty(siteUrl) &&
                 checkNotEmpty(source) && checkNotEmpty(status) && checkNotEmpty(shortUrl)){
             //发生ajax保存数据
-            var url = ${request.contextPath} +"/addSeller";
-            console.log("url==========="+url)
             $.ajax({
                 type: 'POST',
                 url: "http://101.200.235.166:8080/admin/seller/addSeller",
@@ -100,6 +98,9 @@
                     console.log(data);
                 }
             });
+        }else {
+            alert("选项都不能为空");
+            return false;
         }
     }
     function checkNotEmpty(obj) {

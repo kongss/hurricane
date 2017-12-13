@@ -10,12 +10,12 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="logo_pic_url" property="logoPicUrl" jdbcType="VARCHAR" />
     <result column="site_url" property="siteUrl" jdbcType="VARCHAR" />
-    <result column="source" property="source" jdbcType="INTEGER" />
-    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
     <result column="short_url" property="shortUrl" jdbcType="VARCHAR" />
     <result column="long_url" property="longUrl" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="CHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -54,9 +54,9 @@
       short_url, long_url, create_time, 
       sort, remark)
     values (#{uuid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{logoPicUrl,jdbcType=VARCHAR}, 
-      #{siteUrl,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{siteUrl,jdbcType=VARCHAR}, #{source,jdbcType=CHAR}, #{status,jdbcType=CHAR}, 
       #{shortUrl,jdbcType=VARCHAR}, #{longUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{sort,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+      #{sort,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hurricane.coupon.entity.Seller" >
     <!--
@@ -113,10 +113,10 @@
         #{siteUrl,jdbcType=VARCHAR},
       </if>
       <if test="source != null" >
-        #{source,jdbcType=INTEGER},
+        #{source,jdbcType=CHAR},
       </if>
       <if test="status != null" >
-        #{status,jdbcType=INTEGER},
+        #{status,jdbcType=CHAR},
       </if>
       <if test="shortUrl != null" >
         #{shortUrl,jdbcType=VARCHAR},
@@ -128,7 +128,7 @@
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="sort != null" >
-        #{sort,jdbcType=INTEGER},
+        #{sort,jdbcType=CHAR},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -152,10 +152,10 @@
         site_url = #{siteUrl,jdbcType=VARCHAR},
       </if>
       <if test="source != null" >
-        source = #{source,jdbcType=INTEGER},
+        source = #{source,jdbcType=CHAR},
       </if>
       <if test="status != null" >
-        status = #{status,jdbcType=INTEGER},
+        status = #{status,jdbcType=CHAR},
       </if>
       <if test="shortUrl != null" >
         short_url = #{shortUrl,jdbcType=VARCHAR},
@@ -167,7 +167,7 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="sort != null" >
-        sort = #{sort,jdbcType=INTEGER},
+        sort = #{sort,jdbcType=CHAR},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -184,12 +184,12 @@
     set name = #{name,jdbcType=VARCHAR},
       logo_pic_url = #{logoPicUrl,jdbcType=VARCHAR},
       site_url = #{siteUrl,jdbcType=VARCHAR},
-      source = #{source,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
+      source = #{source,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
       short_url = #{shortUrl,jdbcType=VARCHAR},
       long_url = #{longUrl,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      sort = #{sort,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=CHAR},
       remark = #{remark,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
