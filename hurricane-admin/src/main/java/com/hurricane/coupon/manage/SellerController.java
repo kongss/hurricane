@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Date;
@@ -67,7 +66,6 @@ public class SellerController {
         MessengerVo vo = new MessengerVo();
         vo.setResCode(HConstants.SUCCESS);
         vo.setResDesc("上传上传LOGO成功");
-        System.out.println("file>>>>>>>>>>>>>>>>>>>>>>>>>>>"+file);
         InputStream stream = file.getInputStream();
         String fileName = file.getOriginalFilename();
         System.out.println("fileName>>>>>>>>>>>>>>>>>>>>>>>>>>>"+fileName);
@@ -82,12 +80,15 @@ public class SellerController {
         Date expiration = new Date(new Date().getTime() + 10000);
         // 生成URL
         URL url = ossClient.generatePresignedUrl(bucketName, key, expiration);
-        System.out.println("url>>>>>>>>>>>>>>>>>>>>>>>>>>>"+url);
         vo.setInfo("url",url);
+        System.out.println(vo);
         // 关闭client
         ossClient.shutdown();
 
         return vo;
     }
 
+    public static void main(String[] args) {
+
+    }
 }

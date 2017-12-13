@@ -8,13 +8,17 @@ import java.util.Map;
 public class MessengerVo implements Serializable{
 
     /** 业务参数集合 */
-    private Map<String, Object> map =  new HashMap<String, Object>();
+    private Map<String, Object> map =  null;
     /** 响应码 */
     private String resCode;
     /** 描述信息 */
     private String resDesc;
     /** 客户端IP */
     private String clientIp;
+
+    public MessengerVo(){
+        this.map = new HashMap<String, Object>();
+    }
 
     /** 获取map对象 */
     public String getString(String key){
@@ -25,6 +29,14 @@ public class MessengerVo implements Serializable{
             }
         }
         return String.valueOf(obj);
+    }
+
+    public Map<String, Object> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<String, Object> map) {
+        this.map = map;
     }
 
     /** put业务参数 */
