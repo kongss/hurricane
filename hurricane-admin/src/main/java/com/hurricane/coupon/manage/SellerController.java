@@ -1,6 +1,8 @@
 package com.hurricane.coupon.manage;
 
 import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.common.utils.DateUtil;
+import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectResult;
 import com.hurricane.coupon.api.DSellerService;
 import com.hurricane.coupon.utils.bean.HConstants;
@@ -72,12 +74,20 @@ public class SellerController {
         key = System.currentTimeMillis()+fileName;
         // 创建OSSClient实例
         OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
-        PutObjectResult res = ossClient.putObject(bucketName, key, stream);
+        //PutObjectResult res = ossClient.putObject(bucketName, key, stream);
+        //创建上传Object的Metadata
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentLength(stream.available());
+        objectMetadata.setCacheControl("no-cache");
+        objectMetadata.setHeader("Pragma", "no-cache");
+        objectMetadata.setContentType(getcontentType(fileName.substring(fileName.lastIndexOf("."))));
+        objectMetadata.setContentDisposition("inline;filename=" + fileName);
+        PutObjectResult res = ossClient.putObject(bucketName, key, stream, objectMetadata);
         System.out.println("res>>>>>>>>>>>>>>>>>>>>>>>>>>>"+res.getETag());
         // 设置URL过期时间为1小时
         Thread.sleep(300);
-        //Date expiration = DateUtil.parseRfc822Date("Wed, 18 Mar 2018 14:20:00 GMT");
-        Date expiration = new Date(new Date().getTime() + 10000);
+        Date expiration = DateUtil.parseRfc822Date("Wed, 18 Mar 2217 14:20:00 GMT");
+        //Date expiration = new Date(new Date().getTime() + 3600 * 1000);
         // 生成URL
         URL url = ossClient.generatePresignedUrl(bucketName, key, expiration);
         vo.setInfo("url",url);
@@ -86,6 +96,41 @@ public class SellerController {
         ossClient.shutdown();
 
         return vo;
+    }
+
+    public static String getcontentType(String FilenameExtension) {
+        if (FilenameExtension.equalsIgnoreCase(".bmp")) {
+            return "image/bmp";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".gif")) {
+            return "image/gif";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".jpeg") ||
+                FilenameExtension.equalsIgnoreCase(".jpg") ||
+                FilenameExtension.equalsIgnoreCase(".png")) {
+            return "image/jpeg";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".html")) {
+            return "text/html";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".txt")) {
+            return "text/plain";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".vsd")) {
+            return "application/vnd.visio";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".pptx") ||
+                FilenameExtension.equalsIgnoreCase(".ppt")) {
+            return "application/vnd.ms-powerpoint";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".docx") ||
+                FilenameExtension.equalsIgnoreCase(".doc")) {
+            return "application/msword";
+        }
+        if (FilenameExtension.equalsIgnoreCase(".xml")) {
+            return "text/xml";
+        }
+        return "image/jpeg";
     }
 
     public static void main(String[] args) {
