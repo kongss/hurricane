@@ -10,6 +10,7 @@ import com.hurricane.coupon.utils.bean.MessengerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,8 +49,28 @@ public class SellerController {
     }
 
     @RequestMapping("/addSeller")
-    void addSeller(Map<String, Object> map){
+    @ResponseBody
+    public MessengerVo addSeller(String name, String longUrl, String logoPicUrl, String siteUrl, String source, String status, String shortUrl){
+        System.out.println("保存"+name+" "+longUrl+" "+logoPicUrl+" "+siteUrl+" "+source+" "+status+" "+shortUrl);
+        if (StringUtils.isEmpty(name)){}
+        if (StringUtils.isEmpty(longUrl)){}
+        if (StringUtils.isEmpty(logoPicUrl)){}
+        if (StringUtils.isEmpty(siteUrl)){}
+        if (StringUtils.isEmpty(source)){}
+        if (StringUtils.isEmpty(status)){}
+        if (StringUtils.isEmpty(shortUrl)){}
 
+        MessengerVo messenger = new MessengerVo();
+        MessengerVo vo = dSellerService.saveSeller(messenger);
+
+        if ("0000" != vo.getResCode()){
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("保存失败");
+
+        }
+        messenger.setResCode(HConstants.SUCCESS);
+        messenger.setResDesc("保存成功");
+        return messenger;
     }
 
     @RequestMapping("/deleteSeller")
@@ -84,8 +105,7 @@ public class SellerController {
         objectMetadata.setContentDisposition("inline;filename=" + fileName);
         PutObjectResult res = ossClient.putObject(bucketName, key, stream, objectMetadata);
         System.out.println("res>>>>>>>>>>>>>>>>>>>>>>>>>>>"+res.getETag());
-        // 设置URL过期时间为1小时
-        Thread.sleep(300);
+        // 设置URL过期时间为10年
         Date expiration = DateUtil.parseRfc822Date("Wed, 18 Mar 2217 14:20:00 GMT");
         //Date expiration = new Date(new Date().getTime() + 3600 * 1000);
         // 生成URL

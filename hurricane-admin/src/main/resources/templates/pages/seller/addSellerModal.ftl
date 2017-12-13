@@ -69,6 +69,7 @@
             //dataType : 'json',
             success : function(data) {
                 console.log("data="+data)
+                $("#logoPicUrl").val(data.map.url);
             },
             error : function(data) {
                 console.log("error "+data);
@@ -88,9 +89,11 @@
         if (checkNotEmpty(name) && checkNotEmpty(longUrl) && checkNotEmpty(logoPicUrl) && checkNotEmpty(siteUrl) &&
                 checkNotEmpty(source) && checkNotEmpty(status) && checkNotEmpty(shortUrl)){
             //发生ajax保存数据
+            var url = ${request.contextPath} +"/addSeller";
+            console.log("url==========="+url)
             $.ajax({
                 type: 'POST',
-                url: "http://localhost:8080/addSeller",
+                url: "http://101.200.235.166:8080/admin/seller/addSeller",
                 data: {"name": name, "longUrl": longUrl, "logoPicUrl": logoPicUrl, "siteUrl": siteUrl, "source": source, "status": status, "shortUrl": shortUrl },
                 dataType: "json",
                 success: function(data){
