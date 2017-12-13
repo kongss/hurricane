@@ -73,10 +73,12 @@ public class SellerController {
         if ("0000" != vo.getResCode()){
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("保存失败");
-
+            System.out.println("保存商城信息失败");
+        }else {
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("保存成功");
+            System.out.println("保存商城信息成功");
         }
-        messenger.setResCode(HConstants.SUCCESS);
-        messenger.setResDesc("保存成功");
         return messenger;
     }
 
