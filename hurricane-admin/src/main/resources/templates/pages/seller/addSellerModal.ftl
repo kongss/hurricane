@@ -96,6 +96,11 @@
                 dataType: "json",
                 success: function(data){
                     console.log(data);
+                    if ("0000" != data.resCode){
+                        alert("添加商城信息异常！！！联系管理员");
+                        return false;
+                    }
+                    window.location.href.reload();
                 }
             });
         }else {

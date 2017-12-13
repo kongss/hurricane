@@ -35,31 +35,32 @@ public class SellerServiceImpl implements SellerService {
     }
 
     public MessengerVo saveSeller(MessengerVo messenger) {
-        System.out.println("messenger="+messenger);
-        String name = messenger.getString("name");
-        String longUrl = messenger.getString("longUrl");
-        String logoPicUrl = messenger.getString("logoPicUrl");
-        String siteUrl = messenger.getString("siteUrl");
-        String source = messenger.getString("source");
-        String status = messenger.getString("status");
-        String shortUrl = messenger.getString("shortUrl");
-        Seller seller = new Seller();
-        seller.setUuid(HuUUID.getUuid());
-        seller.setName(name);
-        seller.setLongUrl(longUrl);
-        seller.setLogoPicUrl(logoPicUrl);
-        seller.setSiteUrl(siteUrl);
-        seller.setSource(source);
-        seller.setStatus(status);
-        seller.setShortUrl(shortUrl);
-        seller.setCreateTime(new Date());
-        int i = sellerMapper.insertSelective(seller);
-        if (i>0){
+        try {
+            System.out.println("messenger="+messenger);
+            String name = messenger.getString("name");
+            String longUrl = messenger.getString("longUrl");
+            String logoPicUrl = messenger.getString("logoPicUrl");
+            String siteUrl = messenger.getString("siteUrl");
+            String source = messenger.getString("source");
+            String status = messenger.getString("status");
+            String shortUrl = messenger.getString("shortUrl");
+            Seller seller = new Seller();
+            seller.setUuid(HuUUID.getUuid());
+            seller.setName(name);
+            seller.setLongUrl(longUrl);
+            seller.setLogoPicUrl(logoPicUrl);
+            seller.setSiteUrl(siteUrl);
+            seller.setSource(source);
+            seller.setStatus(status);
+            seller.setShortUrl(shortUrl);
+            seller.setCreateTime(new Date());
+            sellerMapper.insertSelective(seller);
             messenger.setResCode(HConstants.SUCCESS);
             messenger.setResDesc("保存商城成功");
-        }else {
+        } catch (Exception e) {
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("保存商城失败");
+            e.printStackTrace();
         }
         return messenger;
     }
