@@ -49,7 +49,7 @@
         </thead>
         <tbody id="sellerList">
         <tr>
-            <td>John</td>
+            <td><img src=""></td>
             <td>John</td>
             <td>John</td>
             <td>Doe</td>
