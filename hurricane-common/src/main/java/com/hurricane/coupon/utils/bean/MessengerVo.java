@@ -45,7 +45,7 @@ public class MessengerVo implements Serializable{
     }
 
     public String getResCode() {
-        return resCode;
+        return resCode == null ? "" : resCode.trim();
     }
 
     public void setResCode(String resCode) {
@@ -53,7 +53,7 @@ public class MessengerVo implements Serializable{
     }
 
     public String getResDesc() {
-        return resDesc;
+        return resDesc == null ? "" : resDesc.trim();
     }
 
     public void setResDesc(String resDesc) {
@@ -61,7 +61,7 @@ public class MessengerVo implements Serializable{
     }
 
     public String getClientIp() {
-        return clientIp;
+        return clientIp == null ? "" : clientIp.trim();
     }
 
     public void setClientIp(String clientIp) {

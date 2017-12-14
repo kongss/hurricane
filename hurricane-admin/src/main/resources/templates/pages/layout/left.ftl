@@ -1,4 +1,4 @@
-<div style="width:15%; height:600px; float:left; background-color: #e4e4e4;">
+<div style="width:15%; height:1000px; float:left; background-color: #e4e4e4;">
 
     <a href="" style="font-size: 16px;" onclick="menuClick('/')">欢迎页面</a><br>
     <div class="panel-group" id="accordion" style="font-size: 15px">
