@@ -35,11 +35,11 @@ function sellerList() {
             }
         }
     });
-    
-    function checkEmpty(param) {
-        if (param == null || param == '' || param == 'undefined'){
-            return '';
-        }
-        return param;
+}
+
+function checkEmpty(param) {
+    if (param == null || param == '' || param == 'undefined'){
+        return '';
     }
+    return param;
 }

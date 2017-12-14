@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/js/seller/seller.js"></script>
+    <script src="/js/coupon/coupon.js"></script>
 </head>
 <body>
 <ol class="breadcrumb">
@@ -38,9 +38,9 @@
         <tr>
             <th style="white-space: nowrap;word-break: keep-all;">商城id</th>
             <th style="white-space: nowrap;word-break: keep-all;">券名称</th>
-            <th style="white-space: nowrap;word-break: keep-all;">减免金额说明</th>
-            <th style="white-space: nowrap;word-break: keep-all;">此券类型开始时间</th>
-            <th style="white-space: nowrap;word-break: keep-all;">此券类型结束时间</th>
+            <th style="white-space: nowrap;word-break: keep-all;">减免金额</th>
+            <th style="white-space: nowrap;word-break: keep-all;">开始时间</th>
+            <th style="white-space: nowrap;word-break: keep-all;">结束时间</th>
             <th style="white-space: nowrap;word-break: keep-all;">链接URL</th>
             <th style="white-space: nowrap;word-break: keep-all;">券类型</th>
             <th style="white-space: nowrap;word-break: keep-all;">是否过期</th>
@@ -49,9 +49,10 @@
             <th style="white-space: nowrap;word-break: keep-all;">领取数量</th>
             <th style="white-space: nowrap;word-break: keep-all;">剩余数量</th>
             <th style="white-space: nowrap;word-break: keep-all;">创建时间</th>
+            <th style="white-space: nowrap;word-break: keep-all;">查看详情</th>
         </tr>
         </thead>
-        <tbody id="sellerList">
+        <tbody id="couponList">
         <tr>
             <td><img src=""></td>
             <td>John</td>

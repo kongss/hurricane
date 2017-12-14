@@ -20,7 +20,7 @@ public class CouponController {
     @ResponseBody
     MessengerVo couponList(Map<String, Object> map){
         MessengerVo messenger = new MessengerVo();
-        dCouponService.getCouponList(messenger);
+        messenger = dCouponService.getCouponList(messenger);
         return messenger;
     }
     @RequestMapping("/addCoupon")
