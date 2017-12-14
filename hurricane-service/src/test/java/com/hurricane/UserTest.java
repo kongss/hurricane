@@ -7,15 +7,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class UserTest {
     static ClassPathXmlApplicationContext context;
-    static DSellerService service;
+    static DUserService service;
     static {
         context = new ClassPathXmlApplicationContext("classpath*:/spring/applicationContext.xml");
-        service = (DSellerService) context.getBean("sellerService");
+        service = (DUserService) context.getBean("dUserService");
     }
 
     public static void main(String[] args) {
         MessengerVo vo = new MessengerVo();
-        service.getSellerList(vo);
-        //System.out.printf("user==="+userInfo.getString("ttttt"));
+        MessengerVo userList = service.getUserList(vo);
+        System.out.println(userList);
     }
 }

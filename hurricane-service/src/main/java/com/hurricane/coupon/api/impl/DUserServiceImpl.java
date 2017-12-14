@@ -16,7 +16,20 @@ public class DUserServiceImpl implements DUserService {
         return userService.getUserInfo(messenger);
     }
 
+    public MessengerVo getUserList(MessengerVo messenger) {
+        return userService.getUserList(messenger);
+    }
+
+    public MessengerVo editUser(MessengerVo messenger) {
+        return null;
+    }
+
+    public MessengerVo deleteUser(MessengerVo messenger) {
+        return null;
+    }
+
     public MessengerVo saveUser(MessengerVo messenger) {
         return userService.saveUser(messenger);
     }
+
 }

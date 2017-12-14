@@ -10,7 +10,7 @@ public class SellerTest {
     static DSellerService service;
     static {
         context = new ClassPathXmlApplicationContext("classpath*:/spring/applicationContext.xml");
-        service = (DSellerService) context.getBean("sellerService");
+        service = (DSellerService) context.getBean("dSellerService");
     }
 
     public static void main(String[] args) {

@@ -14,6 +14,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -65,6 +69,23 @@ public class UserServiceImpl implements UserService{
             messenger.setResDesc("保存用户失败");
         }
         return messenger;
+    }
+
+    public MessengerVo getUserList(MessengerVo messenger) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        List<Map<String, Object>> userList = userMapper.selectUserList(map);
+        messenger = new MessengerVo();
+        messenger.setResCode(HConstants.SUCCESS);
+        messenger.setInfo("userList",userList);
+        return messenger;
+    }
+
+    public MessengerVo editUser(MessengerVo messenger) {
+        return null;
+    }
+
+    public MessengerVo deleteUser(MessengerVo messenger) {
+        return null;
     }
 
     public static void main(String[] args) {
