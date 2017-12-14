@@ -32,9 +32,7 @@ public class UserServiceImpl implements UserService{
      * @return
      */
     public MessengerVo getUserInfo(MessengerVo messenger) {
-        User user = userMapper.selectByPrimaryKey("14d7d3b2-c2ac-44c4-859f-5e858efa0223");
-        logger.info("nickname:"+user.getNickname());
-        messenger.setInfo("nickname",user.getNickname());
+
         return messenger;
     }
 

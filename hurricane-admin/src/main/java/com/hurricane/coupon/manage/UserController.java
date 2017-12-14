@@ -10,36 +10,37 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/admin/user")
 public class UserController {
 
     @Autowired
     DUserService dUserService;
 
-    @RequestMapping("/couponList")
+    @RequestMapping("/userList")
     @ResponseBody
-    MessengerVo couponList(Map<String, Object> map){
+    MessengerVo userList(Map<String, Object> map){
         MessengerVo messenger = new MessengerVo();
-        messenger = dUserService.getUserInfo(messenger);
+        messenger = dUserService.getUserList(messenger);
         return messenger;
     }
-    @RequestMapping("/addCoupon")
+    @RequestMapping("/addUser")
     @ResponseBody
-    MessengerVo addCoupon(Map<String, Object> map){
-        MessengerVo messenger = new MessengerVo();
-
-        return messenger;
-    }
-    @RequestMapping("/deleteCoupon")
-    @ResponseBody
-    MessengerVo deleteCoupon(Map<String, Object> map){
+    MessengerVo addUser(Map<String, Object> map){
         MessengerVo messenger = new MessengerVo();
 
         return messenger;
     }
-
-    @RequestMapping("/editCoupon")
+    @RequestMapping("/deleteUser")
     @ResponseBody
-    MessengerVo editCoupon(Map<String, Object> map){
+    MessengerVo deleteUser(Map<String, Object> map){
+        MessengerVo messenger = new MessengerVo();
+
+        return messenger;
+    }
+
+    @RequestMapping("/editUser")
+    @ResponseBody
+    MessengerVo editUser(Map<String, Object> map){
         MessengerVo messenger = new MessengerVo();
 
         return messenger;
