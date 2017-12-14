@@ -14,7 +14,7 @@
 	    <#-- 在这里嵌入main content -->
 	    <#--<#nested>-->
         <div style="width:85%; height:600px; float:left; background-color: #ffffff;">
-        <iframe id="iframe-content" src="http://localhost:8080/home" width="100%" height="100%"  frameborder="no" border="0" marginwidth="0"
+        <iframe id="iframe-content" src="/home" width="100%" height="100%"  frameborder="no" border="0" marginwidth="0"
             marginheight=" 0" scrolling="no" allowtransparency="yes"></iframe>
         </div>
         <#--<#include "footer.ftl">-->

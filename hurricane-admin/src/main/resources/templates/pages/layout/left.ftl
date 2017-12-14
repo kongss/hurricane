@@ -1,6 +1,6 @@
 <div style="width:15%; height:600px; float:left; background-color: #e4e4e4;">
 
-    <a href="" style="font-size: 16px;" onclick="menuClick('http://localhost:8080/')">欢迎页面</a><br>
+    <a href="" style="font-size: 16px;" onclick="menuClick('/')">欢迎页面</a><br>
     <div class="panel-group" id="accordion" style="font-size: 15px">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -14,7 +14,7 @@
             <div id="collapseOne" class="panel-collapse collapse">
                 <div class="panel-body">
 
-                    <a href="#" onclick="menuClick('http://localhost:8080/userList')">用户列表</a>
+                    <a href="#" onclick="menuClick('/userList')">用户列表</a>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href="#"  onclick="menuClick('http://localhost:8080/sellerList')">商城列表</a>
+                    <a href="#"  onclick="menuClick('/sellerList')">商城列表</a>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href="#" onclick="menuClick('http://localhost:8080/couponList')">优惠券列表</a>
+                    <a href="#" onclick="menuClick('/couponList')">优惠券列表</a>
                 </div>
             </div>
         </div>

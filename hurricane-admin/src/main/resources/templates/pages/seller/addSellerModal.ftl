@@ -59,7 +59,7 @@
         formData.append("file",$("#logoFile")[0].files[0]);
         formData.append("name",name);
         $.ajax({
-            url : 'http://101.200.235.166:8080/admin/seller/uploadLogo',
+            url : '/admin/seller/uploadLogo',
             type : 'POST',
             data : formData,
             // 告诉jQuery不要去处理发送的数据
@@ -91,7 +91,7 @@
             //发生ajax保存数据
             $.ajax({
                 type: 'POST',
-                url: "http://101.200.235.166:8080/admin/seller/addSeller",
+                url: "/admin/seller/addSeller",
                 data: {"name": name, "longUrl": longUrl, "logoPicUrl": logoPicUrl, "siteUrl": siteUrl, "source": source, "status": status, "shortUrl": shortUrl },
                 dataType: "json",
                 success: function(data){
