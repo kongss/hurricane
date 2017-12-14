@@ -26,4 +26,13 @@
 
     <bean id="sellerService" class="com.hurricane.coupon.api.impl.DSellerServiceImpl"/>
     <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DSellerService" ref="sellerService"/>
+
+    <bean id="dCouponService" class="com.hurricane.coupon.api.impl.DCouponServiceImpl"/>
+    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DCouponService" ref="dCouponService"/>
+
+    <bean id="dManageService" class="com.hurricane.coupon.api.impl.DManageServiceImpl"/>
+    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DManageService" ref="dManageService"/>
+
+    <bean id="dMenuService" class="com.hurricane.coupon.api.impl.DMenuServiceImpl"/>
+    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DMenuService" ref="dMenuService"/>
 </beans>

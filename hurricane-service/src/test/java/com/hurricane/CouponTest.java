@@ -1,21 +1,21 @@
 package com.hurricane;
 
-import com.hurricane.coupon.api.DSellerService;
-import com.hurricane.coupon.api.DUserService;
+import com.hurricane.coupon.api.DCouponService;
 import com.hurricane.coupon.utils.bean.MessengerVo;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class UserTest {
+public class CouponTest {
     static ClassPathXmlApplicationContext context;
-    static DSellerService service;
+    static DCouponService service;
     static {
         context = new ClassPathXmlApplicationContext("classpath*:/spring/applicationContext.xml");
-        service = (DSellerService) context.getBean("sellerService");
+        service = (DCouponService) context.getBean("dCouponService");
     }
 
     public static void main(String[] args) {
         MessengerVo vo = new MessengerVo();
-        service.getSellerList(vo);
-        //System.out.printf("user==="+userInfo.getString("ttttt"));
+        MessengerVo couponList = service.getCouponList(vo);
+        System.out.println(couponList);
     }
+
 }

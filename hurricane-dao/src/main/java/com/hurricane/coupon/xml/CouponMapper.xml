@@ -253,4 +253,9 @@
       seller_uuid = #{sellerUuid,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
+  <select id="selectCouponList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    select
+    <include refid="Base_Column_List" />
+    from coupon
+  </select>
 </mapper>
