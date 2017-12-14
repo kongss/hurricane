@@ -32,4 +32,14 @@
             <appender-ref ref="Console" />
         </root>
     </loggers>
+    <loggers>
+        <logger name="com.hurricane.coupon.service.impl.SellerServiceImpl" level="debug" additivity="false">
+            <appender-ref ref="Console" />
+            <appender-ref ref="CustomRollingFile" />
+        </logger>
+        <!--建立一个默认的root的logger -->
+        <root level="warn">
+            <appender-ref ref="Console" />
+        </root>
+    </loggers>
 </configuration>

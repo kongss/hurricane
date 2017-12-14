@@ -71,18 +71,14 @@ public class SellerController {
         messenger.setInfo("source",source);
         messenger.setInfo("status",status);
         messenger.setInfo("shortUrl",shortUrl);
-        MessengerVo vo = dSellerService.saveSeller(messenger);
+        messenger = dSellerService.saveSeller(messenger);
 
-        if ("0000" != vo.getResCode()){
-            messenger.setResCode(HConstants.ERROR);
-            messenger.setResDesc("保存失败");
+        if ("0000" != messenger.getResCode()){
             System.out.println("保存商城信息失败");
         }else {
-            messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("保存成功");
             System.out.println("保存商城信息成功");
         }
-        System.out.println("返回参数"+vo);
+        System.out.println("返回参数"+messenger);
         return messenger;
     }
 
