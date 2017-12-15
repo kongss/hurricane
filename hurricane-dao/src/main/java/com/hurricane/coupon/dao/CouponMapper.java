@@ -8,6 +8,8 @@ import java.util.Map;
 
 public interface CouponMapper {
 
+    int selectCouponTotal(HashMap<String, Object> map);
+
     List<Map<String, Object>> selectCouponList(HashMap<String, Object> map);
 
     int deleteByPrimaryKey(String uuid);

@@ -8,6 +8,8 @@ import java.util.Map;
 
 public interface UserMapper {
 
+    int selectUserTotal(HashMap<String, Object> map);
+
     List<Map<String, Object>> selectUserList(HashMap<String, Object> map);
 
     int deleteByPrimaryKey(String uuid);

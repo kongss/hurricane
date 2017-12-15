@@ -7,15 +7,16 @@ import com.aliyun.oss.model.PutObjectResult;
 import com.hurricane.coupon.api.DSellerService;
 import com.hurricane.coupon.utils.bean.HConstants;
 import com.hurricane.coupon.utils.bean.MessengerVo;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Date;
@@ -45,9 +46,21 @@ public class SellerController {
 
     @RequestMapping("/sellerList")
     @ResponseBody
-    MessengerVo sellerList(Map<String, Object> map){
+    MessengerVo sellerList(HttpServletRequest request){
+        String currentPage = request.getParameter("currentPage");//当前页
+        if (StringUtils.isEmpty(currentPage)){
+            currentPage = "1";
+        }
+        String pageSize = request.getParameter("pageSize");//每页条数
+        if (StringUtils.isEmpty(pageSize)){
+            pageSize = "10";
+        }
         MessengerVo messenger = new MessengerVo();
+        messenger.setInfo("currentPage", currentPage);
+        messenger.setInfo("pageSize",pageSize);
+        System.out.println("SellerController-前"+messenger);
         messenger = dSellerService.getSellerList(messenger);
+        System.out.println("SellerController-后"+messenger);
         return messenger;
     }
 

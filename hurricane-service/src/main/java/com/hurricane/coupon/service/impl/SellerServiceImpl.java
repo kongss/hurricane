@@ -5,6 +5,7 @@ import com.hurricane.coupon.entity.Seller;
 import com.hurricane.coupon.service.SellerService;
 import com.hurricane.coupon.utils.bean.HConstants;
 import com.hurricane.coupon.utils.bean.MessengerVo;
+import com.hurricane.coupon.utils.page.Pager;
 import com.hurricane.coupon.utils.utils.HuUUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,18 +30,45 @@ public class SellerServiceImpl implements SellerService {
     }
 
     public MessengerVo getSellerList(MessengerVo messenger) {
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        List<Map<String, Object>> sellerList = sellerMapper.selectSellerList(map);
-        messenger = new MessengerVo();
-        messenger.setResCode(HConstants.SUCCESS);
-        messenger.setResDesc("查询成功");
-        messenger.setInfo("sellerList",sellerList);
+        logger.info("SellerServiceImpl-getSellerList-入参："+messenger);
+        try {
+            int currentPage = Integer.parseInt(messenger.getString("currentPage"));//当前页
+            int pageSize = Integer.parseInt(messenger.getString("pageSize"));//每页条数
+
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            //查询总条数
+            int total = sellerMapper.selectSellerTotal(map);
+            //构造方法计算分页参数
+            Pager pager = new Pager(currentPage, pageSize, total);
+
+            map.put("limitStart",(currentPage-1) * pageSize);
+            map.put("limitSize",pageSize);
+            List<Map<String, Object>> list = sellerMapper.selectSellerList(map);
+            messenger = new MessengerVo();
+            messenger.setInfo("list",list);
+            messenger.setInfo("pageTotal",pager.getPageTotal());
+            messenger.setInfo("currentPage",pager.getCurrentPage());
+            messenger.setInfo("firstPage",pager.getFirstPage());
+            messenger.setInfo("lastPage",pager.getLastPage());
+            messenger.setInfo("nextPage",pager.getNextPage());
+            messenger.setInfo("pageSize",pager.getPageSize());
+            messenger.setInfo("previousPage",pager.getPreviousPage());
+            messenger.setInfo("recordTotal",pager.getRecordTotal());
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("查询商城列表成功");
+        }catch (Exception e){
+            messenger = new MessengerVo();
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("查询商城列表异常");
+            logger.error("SellerServiceImpl-getSellerList-异常",e);
+        }
+        logger.info("SellerServiceImpl-getSellerList-出参："+messenger);
         return messenger;
     }
 
     public MessengerVo saveSeller(MessengerVo messenger) {
         try {
-            logger.info("SellerServiceImpl-saveSeller-入参="+messenger);
+            logger.info("SellerServiceImpl-saveSeller-入参："+messenger);
             String name = messenger.getString("name");
             String longUrl = messenger.getString("longUrl");
             String logoPicUrl = messenger.getString("logoPicUrl");
@@ -62,14 +90,12 @@ public class SellerServiceImpl implements SellerService {
             messenger = new MessengerVo();
             messenger.setResCode(HConstants.SUCCESS);
             messenger.setResDesc("添加商城信息成功");
-            logger.info("SellerServiceImpl-保存商城信息成功");
         } catch (Exception e) {
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("添加商城信息失败");
-            logger.info("SellerServiceImpl-保存商城信息异常");
-            e.printStackTrace();
+            logger.error("SellerServiceImpl-saveSeller-异常",e);
         }
-        logger.info("SellerServiceImpl-saveSeller-出参="+messenger);
+        logger.info("SellerServiceImpl-saveSeller-出参："+messenger);
         return messenger;
     }
 

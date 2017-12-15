@@ -15,11 +15,10 @@ function sellerList() {
                 alert("查询失败！！！连管理员");
                 return false;
             }
-            var object = data.map.sellerList;
+            var object = data.map.list;
             if (object.length >0){
                 var htmlStr = '';
                 $.each(object, function(name, value) {
-                    console.log("value "+value)
                     htmlStr+='<tr>';
                     htmlStr+='<td>'+checkEmpty(value.name)+'</td>';
                     htmlStr+='<td><img style="height: 60px;" src="'+checkEmpty(value.logo_pic_url)+'"></td>';

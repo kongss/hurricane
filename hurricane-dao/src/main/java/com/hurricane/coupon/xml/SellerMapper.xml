@@ -193,9 +193,15 @@
       remark = #{remark,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
+  <select id="selectSellerTotal" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    select
+    count(1)
+    from seller
+  </select>
   <select id="selectSellerList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
     select
     <include refid="Base_Column_List" />
     from seller
+    LIMIT  #{limitStart},#{limitSize}
   </select>
 </mapper>

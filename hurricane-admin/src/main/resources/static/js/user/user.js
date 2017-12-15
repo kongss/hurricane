@@ -15,11 +15,10 @@ function userList() {
                 alert("查询失败！！！连管理员");
                 return false;
             }
-            var object = data.map.userList;
+            var object = data.map.list;
             if (object.length >0){
                 var htmlStr = '';
                 $.each(object, function(name, value) {
-                    console.log("value "+value)
                     htmlStr+='<tr>';
                     htmlStr+='<td>'+checkEmpty(value.nickname)+'</td>';
                     htmlStr+='<td>'+checkEmpty(value.gender)+'</td>';
@@ -29,6 +28,8 @@ function userList() {
                 });
                 $("#userList").html(htmlStr);
             }
+            //分页代码
+
         }
     });
 }

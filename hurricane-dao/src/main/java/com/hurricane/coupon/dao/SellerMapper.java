@@ -8,6 +8,8 @@ import java.util.Map;
 
 public interface SellerMapper {
 
+    int selectSellerTotal(HashMap<String, Object> map);
+
     List<Map<String, Object>> selectSellerList(HashMap<String, Object> map);
 
     int deleteByPrimaryKey(String uuid);

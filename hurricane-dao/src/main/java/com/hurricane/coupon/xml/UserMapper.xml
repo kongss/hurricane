@@ -298,9 +298,15 @@
       openid = #{openid,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
+  <select id="selectUserTotal" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    select
+    count(1)
+    from user
+  </select>
   <select id="selectUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
     select
     <include refid="Base_Column_List" />
     from user
+    LIMIT  #{limitStart},#{limitSize}
   </select>
 </mapper>
