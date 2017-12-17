@@ -74,12 +74,18 @@
 </div>
 <ul class="pagination" style="float: right; margin-right: 5px;">
     <li><a href="#">&laquo;</a></li>
-    <li><a href="#">1</a></li>
+    <li><a href="#">&lsaquo;</a></li>
+    <li class="active"><a href="#">1</a></li>
     <li><a href="#">2</a></li>
     <li><a href="#">3</a></li>
     <li><a href="#">4</a></li>
     <li><a href="#">5</a></li>
+    <li><a href="#">&rsaquo;</a></li>
     <li><a href="#">&raquo;</a></li>
+    &ensp;跳转到
+    <input type="text" style="width: 36px;height: 30px;text-align: center;"/>
+    页&ensp;
+    <button type="button" class="btn btn-default">确定</button>
 </ul>
 </body>
 </html>
