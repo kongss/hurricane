@@ -27,9 +27,9 @@ function userList() {
                     htmlStr+='<tr>';
                 });
                 $("#userList").html(htmlStr);
+                //分页
+                page(data);
             }
-            //分页代码
-
         }
     });
 }

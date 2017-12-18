@@ -31,6 +31,8 @@ function sellerList() {
                     htmlStr+='<tr>';
                 });
                 $("#sellerList").html(htmlStr);
+                //分页
+                page(data);
             }
         }
     });

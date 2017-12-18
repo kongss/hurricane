@@ -44,7 +44,7 @@ function page(data) {
     html+='<li><a href="#" onclick="couponList('+nextPage+','+pageSize+',couponList)">&rsaquo;</a></li>';
     html+='<li><a href="#" onclick="couponList('+lastPage+','+pageSize+',couponList)">&raquo;</a></li>';
     html+='&ensp;跳转到&ensp;';
-    html+='<input id="toJumpValue" type="hidden"/>';
+    html+='<input id="toJumpValue" type="hidden" value="'+currentPage+'"/>';
     html+='<input id="toJump" onkeyup="getJumpPage(this,'+pageTotal+')" value="'+currentPage+'" type="text" style="width: 36px;height: 30px;text-align: center;"/>';
     html+='&ensp;页&ensp;共&ensp;'+recordTotal+'&ensp;条&ensp;';
     html+='<button type="button" class="btn btn-default" onclick="toJumpPage('+pageSize+')">确定</button>';
