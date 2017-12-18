@@ -7,7 +7,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    添加商城信息
+                    优惠券信息
                 </h4>
             </div>
             <div class="modal-body">
@@ -16,8 +16,13 @@
                     <input type="text" class="form-control" id="name" name="name" placeholder="请输入商城名称">
                 </div>
                 <div class="form-group">
-                    <label for="inputfile">商城LOGO上传</label>
-                    <input type="file" name="logoFile" id="logoFile" onchange="uploadLogo()">
+                    <label for="inputfile">优惠券类型</label>
+                    <input type="radio" name="type"/>链接券
+                    <input type="radio" name="type"/>密码券
+                </div>
+                <div class="form-group">
+                    <label for="inputfile">上传EXCEL</label>
+                    <input type="file" name="logoFile" id="logoFile">
                     <input type="text"  id="logoPicUrl" name="logoPicUrl">
                 </div>
                 <div class="form-group">
