@@ -15,14 +15,14 @@
     <li><a href="javascript:void(0)">优惠券管理</a></li>
     <li class="active">优惠券列表</li>
 </ol>
-<form class="navbar-form navbar-left" role="search" style="margin-left: 6px;">
+<#--<form class="navbar-form navbar-left" role="search" style="margin-left: 6px;">
     <div class="form-group">
         <span style="font-size: 16px;">城市：</span><input type="text" class="form-control" />
         &ensp;&ensp;&ensp;
         <span style="font-size: 16px;">性别：</span><input type="text" class="form-control" />
     </div>
     <button type="submit" class="btn btn-default">搜索</button>
-</form>
+</form>-->
 <br>
 
 <div class="container" style="overflow: auto;margin-left: 5px;margin-top: 10px;width: 98%;">

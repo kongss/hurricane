@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <label for="inputfile">商城LOGO上传</label>
                     <input type="file" name="logoFile" id="logoFile" onchange="uploadLogo()">
-                    <input type="text"  id="logoPicUrl" name="logoPicUrl">
+                    <textarea readonly="readonly" id="logoPicUrl" name="logoPicUrl" style="height: 90px;width: 570px;"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="siteUrl">网站链接</label>
@@ -26,11 +26,17 @@
                 </div>
                 <div class="form-group">
                     <label for="source">来源</label>
-                    <input type="text" class="form-control" id="source" name="source" placeholder="请输输入来源">
+                    <input type="hidden" id="source"/>
+                    <input type="radio" onclick="getSourceVal(1)" name="source"/>多麦
+                    &ensp;
+                    <input type="radio" onclick="getSourceVal(2)" name="source"/>亿起发
                 </div>
                 <div class="form-group">
                     <label for="status">启用状态</label>
-                    <input type="text" class="form-control" id="status" name="status" placeholder="请选择状态">
+                    <input type="hidden" id="status"/>
+                    <input type="radio" checked onclick="getStatusVal(1)" name="status"/>启用
+                    &ensp;
+                    <input type="radio" onclick="getStatusVal(2)" name="status"/>禁用
                 </div>
                 <div class="form-group">
                     <label for="shortUrl">短链接</label>
@@ -53,6 +59,13 @@
 </div>
 
 <script type="text/javascript">
+    function getStatusVal(statusValue) {
+        $("#status").val(statusValue);
+    }
+    function getSourceVal(sourceValue) {
+        $("#status").val(sourceValue);
+    }
+
     function uploadLogo() {
         var formData = new FormData();
         var name = "222222";
