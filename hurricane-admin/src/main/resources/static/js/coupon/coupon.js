@@ -1,9 +1,5 @@
 $(function () {
     couponList(1,10);
-    $("#toJump").bind("input propertychange change",function(event){
-        console.log("值："+$(this).val());
-        $("#toJumpValue").val($(this).val());
-    });
 });
 
 function couponList(currentPage,pageSize,couponList) {
@@ -89,13 +85,17 @@ function couponList(currentPage,pageSize,couponList) {
                 html+='<li><a href="#" onclick="couponList('+lastPage+','+pageSize+',couponList)">&raquo;</a></li>';
                 html+='&ensp;跳转到&ensp;';
                 html+='<input id="toJumpValue" type="hidden" value=""/>';
-                html+='<input id="toJump" type="text" style="width: 36px;height: 30px;text-align: center;"/>';
+                html+='<input id="toJump" onkeyup="getJumpPage(this)" type="text" style="width: 36px;height: 30px;text-align: center;"/>';
                 html+='&ensp;页&ensp;共&ensp;'+recordTotal+'&ensp;条&ensp;';
                 html+='<button type="button" class="btn btn-default" onclick="toJumpPage('+pageSize+')">确定</button>';
                 $(".pagination").html(html);
             }
         }
     });
+}
+function getJumpPage(obj) {
+    var currPage = obj.value;
+    $("#toJumpValue").val(currPage);
 }
 function toJumpPage(pageSize) {
     var currPage = $("#toJumpValue").val();
