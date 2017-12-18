@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="status">启用状态</label>
-                    <input type="hidden" id="status"/>
+                    <input type="hidden" id="status" value="1"/>
                     <input type="radio" checked onclick="getStatusVal(1)" name="status"/>启用
                     &ensp;
                     <input type="radio" onclick="getStatusVal(2)" name="status"/>禁用
@@ -63,7 +63,7 @@
         $("#status").val(statusValue);
     }
     function getSourceVal(sourceValue) {
-        $("#status").val(sourceValue);
+        $("#source").val(sourceValue);
     }
 
     function uploadLogo() {
