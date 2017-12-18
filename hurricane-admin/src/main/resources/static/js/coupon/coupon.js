@@ -85,7 +85,7 @@ function couponList(currentPage,pageSize,couponList) {
                 html+='<li><a href="#" onclick="couponList('+lastPage+','+pageSize+',couponList)">&raquo;</a></li>';
                 html+='&ensp;跳转到&ensp;';
                 html+='<input id="toJumpValue" type="hidden" value=""/>';
-                html+='<input id="toJump" onkeyup="getJumpPage(this)" type="text" style="width: 36px;height: 30px;text-align: center;"/>';
+                html+='<input id="toJump" onkeyup="getJumpPage(this,'+pageTotal+')" type="text" style="width: 36px;height: 30px;text-align: center;"/>';
                 html+='&ensp;页&ensp;共&ensp;'+recordTotal+'&ensp;条&ensp;';
                 html+='<button type="button" class="btn btn-default" onclick="toJumpPage('+pageSize+')">确定</button>';
                 $(".pagination").html(html);
@@ -93,8 +93,14 @@ function couponList(currentPage,pageSize,couponList) {
         }
     });
 }
-function getJumpPage(obj) {
+function getJumpPage(obj,pageTotal) {
     var currPage = obj.value;
+    if (currPage < 1){
+        currPage = 1;
+    }
+    if (currPage > pageTotal){
+        currPage = pageTotal;
+    }
     $("#toJumpValue").val(currPage);
 }
 function toJumpPage(pageSize) {
