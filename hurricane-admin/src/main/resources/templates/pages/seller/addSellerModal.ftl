@@ -26,8 +26,8 @@
                 </div>
                 <div class="form-group">
                     <label for="source">来源</label>
-                    <input type="hidden" id="source"/>
-                    <input type="radio" onclick="getSourceVal(1)" name="source"/>多麦
+                    <input type="hidden" id="source" value="1"/>
+                    <input type="radio" checked onclick="getSourceVal(1)" name="source"/>多麦
                     &ensp;
                     <input type="radio" onclick="getSourceVal(2)" name="source"/>亿起发
                 </div>

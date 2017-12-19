@@ -20,11 +20,14 @@ function sellerList() {
                 var htmlStr = '';
                 $.each(object, function(name, value) {
                     htmlStr+='<tr>';
+                    htmlStr+='<td><input type="checkbox"/></td>';
                     htmlStr+='<td>'+checkEmpty(value.name)+'</td>';
                     htmlStr+='<td><img style="height: 60px;" src="'+checkEmpty(value.logo_pic_url)+'"></td>';
                     htmlStr+='<td>'+checkEmpty(value.site_url)+'</td>';
-                    htmlStr+='<td>'+checkEmpty(value.source)+'</td>';
-                    htmlStr+='<td>'+checkEmpty(value.status)+'</td>';
+                    var sourceStr = (value.source == null || value.source == '') ? "" : (value.source == 1) ? "多麦" :"亿起发";
+                    htmlStr+='<td>'+sourceStr+'</td>';
+                    var statusStr = (value.status == null || value.status == '') ? "" : (value.status == 1) ? "启用" :"禁用";
+                    htmlStr+='<td>'+statusStr+'</td>';
                     htmlStr+='<td>'+checkEmpty(value.short_url)+'</td>';
                     htmlStr+='<td>'+checkEmpty(value.long_url)+'</td>';
                     htmlStr+='<td>'+checkEmpty(value.create_time)+'</td>';

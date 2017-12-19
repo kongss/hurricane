@@ -17,11 +17,28 @@
 </ol>
 <form class="navbar-form navbar-left" role="search" style="margin-left: 6px;">
     <div class="form-group">
-        <span style="font-size: 16px;">来源：</span><input type="text" class="form-control" />
+        <span style="font-size: 16px;">来源：</span>
+        <select class="form-control">
+            <option>请选择</option>
+            <option>多麦</option>
+            <option>亿起发</option>
+        </select>
+        &ensp;&ensp;&ensp;
+        <span style="font-size: 16px;">状态：</span>
+        <select class="form-control">
+            <option>请选择</option>
+            <option>启用</option>
+            <option>禁用</option>
+        </select>
+        &ensp;&ensp;&ensp;
+        <span style="font-size: 16px;">商城类型：</span>
+        <select class="form-control">
+            <option>请选择</option>
+            <option>综合商城</option>
+            <option>珠宝首饰</option>
+        </select>
         &ensp;&ensp;&ensp;
         <span style="font-size: 16px;">商城名称：</span><input type="text" class="form-control" />
-        &ensp;&ensp;&ensp;
-        <span style="font-size: 16px;">商城类型：</span><input type="text" class="form-control" />
     </div>
     <button type="submit" class="btn btn-default">搜索</button>
 </form>
@@ -38,6 +55,7 @@
     <table class="table table-bordered">
         <thead>
         <tr>
+            <th style="white-space: nowrap;word-break: keep-all;"><input type="checkbox"/></th>
             <th style="white-space: nowrap;word-break: keep-all;">商城名称</th>
             <th style="white-space: nowrap;word-break: keep-all;">商城Logo</th>
             <th style="white-space: nowrap;word-break: keep-all;">网站链接</th>
