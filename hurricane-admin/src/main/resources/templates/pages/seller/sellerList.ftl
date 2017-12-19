@@ -64,6 +64,7 @@
             <th style="white-space: nowrap;word-break: keep-all;">短链接</th>
             <th style="white-space: nowrap;word-break: keep-all;">长链接</th>
             <th style="white-space: nowrap;word-break: keep-all;">创建时间</th>
+            <th style="white-space: nowrap;word-break: keep-all;">操作</th>
         </tr>
         </thead>
         <tbody id="sellerList">

@@ -31,6 +31,7 @@ function sellerList() {
                     htmlStr+='<td>'+checkEmpty(value.short_url)+'</td>';
                     htmlStr+='<td>'+checkEmpty(value.long_url)+'</td>';
                     htmlStr+='<td>'+checkEmpty(value.create_time)+'</td>';
+                    htmlStr+='<td><button/></td>';
                     htmlStr+='<tr>';
                 });
                 $("#sellerList").html(htmlStr);
