@@ -17,11 +17,22 @@
 </ol>
 <form class="navbar-form navbar-left" role="search" style="margin-left: 6px;">
     <div class="form-group">
-        <span style="font-size: 16px;">来源：</span><input type="text" class="form-control" />
+        <span style="font-size: 16px;">来源：</span>
+        <select class="form-control">
+            <option>请选择</option>
+            <option>多麦</option>
+            <option>亿起发</option>
+        </select>
+        &ensp;&ensp;&ensp;
+        <span style="font-size: 16px;">券类型：</span>
+        <select class="form-control">
+            <option>请选择</option>
+            <option>密码券</option>
+            <option>链接券</option>
+            <option>通用券</option>
+        </select>
         &ensp;&ensp;&ensp;
         <span style="font-size: 16px;">商城名称：</span><input type="text" class="form-control" />
-        &ensp;&ensp;&ensp;
-        <span style="font-size: 16px;">券类型：</span><input type="text" class="form-control" />
     </div>
     <button type="submit" class="btn btn-default">搜索</button>
 </form>
@@ -29,7 +40,7 @@
 <#include "addCouponModal.ftl">
 <div class="container" style="float: left;margin-left: 6px;">
     <!-- 按钮触发模态框 -->
-    <button class="btn btn-default" data-toggle="modal" data-target="#myModal">添加</button>
+    <button class="btn btn-default" data-id="" data-toggle="modal" data-target="#myModal">添加</button>
     &ensp;
     <button type="button" class="btn btn-default">批量删除</button>
 </div>
@@ -37,7 +48,9 @@
     <table class="table table-bordered">
         <thead>
         <tr>
+            <th style="white-space: nowrap;word-break: keep-all;"><input type="checkbox"/></th>
             <th style="white-space: nowrap;word-break: keep-all;">商城id</th>
+            <th style="white-space: nowrap;word-break: keep-all;">来源</th>
             <th style="white-space: nowrap;word-break: keep-all;">券名称</th>
             <th style="white-space: nowrap;word-break: keep-all;">减免金额</th>
             <th style="white-space: nowrap;word-break: keep-all;">开始时间</th>

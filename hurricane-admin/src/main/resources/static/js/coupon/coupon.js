@@ -21,7 +21,9 @@ function couponList(currentPage,pageSize,couponList) {
                 var htmlStr = '';
                 $.each(object, function(name, value) {
                     htmlStr+='<tr>';
+                    htmlStr+='<td><input type="checkbox"/></td>';
                     htmlStr+='<td>'+checkEmpty(value.seller_uuid)+'</td>';
+                    htmlStr+='<td>来源</td>';
                     htmlStr+='<td>'+checkEmpty(value.name)+'</td>';
                     htmlStr+='<td>'+checkEmpty(value.derate_amount)+'</td>';
                     htmlStr+='<td>'+checkEmpty(value.start_time)+'</td>';
@@ -34,7 +36,7 @@ function couponList(currentPage,pageSize,couponList) {
                     htmlStr+='<td>'+checkEmpty(value.receive_num)+'</td>';
                     htmlStr+='<td>'+checkEmpty(value.unreceive_num)+'</td>';
                     htmlStr+='<td>'+checkEmpty(value.create_time)+'</td>';
-                    htmlStr+='<td><a href="">详情</a></td>';
+                    htmlStr+='<td><a href="">详情</a> | <a href="">修改</a></td>';
                     htmlStr+='<tr>';
                 });
                 $("#couponList").html(htmlStr);
