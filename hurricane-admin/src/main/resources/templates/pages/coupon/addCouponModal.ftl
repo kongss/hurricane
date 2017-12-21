@@ -81,7 +81,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-primary" onclick="saveSeller()">
+                <button type="button" class="btn btn-primary" onclick="editCoupon()">
                     提交更改
                 </button>
             </div>
@@ -103,13 +103,14 @@
             type: 'POST',
             url: "/admin/coupon/editCoupon",
             data: {"uuid":uuid, "name": name, "derateAmount": derateAmount, "derateAmount": derateAmount, "startTime": startTime, "endTime": endTime, "activityLinkUrl": activityLinkUrl, },
-            dataType: "json",
+            //dataType: "json",
             success: function(data){
                 console.log(data);
                 if ("0000" != data.resCode){
                     alert("操作异常！！！联系管理员");
                     return false;
                 }
+                alert("操作成功！！");
                 window.location.reload();
             }
         });
