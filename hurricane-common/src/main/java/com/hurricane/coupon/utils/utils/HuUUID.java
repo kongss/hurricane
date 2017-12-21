@@ -8,6 +8,6 @@ public class HuUUID {
         //System.out.println(uuid.length());
     }
     public static String getUuid(){
-        return UUID.randomUUID().toString();
+        return UUID.randomUUID().toString().replaceAll("-", "");
     }
 }
