@@ -6,9 +6,12 @@ $(function () {
         var uuid = button.context.dataset.id;
         var name = button.context.innerHTML;
         $("#myModalLabel").html(name+'商城信息');
+        //根据uuid判断是否修改操作，查询
         if (uuid != null && uuid != '' && uuid != 'null'){
             toEditCouponPageShow(uuid);
         }
+        //加载商城下拉菜单,默认0 没有传值
+        initSellerSelective(0)
     });
 });
 
@@ -33,6 +36,60 @@ function toEditCouponPageShow(uuid) {
             $("#startTime").val(cou.startTime);
             $("#endTime").val(cou.endTime);
             $("#activityLinkUrl").val(cou.activityLinkUrl);
+            $("#activityLinkUrl").val(cou.sellerUuid);
+            //加载商城下拉菜单
+            initSellerSelective(cou.sellerUuid);
+        }
+    });
+}
+
+function initSellerSelective(sellerUuid) {
+    $.ajax({
+        type: "POST",
+        async: "true",
+        url: "/admin/seller/sellerList",
+        timeout: 6000,
+        data: {},
+        //dataType: "json",
+        success:function (data) {
+            if ("0000" != data.resCode){
+                alert("查询商城信息失败！！！连管理员");
+                return false;
+            }
+            var sel = data.map.list;
+            var htmlStr = '';
+            htmlStr+='<option>请选择</option>';
+            $.each(sel, function(name, value) {
+                //console.log(value.name);
+                htmlStr+='<option value="'+value.uuid+'">'+value.name+'</option>';
+            });
+            $("#seller_selective").html(htmlStr);
+        }
+    });
+}
+
+function editCoupon() {
+    var uuid = $("#uuid").val();
+    var name = $("#name").val();
+    var derateAmount = $("#derateAmount").val();
+    var startTime = $("#startTime").val();
+    var endTime = $("#endTime").val();
+    var activityLinkUrl = $("#activityLinkUrl").val();
+
+    //发生ajax保存数据
+    $.ajax({
+        type: 'POST',
+        url: "/admin/coupon/editCoupon",
+        data: {"uuid":uuid, "name": name, "derateAmount": derateAmount, "derateAmount": derateAmount, "startTime": startTime, "endTime": endTime, "activityLinkUrl": activityLinkUrl, },
+        //dataType: "json",
+        success: function(data){
+            console.log(data);
+            if ("0000" != data.resCode){
+                alert("操作异常！！！联系管理员");
+                return false;
+            }
+            alert("操作成功！！");
+            window.location.reload();
         }
     });
 }
