@@ -26,7 +26,21 @@ public class SellerServiceImpl implements SellerService {
     SellerMapper sellerMapper;
 
     public MessengerVo getSellerInfo(MessengerVo messenger) {
-        return null;
+        try {
+            logger.info("SellerServiceImpl-getSellerInfo-参数："+messenger);
+            String uuid = messenger.getString("uuid");
+            Seller seller = sellerMapper.selectByPrimaryKey(uuid);
+            messenger = new MessengerVo();
+            messenger.setInfo("seller",seller);
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("查询商城信息成功");
+        } catch (Exception e) {
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("查询商城信息异常");
+            logger.error("SellerServiceImpl-getSellerInfo-异常："+e);
+        }
+        logger.info("SellerServiceImpl-getSellerInfo-结果："+messenger);
+        return messenger;
     }
 
     public MessengerVo getSellerList(MessengerVo messenger) {
@@ -104,10 +118,55 @@ public class SellerServiceImpl implements SellerService {
     }
 
     public MessengerVo editSeller(MessengerVo messenger) {
-        return null;
+        try {
+            logger.info("SellerServiceImpl-editSeller-入参："+messenger);
+            String uuid = messenger.getString("uuid");
+            String name = messenger.getString("name");
+            String longUrl = messenger.getString("longUrl");
+            String logoPicUrl = messenger.getString("logoPicUrl");
+            String siteUrl = messenger.getString("siteUrl");
+            String source = messenger.getString("source");
+            String status = messenger.getString("status");
+            String shortUrl = messenger.getString("shortUrl");
+            Seller seller = new Seller();
+            seller.setUuid(uuid);
+            seller.setName(name);
+            seller.setLongUrl(longUrl);
+            seller.setLogoPicUrl(logoPicUrl);
+            seller.setSiteUrl(siteUrl);
+            seller.setSource(source);
+            seller.setStatus(status);
+            seller.setShortUrl(shortUrl);
+            sellerMapper.updateByPrimaryKey(seller);
+            messenger = new MessengerVo();
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("修改商城信息成功");
+        } catch (Exception e) {
+            messenger = new MessengerVo();
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("修改商城信息异常");
+            logger.error("SellerServiceImpl-editSeller-异常",e);
+        }
+        logger.info("SellerServiceImpl-editSeller-出参："+messenger);
+        return messenger;
     }
 
     public MessengerVo deleteSeller(MessengerVo messenger) {
-        return null;
+        try {
+            logger.error("SellerServiceImpl-deleteSeller-参数",messenger);
+            String uuid = messenger.getString("uuid");
+            sellerMapper.deleteByPrimaryKey(uuid);
+            sellerMapper.deleteByPrimaryKey(uuid);
+            messenger = new MessengerVo();
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("删除商城信息成功");
+        } catch (Exception e) {
+            messenger = new MessengerVo();
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("删除商城信息异常");
+            logger.error("SellerServiceImpl-deleteSeller-异常",e);
+        }
+        logger.error("SellerServiceImpl-deleteSeller-结果",messenger);
+        return messenger;
     }
 }

@@ -47,7 +47,7 @@
 <div class="container" style="float: left;margin-left: 6px;">
     <#--<button type="button" class="btn btn-default">添加</button>-->
     <!-- 按钮触发模态框 -->
-    <button class="btn btn-default" data-toggle="modal" data-target="#myModal">添加</button>
+    <button class="btn btn-default" data-id="" data-toggle="modal" data-target="#myModal">添加</button>
     &ensp;
     <button type="button" class="btn btn-default">批量删除</button>
 </div>

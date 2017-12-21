@@ -1,6 +1,44 @@
 $(function () {
     sellerList();
+    //绑定模态框展示的方法
+    $('#myModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);// 触发事件的按钮
+        var uuid = button.context.dataset.id;
+        var name = button.context.innerHTML;
+        $("#myModalLabel").html(name+'商城信息');
+        if (uuid != null && uuid != '' && uuid != 'null'){
+            toEditSellerPageShow(uuid);
+        }
+
+    })
 });
+
+function toEditSellerPageShow(uuid) {
+    console.log("uuid>>>>>>>>>>>>>>>>>>>>>>>>>"+uuid);
+    $.ajax({
+        type: "POST",
+        async: "true",
+        url: "/admin/seller/getSeller",
+        timeout: 6000,
+        data: {"uuid":uuid},
+        //dataType: "json",
+        success:function (data) {
+            if ("0000" != data.resCode){
+                alert("查询商城信息失败失败！！！连管理员");
+                return false;
+            }
+            var sel = data.map.seller;
+            $("#uuid").val(sel.uuid);
+            $("#name").val(sel.name);
+            $("#logoPicUrl").val(sel.logoPicUrl);
+            $("#siteUrl").val(sel.siteUrl);
+            $("#source").val(sel.source);
+            $("#status").val(sel.status);
+            $("#shortUrl").val(sel.shortUrl);
+            $("#longUrl").val(sel.longUrl);
+        }
+    });
+}
 
 function sellerList() {
     $.ajax({
@@ -31,7 +69,7 @@ function sellerList() {
                     htmlStr+='<td>'+checkEmpty(value.short_url)+'</td>';
                     htmlStr+='<td>'+checkEmpty(value.long_url)+'</td>';
                     htmlStr+='<td>'+checkEmpty(value.create_time)+'</td>';
-                    htmlStr+='<td><button/></td>';
+                    htmlStr+='<td><button class="btn btn-default" data-toggle="modal" data-id="'+value.uuid+'" data-target="#myModal">修改</button><button class="btn btn-default" data-toggle="modal" onclick="deleteSeller(\''+value.uuid+'\')">删除</button></td>';
                     htmlStr+='<tr>';
                 });
                 $("#sellerList").html(htmlStr);
@@ -47,4 +85,24 @@ function checkEmpty(param) {
         return '';
     }
     return param;
+}
+
+function deleteSeller(uuid) {
+    console.log("uuid>>>>>>>>>>>>>>>>>>>>>>>>>"+uuid);
+    $.ajax({
+        type: "POST",
+        async: "true",
+        url: "/admin/seller/deleteSeller",
+        timeout: 6000,
+        data: {"uuid":uuid},
+        //dataType: "json",
+        success:function (data) {
+            if ("0000" != data.resCode){
+                alert("删除商城信息失败失败！！！连管理员");
+                return false;
+            }
+            alert("已删除");
+            window.location.reload();
+        }
+    });
 }

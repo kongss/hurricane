@@ -11,6 +11,7 @@
                 </h4>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="uuid" name="uuid" value=""/>
                 <div class="form-group">
                     <label for="name">商城名称</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="请输入商城名称">
@@ -68,9 +69,7 @@
 
     function uploadLogo() {
         var formData = new FormData();
-        var name = "222222";
         formData.append("file",$("#logoFile")[0].files[0]);
-        formData.append("name",name);
         $.ajax({
             url : '/admin/seller/uploadLogo',
             type : 'POST',

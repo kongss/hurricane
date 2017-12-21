@@ -13,7 +13,7 @@ public class DSellerServiceImpl implements DSellerService {
     SellerService sellerService;
 
     public MessengerVo getSellerInfo(MessengerVo messenger) {
-        return null;
+        return sellerService.getSellerInfo(messenger);
     }
 
     public MessengerVo getSellerList(MessengerVo messenger) {
@@ -29,10 +29,10 @@ public class DSellerServiceImpl implements DSellerService {
     }
 
     public MessengerVo editSeller(MessengerVo messenger) {
-        return null;
+        return sellerService.editSeller(messenger);
     }
 
     public MessengerVo deleteSeller(MessengerVo messenger) {
-        return null;
+        return sellerService.deleteSeller(messenger);
     }
 }
