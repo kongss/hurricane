@@ -1,16 +1,20 @@
 package com.hurricane.coupon.service.impl;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.hurricane.coupon.dao.CouponMapper;
+import com.hurricane.coupon.entity.Coupon;
 import com.hurricane.coupon.service.CouponService;
 import com.hurricane.coupon.utils.bean.HConstants;
 import com.hurricane.coupon.utils.bean.MessengerVo;
 import com.hurricane.coupon.utils.page.Pager;
+import com.hurricane.coupon.utils.utils.HuUUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,11 +28,17 @@ public class CouponServiceImpl implements CouponService{
     CouponMapper couponMapper;
 
     public MessengerVo getCouponInfo(MessengerVo messenger) {
-        return null;
+        String uuid = messenger.getString("uuid");
+        Coupon coupon = couponMapper.selectByPrimaryKey(uuid);
+        messenger = new MessengerVo();
+        messenger.setInfo("coupon",coupon);
+        messenger.setResCode(HConstants.SUCCESS);
+        messenger.setResDesc("查询成功");
+        return messenger;
     }
 
     public MessengerVo getCouponList(MessengerVo messenger) {
-        logger.info("CouponServiceImpl-getCouponList-入参："+messenger);
+        logger.info("CouponServiceImpl-getCouponList-参数："+messenger);
         try {
             int currentPage = Integer.parseInt(messenger.getString("currentPage"));//当前页
             int pageSize = Integer.parseInt(messenger.getString("pageSize"));//每页条数
@@ -64,7 +74,7 @@ public class CouponServiceImpl implements CouponService{
     }
 
     public MessengerVo saveCoupon(MessengerVo messenger) {
-        return null;
+        return messenger;
     }
 
     public MessengerVo saveCouponBatch(MessengerVo messenger) {
@@ -72,7 +82,40 @@ public class CouponServiceImpl implements CouponService{
     }
 
     public MessengerVo editCoupon(MessengerVo messenger) {
-        return null;
+        try {
+            logger.info("CouponServiceImpl-editCoupon-参数："+messenger);
+            Coupon coupon = new Coupon();
+            coupon.setName(messenger.getString("name"));
+            coupon.setDerateAmount(messenger.getString("derate_amount"));
+            coupon.setStartTime(messenger.getString("start_time"));
+            coupon.setEndTime(messenger.getString("end_time"));
+            coupon.setUseExplain(messenger.getString("use_explain"));
+            coupon.setActivityLinkUrl(messenger.getString("activity_link_url"));
+            coupon.setType(messenger.getString("type"));
+            coupon.setIsRecom(messenger.getString("is_recom"));
+            coupon.setSellerUuid(messenger.getString("seller_uuid"));
+            if (StringUtils.isEmpty(messenger.getString("uuid"))){//添加操作
+                coupon.setUuid(HuUUID.getUuid());
+                coupon.setCreateTime(new Date());
+                couponMapper.insertSelective(coupon);
+                messenger = new MessengerVo();
+                messenger.setResCode(HConstants.SUCCESS);
+                messenger.setResDesc("添加优惠券信息成功");
+            }else {//修改操作
+                coupon.setUuid(messenger.getString("uuid"));
+                couponMapper.updateByPrimaryKeySelective(coupon);
+                messenger = new MessengerVo();
+                messenger.setResCode(HConstants.SUCCESS);
+                messenger.setResDesc("修改优惠券信息成功");
+            }
+        } catch (Exception e) {
+            messenger = new MessengerVo();
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("添加/修改优惠券信息异常");
+            logger.info("CouponServiceImpl-editCoupon-异常：",e);
+        }
+        logger.info("CouponServiceImpl-editCoupon-结果："+messenger);
+        return messenger;
     }
 
     public MessengerVo deleteCoupon(MessengerVo messenger) {

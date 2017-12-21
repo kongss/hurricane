@@ -38,24 +38,40 @@ public class CouponController {
         System.out.println("CouponController-后"+messenger);
         return messenger;
     }
-    @RequestMapping("/addCoupon")
-    @ResponseBody
-    MessengerVo addCoupon(Map<String, Object> map){
-        MessengerVo messenger = new MessengerVo();
 
-        return messenger;
-    }
-    @RequestMapping("/deleteCoupon")
+    @RequestMapping("/getCoupon")
     @ResponseBody
-    MessengerVo deleteCoupon(Map<String, Object> map){
+    MessengerVo getCoupon(HttpServletRequest request,String uuid){
         MessengerVo messenger = new MessengerVo();
-
+        messenger.setInfo("uuid",uuid);
+        System.out.println("CouponController-getCoupon-参数："+messenger);
+        messenger = dCouponService.getCouponInfo(messenger);
+        System.out.println("CouponController-getCoupon-结果："+messenger);
         return messenger;
     }
 
     @RequestMapping("/editCoupon")
     @ResponseBody
-    MessengerVo editCoupon(Map<String, Object> map){
+    MessengerVo editCoupon(String uuid, String name, String derateAmount, String startTime, String endTime,
+                           String useExplain, String activityLinkUrl, String type, String isRecom, String sellerUuid){
+        MessengerVo messenger = new MessengerVo();
+        messenger.setInfo("uuid",uuid);
+        messenger.setInfo("name",name);
+        messenger.setInfo("derateAmount",derateAmount);
+        messenger.setInfo("startTime",startTime);
+        messenger.setInfo("endTime",endTime);
+        messenger.setInfo("useExplain",useExplain);
+        messenger.setInfo("activityLinkUrl",activityLinkUrl);
+        messenger.setInfo("type",type);
+        messenger.setInfo("isRecom",isRecom);
+        messenger.setInfo("sellerUuid",sellerUuid);
+        dCouponService.editCoupon(messenger);
+        return messenger;
+    }
+
+    @RequestMapping("/deleteCoupon")
+    @ResponseBody
+    MessengerVo deleteCoupon(){
         MessengerVo messenger = new MessengerVo();
 
         return messenger;
