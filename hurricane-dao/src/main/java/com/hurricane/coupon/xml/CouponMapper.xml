@@ -280,6 +280,8 @@
       seller s
   ON
       c.seller_uuid = s.uuid
+  order by
+      c.create_time desc
     LIMIT  #{limitStart},#{limitSize}
   </select>
 </mapper>

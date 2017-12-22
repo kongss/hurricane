@@ -197,7 +197,8 @@
   <select id="selectSellerList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
     select
     <include refid="Base_Column_List" />
-    from seller
+    from seller s
+    ORDER BY s.create_time DESC
     LIMIT  #{limitStart},#{limitSize}
   </select>
 </mapper>

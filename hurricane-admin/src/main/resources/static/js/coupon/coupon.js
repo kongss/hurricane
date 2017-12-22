@@ -10,11 +10,25 @@ $(function () {
         if (uuid != null && uuid != '' && uuid != 'null'){
             toEditCouponPageShow(uuid);
         }
+        //添加时，清除文本框残留的数值
+        cleanValue();
         //加载商城下拉菜单,默认0 没有传值
         initSellerSelective(0)
     });
 });
-
+function cleanValue() {
+    $("#sellerUuid").val("");
+    $("#uuid").val("");
+    $("#name").val("");
+    $("#type").val("");
+    $("#status").val("");
+    $("#isRecom").val("");
+    $("#derateAmount").val("");
+    $("#startTime").val("");
+    $("#endTime").val("");
+    $("#activityLinkUrl").val("");
+    $("#useExplain").val("");
+}
 function toEditCouponPageShow(uuid) {
     console.log("uuid>>>>>>>>>>>>>>>>>>>>>>>>>"+uuid);
     $.ajax({
@@ -32,11 +46,15 @@ function toEditCouponPageShow(uuid) {
             var cou = data.map.coupon;
             $("#uuid").val(cou.uuid);
             $("#name").val(cou.name);
+            $("#type").val(cou.type);
+            $("#status").val(cou.status);
+            $("#isRecom").val(cou.isRecom);
             $("#derateAmount").val(cou.derateAmount);
             $("#startTime").val(cou.startTime);
             $("#endTime").val(cou.endTime);
             $("#activityLinkUrl").val(cou.activityLinkUrl);
-            $("#activityLinkUrl").val(cou.sellerUuid);
+            $("#sellerUuid").val(cou.sellerUuid);
+            $("#useExplain").val(cou.useExplain);
             //加载商城下拉菜单
             initSellerSelective(cou.sellerUuid);
         }
@@ -61,7 +79,11 @@ function initSellerSelective(sellerUuid) {
             htmlStr+='<option>请选择</option>';
             $.each(sel, function(name, value) {
                 //console.log(value.name);
-                htmlStr+='<option value="'+value.uuid+'">'+value.name+'</option>';
+                if (sellerUuid == value.uuid){
+                    htmlStr+='<option selected value="'+value.uuid+'">'+value.name+'</option>';
+                }else {
+                    htmlStr+='<option value="'+value.uuid+'">'+value.name+'</option>';
+                }
             });
             $("#seller_selective").html(htmlStr);
         }
