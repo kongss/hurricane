@@ -75,52 +75,24 @@ public class SellerController {
         return messenger;
     }
 
-    @RequestMapping("/addSeller")
+    @RequestMapping("/editSeller")
     @ResponseBody
-    public MessengerVo addSeller(String uuid,String name, String longUrl, String logoPicUrl, String siteUrl, String source, String status, String shortUrl){
+    public MessengerVo editSeller(String uuid,String name, String longUrl, String logoPicUrl, String siteUrl, String source, String status, String shortUrl){
         MessengerVo messenger = new MessengerVo();
-        if (StringUtils.isNotBlank(uuid)){//修改功能
-            System.out.println("修改"+name+" "+longUrl+" "+logoPicUrl+" "+siteUrl+" "+source+" "+status+" "+shortUrl);
-            messenger.setInfo("uuid",uuid);
-            messenger.setInfo("name",name);
-            messenger.setInfo("longUrl",longUrl);
-            messenger.setInfo("logoPicUrl",logoPicUrl);
-            messenger.setInfo("siteUrl",siteUrl);
-            messenger.setInfo("source",source);
-            messenger.setInfo("status",status);
-            messenger.setInfo("shortUrl",shortUrl);
-            messenger = dSellerService.editSeller(messenger);
-            if ("0000" != messenger.getResCode()){
-                System.out.println("保存商城信息失败");
-            }else {
-                System.out.println("保存商城信息成功");
-            }
-            System.out.println("返回参数"+messenger);
+        System.out.println("修改"+uuid+" "+name+" "+longUrl+" "+logoPicUrl+" "+siteUrl+" "+source+" "+status+" "+shortUrl);
+        messenger.setInfo("uuid",uuid);
+        messenger.setInfo("name",name);
+        messenger.setInfo("longUrl",longUrl);
+        messenger.setInfo("logoPicUrl",logoPicUrl);
+        messenger.setInfo("siteUrl",siteUrl);
+        messenger.setInfo("source",source);
+        messenger.setInfo("status",status);
+        messenger.setInfo("shortUrl",shortUrl);
+        messenger = dSellerService.editSeller(messenger);
+        if ("0000" != messenger.getResCode()){
+            System.out.println("保存商城信息失败");
         }else {
-            System.out.println("保存"+name+" "+longUrl+" "+logoPicUrl+" "+siteUrl+" "+source+" "+status+" "+shortUrl);
-            if (StringUtils.isEmpty(name)){}
-            if (StringUtils.isEmpty(longUrl)){}
-            if (StringUtils.isEmpty(logoPicUrl)){}
-            if (StringUtils.isEmpty(siteUrl)){}
-            if (StringUtils.isEmpty(source)){}
-            if (StringUtils.isEmpty(status)){}
-            if (StringUtils.isEmpty(shortUrl)){}
-
-            messenger.setInfo("name",name);
-            messenger.setInfo("longUrl",longUrl);
-            messenger.setInfo("logoPicUrl",logoPicUrl);
-            messenger.setInfo("siteUrl",siteUrl);
-            messenger.setInfo("source",source);
-            messenger.setInfo("status",status);
-            messenger.setInfo("shortUrl",shortUrl);
-            messenger = dSellerService.saveSeller(messenger);
-
-            if ("0000" != messenger.getResCode()){
-                System.out.println("保存商城信息失败");
-            }else {
-                System.out.println("保存商城信息成功");
-            }
-            System.out.println("返回参数"+messenger);
+            System.out.println("保存商城信息成功");
         }
         return messenger;
     }
@@ -132,11 +104,6 @@ public class SellerController {
         messenger.setInfo("uuid",uuid);
         messenger = dSellerService.deleteSeller(messenger);
         return messenger;
-    }
-
-    @RequestMapping("/editSeller")
-    void editSeller(){
-
     }
 
     @RequestMapping("/uploadLogo")

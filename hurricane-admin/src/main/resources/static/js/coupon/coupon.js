@@ -4,7 +4,7 @@ $(function () {
     $('#myModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);// 触发事件的按钮
         var uuid = button.context.dataset.id;
-        var name = button.context.innerHTML;
+        //var name = button.context.innerHTML;
         //$("#myModalLabel").html(name+'优惠券信息');
         //根据uuid判断是否修改操作，查询
         if (uuid != null && uuid != '' && uuid != 'null'){
@@ -29,6 +29,9 @@ function cleanValue() {
     $("#endTime").val("");
     $("#activityLinkUrl").val("");
     $("#useExplain").val("");
+    initCouponStatus(-1);
+    initCouponIsRecom(-1);
+    initCouponType(-1);
 }
 function toEditCouponPageShow(uuid) {
     console.log("uuid>>>>>>>>>>>>>>>>>>>>>>>>>"+uuid);
@@ -59,9 +62,9 @@ function toEditCouponPageShow(uuid) {
             //加载优惠券类型菜单
             initCouponType(cou.type);
             //加载优惠券回显状态
-            initCouponStatus(cou.status)
+            initCouponStatus(cou.status);
             //加载优惠券是否推荐
-            initCouponIsRecom(cou.isRecom)
+            initCouponIsRecom(cou.isRecom);
             //加载商城下拉菜单
             initSellerSelective(cou.sellerUuid);
         }
@@ -69,7 +72,7 @@ function toEditCouponPageShow(uuid) {
 }
 function initCouponStatus(status){
     var htmlStr = '';
-    htmlStr+='<input type="hidden" id="status" value=""/>';
+    htmlStr+='<input type="hidden" id="status" value="1"/>';
     htmlStr+='<label for="status">启用状态</label><br/>';
     if(status == 1){//启用
         htmlStr+='<input type="radio" onclick="changeStatus(1)" checked name="status"/>启用';
@@ -79,12 +82,16 @@ function initCouponStatus(status){
         htmlStr+='<input type="radio" onclick="changeStatus(1)" name="status"/>启用';
         htmlStr+='<input type="radio" onclick="changeStatus(0)" checked name="status"/>禁用';
     }
+    if(status == -1){
+        htmlStr+='<input type="radio" checked onclick="changeStatus(1)" name="status"/>启用';
+        htmlStr+='<input type="radio" onclick="changeStatus(0)" name="status"/>禁用';
+    }
     $("#status_div").html(htmlStr);
 
 }
 function initCouponIsRecom(isRecom) {
     var htmlStr = '';
-    htmlStr+='<input type="hidden" id="isRecom" value=""/>';
+    htmlStr+='<input type="hidden" id="isRecom" value="1"/>';
     htmlStr+='<label for="isRecom">是否推荐</label><br/>';
 
     if(isRecom == 1){
@@ -94,6 +101,10 @@ function initCouponIsRecom(isRecom) {
     if(isRecom == 2){
         htmlStr+='<input type="radio" onclick="changeIsRecom(1)" name="isRecom"/>推荐';
         htmlStr+='<input type="radio" onclick="changeIsRecom(2)" checked name="isRecom"/>不推荐';
+    }
+    if(isRecom == -1){
+        htmlStr+='<input type="radio" onclick="changeIsRecom(1)" checked name="isRecom"/>推荐';
+        htmlStr+='<input type="radio" onclick="changeIsRecom(2)" name="isRecom"/>不推荐';
     }
     $("#isRecom_div").html(htmlStr);
 }
@@ -114,6 +125,11 @@ function initCouponType(type) {
         htmlStr+='<option value="1">密码券</option>';
         htmlStr+='<option value="2">链接券</option>';
         htmlStr+='<option selected value="3">通用券</option>';
+    }
+    if (type == -1){
+        htmlStr+='<option value="1">密码券</option>';
+        htmlStr+='<option value="2">链接券</option>';
+        htmlStr+='<option value="3">通用券</option>';
     }
     $("#couponType").html(htmlStr);
 

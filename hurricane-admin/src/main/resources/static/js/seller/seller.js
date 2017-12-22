@@ -4,7 +4,7 @@ $(function () {
     $('#myModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);// 触发事件的按钮
         var uuid = button.context.dataset.id;
-        var name = button.context.innerHTML;
+        //var name = button.context.innerHTML;
         //$("#myModalLabel").html(name+'商城信息');
         if (uuid != null && uuid != '' && uuid != 'null'){
             toEditSellerPageShow(uuid);
@@ -25,6 +25,8 @@ function cleanValue() {
     $("#status").val("");
     $("#shortUrl").val("");
     $("#longUrl").val("");
+    initCouponType(-1);
+    initSellerStatus(-1);
 }
 
 function toEditSellerPageShow(uuid) {
@@ -53,8 +55,29 @@ function toEditSellerPageShow(uuid) {
 
             //加载商城来源 {多麦/亿起发}
             initCouponType(sel.source);
+            //加载商城启用状态
+            initSellerStatus(sel.status)
         }
     });
+}
+
+function initSellerStatus(status) {
+    var htmlStr = '';
+    htmlStr +='<label for="status">启用状态</label><br/>';
+    htmlStr +='<input type="hidden" id="status" value="1"/>';
+    if(status == 1){
+        htmlStr +='<input type="radio" checked onclick="changeStatus(1)" name="status"/>启用';
+        htmlStr +='<input type="radio" onclick="changeStatus(0)" name="status"/>禁用';
+    }
+    if(status == 0){
+        htmlStr +='<input type="radio" onclick="changeStatus(1)" name="status"/>启用';
+        htmlStr +='<input type="radio" checked onclick="changeStatus(0)" name="status"/>禁用';
+    }
+    if(status == -1){
+        htmlStr +='<input type="radio" checked onclick="changeStatus(1)" name="status"/>启用';
+        htmlStr +='<input type="radio" onclick="changeStatus(0)" name="status"/>禁用';
+    }
+    $("#status_div").html(htmlStr);
 }
 
 function initCouponType(source) {
@@ -67,6 +90,10 @@ function initCouponType(source) {
     if(source == 2){
         htmlStr+='<option value="1">多麦</option>';
         htmlStr+='<option selected value="2">亿起发</option>';
+    }
+    if(source == -1){
+        htmlStr+='<option value="1">多麦</option>';
+        htmlStr+='<option value="2">亿起发</option>';
     }
     $("#sellerSource").html(htmlStr);
 }

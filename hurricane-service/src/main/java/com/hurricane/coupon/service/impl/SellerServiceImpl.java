@@ -1,5 +1,6 @@
 package com.hurricane.coupon.service.impl;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.hurricane.coupon.dao.SellerMapper;
 import com.hurricane.coupon.entity.Seller;
 import com.hurricane.coupon.service.SellerService;
@@ -81,35 +82,7 @@ public class SellerServiceImpl implements SellerService {
     }
 
     public MessengerVo saveSeller(MessengerVo messenger) {
-        try {
-            logger.info("SellerServiceImpl-saveSeller-入参："+messenger);
-            String name = messenger.getString("name");
-            String longUrl = messenger.getString("longUrl");
-            String logoPicUrl = messenger.getString("logoPicUrl");
-            String siteUrl = messenger.getString("siteUrl");
-            String source = messenger.getString("source");
-            String status = messenger.getString("status");
-            String shortUrl = messenger.getString("shortUrl");
-            Seller seller = new Seller();
-            seller.setUuid(HuUUID.getUuid());
-            seller.setName(name);
-            seller.setLongUrl(longUrl);
-            seller.setLogoPicUrl(logoPicUrl);
-            seller.setSiteUrl(siteUrl);
-            seller.setSource(source);
-            seller.setStatus(status);
-            seller.setShortUrl(shortUrl);
-            seller.setCreateTime(new Date());
-            sellerMapper.insertSelective(seller);
-            messenger = new MessengerVo();
-            messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("添加商城信息成功");
-        } catch (Exception e) {
-            messenger.setResCode(HConstants.ERROR);
-            messenger.setResDesc("添加商城信息失败");
-            logger.error("SellerServiceImpl-saveSeller-异常",e);
-        }
-        logger.info("SellerServiceImpl-saveSeller-出参："+messenger);
+        
         return messenger;
     }
 
@@ -137,14 +110,18 @@ public class SellerServiceImpl implements SellerService {
             seller.setSource(source);
             seller.setStatus(status);
             seller.setShortUrl(shortUrl);
-            sellerMapper.updateByPrimaryKey(seller);
+            if(StringUtils.isEmpty(uuid)){
+                sellerMapper.insertSelective(seller);
+            }else {
+                sellerMapper.updateByPrimaryKeySelective(seller);
+            }
             messenger = new MessengerVo();
             messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("修改商城信息成功");
+            messenger.setResDesc("操作商城信息成功");
         } catch (Exception e) {
             messenger = new MessengerVo();
             messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("修改商城信息异常");
+            messenger.setResDesc("操作商城信息异常");
             logger.error("SellerServiceImpl-editSeller-异常",e);
         }
         logger.info("SellerServiceImpl-editSeller-出参："+messenger);

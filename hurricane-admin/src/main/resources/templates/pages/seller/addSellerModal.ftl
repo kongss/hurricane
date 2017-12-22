@@ -34,11 +34,10 @@
                     <label for="siteUrl">网站链接</label>
                     <input type="text" class="form-control" id="siteUrl" name="siteUrl" placeholder="请输入网站链接">
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="status_div">
                     <label for="status">启用状态</label><br/>
                     <input type="hidden" id="status" value="1"/>
                     <input type="radio" checked onclick="changeStatus(1)" name="status"/>启用
-                    &ensp;
                     <input type="radio" onclick="changeStatus(0)" name="status"/>禁用
                 </div>
                 <div class="form-group">
@@ -106,7 +105,7 @@
             //发生ajax保存数据
             $.ajax({
                 type: 'POST',
-                url: "/admin/seller/addSeller",
+                url: "/admin/seller/editSeller",
                 data: {"name": name, "longUrl": longUrl, "logoPicUrl": logoPicUrl, "siteUrl": siteUrl, "source": source, "status": status, "shortUrl": shortUrl },
                 dataType: "json",
                 success: function(data){
