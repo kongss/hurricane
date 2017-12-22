@@ -59,17 +59,17 @@ function sellerList() {
                 $.each(object, function(name, value) {
                     htmlStr+='<tr>';
                     htmlStr+='<td><input type="checkbox"/></td>';
-                    htmlStr+='<td>'+checkEmpty(value.name)+'</td>';
-                    htmlStr+='<td><img style="height: 60px;" src="'+checkEmpty(value.logo_pic_url)+'"></td>';
-                    htmlStr+='<td>'+checkEmpty(value.site_url)+'</td>';
+                    htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.name)+'</td>';
+                    htmlStr+='<td style="white-space: nowrap;"><img style="height: 60px;" src="'+checkEmpty(value.logo_pic_url)+'"></td>';
+                    htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.site_url)+'</td>';
                     var sourceStr = (value.source == null || value.source == '') ? "" : (value.source == 1) ? "多麦" :"亿起发";
-                    htmlStr+='<td>'+sourceStr+'</td>';
+                    htmlStr+='<td style="white-space: nowrap;">'+sourceStr+'</td>';
                     var statusStr = (value.status == null || value.status == '') ? "" : (value.status == 1) ? "启用" :"禁用";
-                    htmlStr+='<td>'+statusStr+'</td>';
-                    htmlStr+='<td>'+checkEmpty(value.short_url)+'</td>';
-                    htmlStr+='<td>'+checkEmpty(value.long_url)+'</td>';
-                    htmlStr+='<td>'+checkEmpty(value.create_time)+'</td>';
-                    htmlStr+='<td><button class="btn btn-default" data-toggle="modal" data-id="'+value.uuid+'" data-target="#myModal">修改</button><button class="btn btn-default" data-toggle="modal" onclick="deleteSeller(\''+value.uuid+'\')">删除</button></td>';
+                    htmlStr+='<td style="white-space: nowrap;">'+statusStr+'</td>';
+                    htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.short_url)+'</td>';
+                    htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.long_url)+'</td>';
+                    htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.create_time)+'</td>';
+                    htmlStr+='<td style="white-space: nowrap;"><button class="btn btn-default" data-toggle="modal" data-id="'+value.uuid+'" data-target="#myModal">修改</button><button class="btn btn-default" data-toggle="modal" onclick="deleteSeller(\''+value.uuid+'\')">删除</button></td>';
                     htmlStr+='<tr>';
                 });
                 $("#sellerList").html(htmlStr);

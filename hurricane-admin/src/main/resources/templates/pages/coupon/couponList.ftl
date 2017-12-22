@@ -49,7 +49,7 @@
         <thead>
         <tr>
             <th style="white-space: nowrap;word-break: keep-all;"><input type="checkbox"/></th>
-            <th style="white-space: nowrap;word-break: keep-all;">商城id</th>
+            <th style="white-space: nowrap;word-break: keep-all;">商城名称</th>
             <th style="white-space: nowrap;word-break: keep-all;">来源</th>
             <th style="white-space: nowrap;word-break: keep-all;">券名称</th>
             <th style="white-space: nowrap;word-break: keep-all;">减免金额</th>
@@ -60,10 +60,10 @@
             <th style="white-space: nowrap;word-break: keep-all;">是否过期</th>
             <th style="white-space: nowrap;word-break: keep-all;">是否推荐</th>
             <th style="white-space: nowrap;word-break: keep-all;">总数量</th>
-            <th style="white-space: nowrap;word-break: keep-all;">领取数量</th>
-            <th style="white-space: nowrap;word-break: keep-all;">剩余数量</th>
+            <th style="white-space: nowrap;word-break: keep-all;">已领取</th>
+            <th style="white-space: nowrap;word-break: keep-all;">剩余</th>
             <th style="white-space: nowrap;word-break: keep-all;">创建时间</th>
-            <th style="white-space: nowrap;word-break: keep-all;">查看详情</th>
+            <th style="white-space: nowrap;word-break: keep-all;">详情</th>
         </tr>
         </thead>
         <tbody id="couponList">

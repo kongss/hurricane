@@ -270,9 +270,16 @@
     from coupon
   </select>
   <select id="selectCouponList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-    select
-    <include refid="Base_Column_List" />
-    from coupon
+    SELECT
+      s.`name` AS sName,
+      s.source sSource,
+      c.*
+  FROM
+      coupon c
+  LEFT JOIN
+      seller s
+  ON
+      c.seller_uuid = s.uuid
     LIMIT  #{limitStart},#{limitSize}
   </select>
 </mapper>

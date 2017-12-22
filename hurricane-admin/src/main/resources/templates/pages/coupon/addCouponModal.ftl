@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-group">
                     <label for="derateAmount">减免金额</label>
-                    <input type="text" class="form-control" id="derateAmount" name="derateAmount" placeholder="减免金额说明">
+                    <input type="text" class="form-control" id="derateAmount" name="derateAmount" placeholder="减免金额">
                 </div>
                 <div class="form-group">
                     <label for="startTime">开始时间</label>
@@ -69,7 +69,11 @@
                 </div>
                 <div class="form-group">
                     <label for="activityLinkUrl">链接URL</label>
-                    <input type="text" class="form-control" id="activityLinkUrl" name="activityLinkUrl" placeholder="请输入网站链接">
+                    <input type="text" class="form-control" id="activityLinkUrl" name="activityLinkUrl" placeholder="链接URL">
+                </div>
+                <div class="form-group">
+                    <label for="useExplain">使用说明</label>
+                    <input type="text" class="form-control" id="useExplain" name="useExplain" placeholder="使用说明">
                 </div>
             </div>
             <div class="modal-footer">
@@ -94,13 +98,14 @@
         var startTime = $("#startTime").val();
         var endTime = $("#endTime").val();
         var activityLinkUrl = $("#activityLinkUrl").val();
+        var useExplain = $("#useExplain").val();
         //发生ajax保存数据
         $.ajax({
             type: 'POST',
             url: "/admin/coupon/editCoupon",
-            data: {"uuid":uuid, "name": name, "derateAmount": derateAmount, "derateAmount": derateAmount,
-                "sellerUuid":sellerUuid, "type":type, "status":status, "isRecom":isRecom,
-                "startTime": startTime, "endTime": endTime, "activityLinkUrl": activityLinkUrl},
+            data: {"uuid": uuid, "name": name, "derateAmount": derateAmount, "derateAmount": derateAmount,
+                "sellerUuid": sellerUuid, "type": type, "status": status, "isRecom": isRecom,
+                "startTime": startTime, "endTime": endTime, "activityLinkUrl": activityLinkUrl, "useExplain": useExplain},
             //dataType: "json",
             success: function(data){
                 console.log(data);
