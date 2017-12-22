@@ -56,7 +56,8 @@
             <th style="white-space: nowrap;word-break: keep-all;">开始时间</th>
             <th style="white-space: nowrap;word-break: keep-all;">结束时间</th>
             <th style="white-space: nowrap;word-break: keep-all;">链接URL</th>
-            <th style="white-space: nowrap;word-break: keep-all;">券类型</th>
+            <th style="white-space: nowrap;word-break: keep-all;">类型</th>
+            <th style="white-space: nowrap;word-break: keep-all;">状态</th>
             <th style="white-space: nowrap;word-break: keep-all;">是否过期</th>
             <th style="white-space: nowrap;word-break: keep-all;">是否推荐</th>
             <th style="white-space: nowrap;word-break: keep-all;">总数量</th>

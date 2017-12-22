@@ -32,20 +32,20 @@
                 <div class="form-group">
                     <input type="hidden" id="type" value=""/>
                     <label for="type">优惠券类型</label><span style="color: red;">(若选择密码券,请完基本信息添加后在详情页导入兑换码)</span>
-                    <select class="form-control" onchange="changeType(this.value)">
+                    <select class="form-control" id="couponType" onchange="changeType(this.value)">
                         <option value="0">请选择</option>
                         <option value="1">密码券</option>
                         <option value="2">链接券</option>
                         <option value="3">通用券</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="status_div">
                     <input type="hidden" id="status" value=""/>
                     <label for="status">启用状态</label><br/>
                     <input type="radio" onclick="changeStatus(1)" checked name="status"/>启用
                     <input type="radio" onclick="changeStatus(0)" name="status"/>禁用
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="isRecom_div">
                     <input type="hidden" id="isRecom" value=""/>
                     <label for="isRecom">是否推荐</label><br/>
                     <input type="radio" onclick="changeIsRecom(1)" checked name="isRecom"/>推荐

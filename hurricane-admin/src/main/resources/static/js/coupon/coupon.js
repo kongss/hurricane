@@ -9,9 +9,10 @@ $(function () {
         //根据uuid判断是否修改操作，查询
         if (uuid != null && uuid != '' && uuid != 'null'){
             toEditCouponPageShow(uuid);
+        }else {
+            //添加时，清除文本框残留的数值
+            cleanValue();
         }
-        //添加时，清除文本框残留的数值
-        cleanValue();
         //加载商城下拉菜单,默认0 没有传值
         initSellerSelective(0)
     });
@@ -55,12 +56,68 @@ function toEditCouponPageShow(uuid) {
             $("#activityLinkUrl").val(cou.activityLinkUrl);
             $("#sellerUuid").val(cou.sellerUuid);
             $("#useExplain").val(cou.useExplain);
+            //加载优惠券类型菜单
+            initCouponType(cou.type);
+            //加载优惠券回显状态
+            initCouponStatus(cou.status)
+            //加载优惠券是否推荐
+            initCouponIsRecom(cou.isRecom)
             //加载商城下拉菜单
             initSellerSelective(cou.sellerUuid);
         }
     });
 }
+function initCouponStatus(status){
+    var htmlStr = '';
+    htmlStr+='<input type="hidden" id="status" value=""/>';
+    htmlStr+='<label for="status">启用状态</label><br/>';
+    if(status == 1){//启用
+        htmlStr+='<input type="radio" onclick="changeStatus(1)" checked name="status"/>启用';
+        htmlStr+='<input type="radio" onclick="changeStatus(0)" name="status"/>禁用';
+    }
+    if(status == 0){
+        htmlStr+='<input type="radio" onclick="changeStatus(1)" name="status"/>启用';
+        htmlStr+='<input type="radio" onclick="changeStatus(0)" checked name="status"/>禁用';
+    }
+    $("#status_div").html(htmlStr);
 
+}
+function initCouponIsRecom(isRecom) {
+    var htmlStr = '';
+    htmlStr+='<input type="hidden" id="isRecom" value=""/>';
+    htmlStr+='<label for="isRecom">是否推荐</label><br/>';
+
+    if(isRecom == 1){
+        htmlStr+='<input type="radio" onclick="changeIsRecom(1)" checked name="isRecom"/>推荐';
+        htmlStr+='<input type="radio" onclick="changeIsRecom(2)" name="isRecom"/>不推荐';
+    }
+    if(isRecom == 2){
+        htmlStr+='<input type="radio" onclick="changeIsRecom(1)" name="isRecom"/>推荐';
+        htmlStr+='<input type="radio" onclick="changeIsRecom(2)" checked name="isRecom"/>不推荐';
+    }
+    $("#isRecom_div").html(htmlStr);
+}
+function initCouponType(type) {
+    var htmlStr = '';
+    htmlStr+='<option value="0">请选择</option>';
+    if (type == 1){
+        htmlStr+='<option selected value="1">密码券</option>';
+        htmlStr+='<option value="2">链接券</option>';
+        htmlStr+='<option value="3">通用券</option>';
+    }
+    if (type == 2){
+        htmlStr+='<option value="1">密码券</option>';
+        htmlStr+='<option selected value="2">链接券</option>';
+        htmlStr+='<option value="3">通用券</option>';
+    }
+    if (type == 3){
+        htmlStr+='<option value="1">密码券</option>';
+        htmlStr+='<option value="2">链接券</option>';
+        htmlStr+='<option selected value="3">通用券</option>';
+    }
+    $("#couponType").html(htmlStr);
+
+}
 function initSellerSelective(sellerUuid) {
     $.ajax({
         type: "POST",
@@ -116,9 +173,14 @@ function couponList(currentPage,pageSize,couponList) {
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.start_time)+'</td>';
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.end_time)+'</td>';
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.activity_link_url)+'</td>';
-                    htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.type)+'</td>';
-                    htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.is_overdue)+'</td>';
-                    htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.is_recom)+'</td>';
+                    var typeStr = value.type == 1 ? "密码券" : value.type == 2 ? "链接券" : value.type == 3 ? "通用" : "";
+                    htmlStr+='<td style="white-space: nowrap;">'+typeStr+'</td>';
+                    var statusStr = value.status == 0 ? "禁用" : "启用";
+                    htmlStr+='<td style="white-space: nowrap;">'+statusStr+'</td>';
+                    var isOverdueStr = value.is_overdue == 0 ? "已过期" : "未过期";
+                    htmlStr+='<td style="white-space: nowrap;">'+isOverdueStr+'</td>';
+                    var isRecomStr = value.is_recom == 0 ? "不推荐" : "推荐";
+                    htmlStr+='<td style="white-space: nowrap;">'+isRecomStr+'</td>';
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.total)+'</td>';
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.receive_num)+'</td>';
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.unreceive_num)+'</td>';
