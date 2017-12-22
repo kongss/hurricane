@@ -5,13 +5,27 @@ $(function () {
         var button = $(event.relatedTarget);// 触发事件的按钮
         var uuid = button.context.dataset.id;
         var name = button.context.innerHTML;
-        $("#myModalLabel").html(name+'商城信息');
+        //$("#myModalLabel").html(name+'商城信息');
         if (uuid != null && uuid != '' && uuid != 'null'){
             toEditSellerPageShow(uuid);
+        }else {
+            //添加时，清除文本框残留的数值
+            cleanValue();
         }
 
     })
 });
+
+function cleanValue() {
+    $("#uuid").val("");
+    $("#name").val("");
+    $("#logoPicUrl").val("");
+    $("#siteUrl").val("");
+    $("#source").val("");
+    $("#status").val("");
+    $("#shortUrl").val("");
+    $("#longUrl").val("");
+}
 
 function toEditSellerPageShow(uuid) {
     console.log("uuid>>>>>>>>>>>>>>>>>>>>>>>>>"+uuid);
@@ -36,8 +50,25 @@ function toEditSellerPageShow(uuid) {
             $("#status").val(sel.status);
             $("#shortUrl").val(sel.shortUrl);
             $("#longUrl").val(sel.longUrl);
+
+            //加载商城来源 {多麦/亿起发}
+            initCouponType(sel.source);
         }
     });
+}
+
+function initCouponType(source) {
+    var htmlStr = '';
+    htmlStr+='<option value="0">请选择</option>';
+    if(source == 1){
+        htmlStr+='<option selected value="1">多麦</option>';
+        htmlStr+='<option value="2">亿起发</option>';
+    }
+    if(source == 2){
+        htmlStr+='<option value="1">多麦</option>';
+        htmlStr+='<option selected value="2">亿起发</option>';
+    }
+    $("#sellerSource").html(htmlStr);
 }
 
 function sellerList() {

@@ -7,7 +7,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    添加商城信息
+                    商城信息
                 </h4>
             </div>
             <div class="modal-body">
@@ -15,6 +15,15 @@
                 <div class="form-group">
                     <label for="name">商城名称</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="请输入商城名称">
+                </div>
+                <div class="form-group">
+                    <label for="name">来源</label>
+                    <input type="hidden" id="source" value="1"/>
+                    <select class="form-control" id="sellerSource" onchange="changeSource(this.value)">
+                        <option value="0">请选择</option>
+                        <option value="1">多麦</option>
+                        <option value="2">亿起发</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="inputfile">商城LOGO上传</label>
@@ -26,18 +35,11 @@
                     <input type="text" class="form-control" id="siteUrl" name="siteUrl" placeholder="请输入网站链接">
                 </div>
                 <div class="form-group">
-                    <label for="source">来源</label>
-                    <input type="hidden" id="source" value="1"/>
-                    <input type="radio" checked onclick="getSourceVal(1)" name="source"/>多麦
-                    &ensp;
-                    <input type="radio" onclick="getSourceVal(2)" name="source"/>亿起发
-                </div>
-                <div class="form-group">
-                    <label for="status">启用状态</label>
+                    <label for="status">启用状态</label><br/>
                     <input type="hidden" id="status" value="1"/>
-                    <input type="radio" checked onclick="getStatusVal(1)" name="status"/>启用
+                    <input type="radio" checked onclick="changeStatus(1)" name="status"/>启用
                     &ensp;
-                    <input type="radio" onclick="getStatusVal(2)" name="status"/>禁用
+                    <input type="radio" onclick="changeStatus(0)" name="status"/>禁用
                 </div>
                 <div class="form-group">
                     <label for="shortUrl">短链接</label>
@@ -60,11 +62,12 @@
 </div>
 
 <script type="text/javascript">
-    function getStatusVal(statusValue) {
+    function changeStatus(statusValue) {
         $("#status").val(statusValue);
     }
-    function getSourceVal(sourceValue) {
-        $("#source").val(sourceValue);
+    function changeSource(thisObj) {
+        console.log(thisObj);
+        $("#source").val(thisObj);
     }
 
     function uploadLogo() {

@@ -12,15 +12,6 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" id="uuid" value=""/>
-                <#--<div class="form-group">
-                    <input type="hidden" id="source" value=""/>
-                    <label for="source">来源</label>
-                    <select class="form-control" onchange="changeSource(this.value)">
-                        <option value="0">请选择</option>
-                        <option value="1">多麦</option>
-                        <option value="2">亿起发</option>
-                    </select>
-                </div>-->
                 <div class="form-group">
                     <input type="hidden" id="sellerUuid" value=""/>
                     <label for="sellerUuid">商城名称</label>
@@ -119,10 +110,6 @@
         });
     }
 
-    function changeSource(thisObj) {
-        console.log(thisObj);
-        $("#source").val(thisObj);
-    }
     function changeSeller(thisObj) {
         console.log(thisObj);
         $("#sellerUuid").val(thisObj);

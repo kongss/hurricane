@@ -5,7 +5,7 @@ $(function () {
         var button = $(event.relatedTarget);// 触发事件的按钮
         var uuid = button.context.dataset.id;
         var name = button.context.innerHTML;
-        $("#myModalLabel").html(name+'商城信息');
+        //$("#myModalLabel").html(name+'优惠券信息');
         //根据uuid判断是否修改操作，查询
         if (uuid != null && uuid != '' && uuid != 'null'){
             toEditCouponPageShow(uuid);
