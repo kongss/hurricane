@@ -86,14 +86,15 @@ public class CouponServiceImpl implements CouponService{
             logger.info("CouponServiceImpl-editCoupon-参数："+messenger);
             Coupon coupon = new Coupon();
             coupon.setName(messenger.getString("name"));
-            coupon.setDerateAmount(messenger.getString("derate_amount"));
-            coupon.setStartTime(messenger.getString("start_time"));
-            coupon.setEndTime(messenger.getString("end_time"));
-            coupon.setUseExplain(messenger.getString("use_explain"));
-            coupon.setActivityLinkUrl(messenger.getString("activity_link_url"));
+            coupon.setDerateAmount(messenger.getString("derateAmount"));
+            coupon.setStartTime(messenger.getString("startTime"));
+            coupon.setEndTime(messenger.getString("endTime"));
+            coupon.setUseExplain(messenger.getString("useExplain"));
+            coupon.setActivityLinkUrl(messenger.getString("activityLinkUrl"));
             coupon.setType(messenger.getString("type"));
-            coupon.setIsRecom(messenger.getString("is_recom"));
-            coupon.setSellerUuid(messenger.getString("seller_uuid"));
+            coupon.setStatus(messenger.getString("status"));
+            coupon.setIsRecom(messenger.getString("isRecom"));
+            coupon.setSellerUuid(messenger.getString("sellerUuid"));
             if (StringUtils.isEmpty(messenger.getString("uuid"))){//添加操作
                 coupon.setUuid(HuUUID.getUuid());
                 coupon.setCreateTime(new Date());

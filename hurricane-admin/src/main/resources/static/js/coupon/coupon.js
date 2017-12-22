@@ -68,34 +68,7 @@ function initSellerSelective(sellerUuid) {
     });
 }
 
-function editCoupon() {
-    var uuid = $("#uuid").val();
-    var name = $("#name").val();
-    var derateAmount = $("#derateAmount").val();
-    var startTime = $("#startTime").val();
-    var endTime = $("#endTime").val();
-    var activityLinkUrl = $("#activityLinkUrl").val();
-
-    //发生ajax保存数据
-    $.ajax({
-        type: 'POST',
-        url: "/admin/coupon/editCoupon",
-        data: {"uuid":uuid, "name": name, "derateAmount": derateAmount, "derateAmount": derateAmount, "startTime": startTime, "endTime": endTime, "activityLinkUrl": activityLinkUrl, },
-        //dataType: "json",
-        success: function(data){
-            console.log(data);
-            if ("0000" != data.resCode){
-                alert("操作异常！！！联系管理员");
-                return false;
-            }
-            alert("操作成功！！");
-            window.location.reload();
-        }
-    });
-}
-
 function couponList(currentPage,pageSize,couponList) {
-    //console.log("currentPage="+currentPage+" pageSize="+pageSize);
     $.ajax({
         type: "POST",
         async: "true",

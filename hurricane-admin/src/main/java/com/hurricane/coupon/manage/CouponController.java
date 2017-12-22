@@ -53,7 +53,8 @@ public class CouponController {
     @RequestMapping("/editCoupon")
     @ResponseBody
     MessengerVo editCoupon(String uuid, String name, String derateAmount, String startTime, String endTime,
-                           String useExplain, String activityLinkUrl, String type, String isRecom, String sellerUuid){
+                           String useExplain, String activityLinkUrl, String type, String status, String isRecom, String sellerUuid){
+
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("uuid",uuid);
         messenger.setInfo("name",name);
@@ -63,9 +64,10 @@ public class CouponController {
         messenger.setInfo("useExplain",useExplain);
         messenger.setInfo("activityLinkUrl",activityLinkUrl);
         messenger.setInfo("type",type);
+        messenger.setInfo("status",status);
         messenger.setInfo("isRecom",isRecom);
         messenger.setInfo("sellerUuid",sellerUuid);
-        dCouponService.editCoupon(messenger);
+        messenger = dCouponService.editCoupon(messenger);
         return messenger;
     }
 

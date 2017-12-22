@@ -12,7 +12,7 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" id="uuid" value=""/>
-                <div class="form-group">
+                <#--<div class="form-group">
                     <input type="hidden" id="source" value=""/>
                     <label for="source">来源</label>
                     <select class="form-control" onchange="changeSource(this.value)">
@@ -20,7 +20,7 @@
                         <option value="1">多麦</option>
                         <option value="2">亿起发</option>
                     </select>
-                </div>
+                </div>-->
                 <div class="form-group">
                     <input type="hidden" id="sellerUuid" value=""/>
                     <label for="sellerUuid">商城名称</label>
@@ -42,14 +42,14 @@
                 <div class="form-group">
                     <input type="hidden" id="status" value=""/>
                     <label for="status">启用状态</label><br/>
-                    <input type="radio" checked name="status"/>启用
-                    <input type="radio" name="status"/>禁用
+                    <input type="radio" onclick="changeStatus(1)" checked name="status"/>启用
+                    <input type="radio" onclick="changeStatus(0)" name="status"/>禁用
                 </div>
                 <div class="form-group">
                     <input type="hidden" id="isRecom" value=""/>
                     <label for="isRecom">是否推荐</label><br/>
-                    <input type="radio" checked name="isRecom"/>推荐
-                    <input type="radio" name="isRecom"/>不推荐
+                    <input type="radio" onclick="changeIsRecom(1)" checked name="isRecom"/>推荐
+                    <input type="radio" onclick="changeIsRecom(2)" name="isRecom"/>不推荐
                 </div>
                 <div class="form-group">
                     <label for="name">券名称</label>
@@ -83,6 +83,37 @@
     </div><!-- /.modal -->
 </div>
 <script type="text/javascript">
+    function editCoupon() {
+        var sellerUuid = $("#sellerUuid").val();
+        var uuid = $("#uuid").val();
+        var name = $("#name").val();
+        var type = $("#type").val();
+        var status = $("#status").val();
+        var isRecom = $("#isRecom").val();
+        var derateAmount = $("#derateAmount").val();
+        var startTime = $("#startTime").val();
+        var endTime = $("#endTime").val();
+        var activityLinkUrl = $("#activityLinkUrl").val();
+        //发生ajax保存数据
+        $.ajax({
+            type: 'POST',
+            url: "/admin/coupon/editCoupon",
+            data: {"uuid":uuid, "name": name, "derateAmount": derateAmount, "derateAmount": derateAmount,
+                "sellerUuid":sellerUuid, "type":type, "status":status, "isRecom":isRecom,
+                "startTime": startTime, "endTime": endTime, "activityLinkUrl": activityLinkUrl},
+            //dataType: "json",
+            success: function(data){
+                console.log(data);
+                if ("0000" != data.resCode){
+                    alert("操作异常！！！联系管理员");
+                    return false;
+                }
+                alert("操作成功！！");
+                window.location.reload();
+            }
+        });
+    }
+
     function changeSource(thisObj) {
         console.log(thisObj);
         $("#source").val(thisObj);
@@ -94,5 +125,11 @@
     function changeType(thisObj) {
         console.log(thisObj);
         $("#type").val(thisObj);
+    }
+    function changeStatus(val) {
+        $("#status").val(val)
+    }
+    function changeIsRecom(val) {
+        $("#isRecom").val(val)
     }
 </script>
