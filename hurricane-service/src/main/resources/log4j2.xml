@@ -10,7 +10,7 @@
             <PatternLayout pattern="%msg%xEx%n" />
         </Console>
         <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
-        <RollingFile name="CustomRollingFile" fileName="/logs/hurricane-service.log"
+        <RollingFile name="CustomRollingFile" fileName="/home/hurricane/logs/hurricane-service.log"
                      filePattern="/logs/%d{yyyy-MM-dd}/user_video_%i.log">
             <PatternLayout charset="UTF-8" pattern="%msg%xEx%n" />
             <Policies>
@@ -23,32 +23,32 @@
 
     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
     <loggers>
-        <logger name="com.hurricane.coupon.service.impl.UserServiceImpl" level="debug" additivity="false">
+        <logger name="com.hurricane.coupon.service.impl.UserServiceImpl" level="info" additivity="false">
             <appender-ref ref="Console" />
             <appender-ref ref="CustomRollingFile" />
         </logger>
         <!--建立一个默认的root的logger -->
-        <root level="warn">
+        <root level="info">
             <appender-ref ref="Console" />
         </root>
     </loggers>
     <loggers>
-        <logger name="com.hurricane.coupon.service.impl.SellerServiceImpl" level="debug" additivity="false">
+        <logger name="com.hurricane.coupon.service.impl.SellerServiceImpl" level="info" additivity="false">
             <appender-ref ref="Console" />
             <appender-ref ref="CustomRollingFile" />
         </logger>
         <!--建立一个默认的root的logger -->
-        <root level="warn">
+        <root level="info">
             <appender-ref ref="Console" />
         </root>
     </loggers>
     <loggers>
-        <logger name="com.hurricane.coupon.service.impl.CouponServiceImpl" level="debug" additivity="false">
+        <logger name="com.hurricane.coupon.service.impl.CouponServiceImpl" level="info" additivity="false">
             <appender-ref ref="Console" />
             <appender-ref ref="CustomRollingFile" />
         </logger>
         <!--建立一个默认的root的logger -->
-        <root level="warn">
+        <root level="info">
             <appender-ref ref="Console" />
         </root>
     </loggers>
