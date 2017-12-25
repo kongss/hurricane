@@ -92,6 +92,7 @@
     }
 
     function saveSeller() {
+        var uuid = $("#uuid").val();
         var name = $("#name").val();
         var logoPicUrl = $("#logoPicUrl").val();
         var siteUrl = $("#siteUrl").val();
@@ -106,7 +107,7 @@
             $.ajax({
                 type: 'POST',
                 url: "/admin/seller/editSeller",
-                data: {"name": name, "longUrl": longUrl, "logoPicUrl": logoPicUrl, "siteUrl": siteUrl, "source": source, "status": status, "shortUrl": shortUrl },
+                data: {"uuid":uuid, "name": name, "longUrl": longUrl, "logoPicUrl": logoPicUrl, "siteUrl": siteUrl, "source": source, "status": status, "shortUrl": shortUrl },
                 dataType: "json",
                 success: function(data){
                     console.log(data);

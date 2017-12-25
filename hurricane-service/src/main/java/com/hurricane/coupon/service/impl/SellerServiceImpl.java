@@ -102,17 +102,19 @@ public class SellerServiceImpl implements SellerService {
             String status = messenger.getString("status");
             String shortUrl = messenger.getString("shortUrl");
             Seller seller = new Seller();
-            seller.setUuid(uuid);
             seller.setName(name);
-            seller.setLongUrl(longUrl);
             seller.setLogoPicUrl(logoPicUrl);
             seller.setSiteUrl(siteUrl);
             seller.setSource(source);
             seller.setStatus(status);
             seller.setShortUrl(shortUrl);
+            seller.setLongUrl(longUrl);
+            seller.setCreateTime(new Date());
             if(StringUtils.isEmpty(uuid)){
+                seller.setUuid(HuUUID.getUuid());
                 sellerMapper.insertSelective(seller);
             }else {
+                seller.setUuid(uuid);
                 sellerMapper.updateByPrimaryKeySelective(seller);
             }
             messenger = new MessengerVo();
@@ -120,7 +122,7 @@ public class SellerServiceImpl implements SellerService {
             messenger.setResDesc("操作商城信息成功");
         } catch (Exception e) {
             messenger = new MessengerVo();
-            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("操作商城信息异常");
             logger.error("SellerServiceImpl-editSeller-异常",e);
         }

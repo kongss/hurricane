@@ -79,7 +79,7 @@ public class SellerController {
     @ResponseBody
     public MessengerVo editSeller(String uuid,String name, String longUrl, String logoPicUrl, String siteUrl, String source, String status, String shortUrl){
         MessengerVo messenger = new MessengerVo();
-        System.out.println("修改"+uuid+" "+name+" "+longUrl+" "+logoPicUrl+" "+siteUrl+" "+source+" "+status+" "+shortUrl);
+        System.out.println("修改 "+uuid+" "+name+" "+longUrl+" "+logoPicUrl+" "+siteUrl+" "+source+" "+status+" "+shortUrl);
         messenger.setInfo("uuid",uuid);
         messenger.setInfo("name",name);
         messenger.setInfo("longUrl",longUrl);
