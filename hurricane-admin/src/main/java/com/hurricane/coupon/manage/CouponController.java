@@ -3,13 +3,17 @@ package com.hurricane.coupon.manage;
 import com.hurricane.coupon.api.DCouponService;
 import com.hurricane.coupon.utils.bean.MessengerVo;
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import java.io.InputStream;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin/coupon")
@@ -71,11 +75,115 @@ public class CouponController {
         return messenger;
     }
 
+    @RequestMapping("/analysisExcel")
+    @ResponseBody MessengerVo toInExcel(@RequestParam("file") MultipartFile file,String flag) throws Exception {
+        MessengerVo messenger = new MessengerVo();
+        //String filepath = "D:/cData07.xlsx";
+        InputStream is = file.getInputStream();
+        String fileName = file.getOriginalFilename();
+        //InputStream is = new FileInputStream(filepath);
+        String suffix = fileName.substring(fileName.lastIndexOf("."));
+        System.out.println("suffix = " + suffix);
+        Workbook wbc = WorkbookFactory.create(is);
+        Sheet sheet = wbc.getSheetAt(1);
+        int rowNum = sheet.getLastRowNum();
+        Row row = sheet.getRow(0);
+        int colNum = row.getPhysicalNumberOfCells();
+        System.out.println("rowNum:" + rowNum + "   colNum:" + colNum);
+        //从1开始，跳过表头的标题
+        //Map<Object, Object> m = new LinkedHashMap<>();
+        //List<Object> list = new ArrayList<>();
+        if ("show".equals(flag)) {//预览
+            System.out.println(".................预览操作.................");
+            int t = 1;
+            String cv = "";
+            for (int i = 1; i <= rowNum; i++) {
+                row = sheet.getRow(i);
+                cv += "[" + t + "] ";
+                t++;
+                for (int j = 0; j < colNum; j++) {
+                    Object obj = getCellFormatValue(row.getCell(j));
+                    //System.out.println("obj[" + i + "*" + j + "]======================" + obj);
+                    cv += "[" + obj + "] ";
+                }
+                cv += "\n";
+                messenger.setInfo("cv", cv);
+            }
+        } else {//入库
+            System.out.println(".................入库操作.................");
+            //List<Object> list = new ArrayList<>();
+            //HashSet<Object> hashSet;
+            ArrayList<Map<String, Object>> list = new ArrayList<>();
+            Map<String, Object> map;
+            for (int i = 1; i <= rowNum; i++) {
+                map = new HashMap<>();
+                row = sheet.getRow(i);
+                Object obj0 = getCellFormatValue(row.getCell(0));
+                Object obj1 = getCellFormatValue(row.getCell(1));
+                map.put("number",obj0);
+                map.put("code",obj1);
+                list.add(map);
+            }
+            System.out.println("list： "+list);
+        }
+        System.out.println(messenger);
+        return messenger;
+    }
+
     @RequestMapping("/deleteCoupon")
     @ResponseBody
     MessengerVo deleteCoupon(){
         MessengerVo messenger = new MessengerVo();
 
         return messenger;
+    }
+    private static Object getCellFormatValue(Cell cell) {
+        Object cellvalue = "";
+        if (cell != null) {
+            /*
+            _NONE(-1),
+            NUMERIC(0),
+            STRING(1),
+            FORMULA(2),
+            BLANK(3),
+            BOOLEAN(4),
+            ERROR(5);
+            */
+            switch (cell.getCellTypeEnum()) {
+                case _NONE: {
+                    cellvalue = "_NONE";
+                    break;
+                }
+                case NUMERIC: {
+                    cellvalue = cell.getNumericCellValue();
+                    break;
+                }
+                case STRING: {
+                    cellvalue = cell.getStringCellValue();
+                    break;
+                }
+                case FORMULA: {
+                    cellvalue = cell.getCellFormula();
+                    break;
+                }
+                case BLANK: {
+                    cellvalue = "";
+                    break;
+                }
+                case BOOLEAN: {
+                    cellvalue = cell.getBooleanCellValue();
+                    break;
+                }
+                case ERROR: {
+                    cellvalue = cell.getErrorCellValue();
+                    break;
+                }
+                default: {
+                    cellvalue = "";
+                    break;
+                }
+            }
+        }
+        return cellvalue;
     }
 }

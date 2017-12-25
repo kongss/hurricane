@@ -65,11 +65,13 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    <label>导入优惠券EXCEL：</label>
-                    <input type="file" id=""/>
+                    <label>导入EXCEL：</label>
+                    <input type="file" id="couponData" onchange="uploadExcel('show')"/>
                 </div>
                 <div>
+                    <span>导入预览</span>
                     <textarea id="couponListShow" style="height: 600px;width: 310px;"></textarea>
+                    <button onclick="uploadExcel('save')" >确定上传</button>
                 </div>
             </div>
             <div class="" style="height: 1500px;margin-left: 350px;border-left: solid 1px #949494;">
@@ -86,5 +88,26 @@
     </div><!-- /.modal -->
 </div>
 <script type="text/javascript">
-
+    function uploadExcel(flag) {
+        var formData = new FormData();
+        formData.append("file",$("#couponData")[0].files[0]);
+        formData.append("flag",flag);
+        $.ajax({
+            url : 'admin/coupon/analysisExcel',
+            type : 'POST',
+            data : formData,
+            // 告诉jQuery不要去处理发送的数据
+            processData : false,
+            // 告诉jQuery不要去设置Content-Type请求头
+            contentType : false,
+            //dataType : 'json',
+            success : function(data) {
+                console.log("data="+data)
+                $("#couponListShow").html(data.map.cv);
+            },
+            error : function(data) {
+                console.log("error "+data);
+            }
+        });
+    }
 </script>
