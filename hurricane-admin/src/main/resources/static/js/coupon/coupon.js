@@ -201,7 +201,7 @@ function couponList(currentPage,pageSize,couponList) {
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.receive_num)+'</td>';
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.unreceive_num)+'</td>';
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.create_time)+'</td>';
-                    htmlStr+='<td style="white-space: nowrap;"><button class="btn btn-default" data-toggle="modal">详情</button><button class="btn btn-default" data-id="'+value.uuid+'" data-toggle="modal" data-target="#myModal">修改</button></td>';
+                    htmlStr+='<td style="white-space: nowrap;"><button class="btn btn-default" data-id="" data-toggle="modal" data-target="#couponDetailsModal">详情</button><button class="btn btn-default" data-id="'+value.uuid+'" data-toggle="modal" data-target="#myModal">修改</button></td>';
                     htmlStr+='<tr>';
                 });
                 $("#couponList").html(htmlStr);

@@ -38,6 +38,7 @@
 </form>
 <br>
 <#include "addCouponModal.ftl">
+<#include "couponDetailsModal.ftl">
 <div class="container" style="float: left;margin-left: 6px;">
     <!-- 按钮触发模态框 -->
     <button class="btn btn-default" data-id="" data-toggle="modal" data-target="#myModal">添加</button>
