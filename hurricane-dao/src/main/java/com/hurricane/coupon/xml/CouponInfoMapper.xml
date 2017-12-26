@@ -135,4 +135,49 @@
       coupon_uuid = #{couponUuid,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
+  <insert id="insertCouponBatch" parameterType="java.util.List">
+    insert into coupon_info (
+    <if test="uuid != null" >
+      uuid,
+    </if>
+    <if test="number != null" >
+      number,
+    </if>
+    <if test="code != null" >
+      code,
+    </if>
+    <if test="releaseTime != null" >
+      release_time,
+    </if>
+    <if test="status != null" >
+      status,
+    </if>
+    <if test="couponUuid != null" >
+      coupon_uuid,
+    </if>
+    )
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseTime != null" >
+        #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="couponUuid != null" >
+        #{couponUuid,jdbcType=VARCHAR},
+      </if>
+      )
+    </foreach>
+  </insert>
 </mapper>

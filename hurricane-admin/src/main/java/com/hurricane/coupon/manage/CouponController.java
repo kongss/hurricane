@@ -1,5 +1,8 @@
 package com.hurricane.coupon.manage;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.hurricane.coupon.api.DCouponService;
 import com.hurricane.coupon.utils.bean.MessengerVo;
 import org.apache.commons.lang.StringUtils;
@@ -113,20 +116,24 @@ public class CouponController {
             System.out.println(".................入库操作.................");
             //List<Object> list = new ArrayList<>();
             //HashSet<Object> hashSet;
-            ArrayList<Map<String, Object>> list = new ArrayList<>();
-            Map<String, Object> map;
+            JSONObject object;
+            JSONArray jsonArray = new JSONArray();
             for (int i = 1; i <= rowNum; i++) {
-                map = new HashMap<>();
+                object = new JSONObject();
                 row = sheet.getRow(i);
-                Object obj0 = getCellFormatValue(row.getCell(0));
-                Object obj1 = getCellFormatValue(row.getCell(1));
-                map.put("number",obj0);
-                map.put("code",obj1);
-                list.add(map);
+                Object number = getCellFormatValue(row.getCell(0));
+                Object code = getCellFormatValue(row.getCell(1));
+                object.put("number",number);
+                object.put("code",code);
+                jsonArray.add(object);
             }
-            System.out.println("list： "+list);
+            System.out.println("jsonArray： "+jsonArray);
+
+            messenger.setInfo("jsonArray",jsonArray);
+            messenger.setInfo("sellerUuid","111111111111111");
+            messenger = dCouponService.saveCouponBatch(messenger);
         }
-        System.out.println(messenger);
+
         return messenger;
     }
 

@@ -2,8 +2,12 @@ package com.hurricane.coupon.service.impl;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.hurricane.coupon.dao.CouponInfoMapper;
 import com.hurricane.coupon.dao.CouponMapper;
 import com.hurricane.coupon.entity.Coupon;
+import com.hurricane.coupon.entity.CouponInfo;
 import com.hurricane.coupon.service.CouponService;
 import com.hurricane.coupon.utils.bean.HConstants;
 import com.hurricane.coupon.utils.bean.MessengerVo;
@@ -14,10 +18,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class CouponServiceImpl implements CouponService{
@@ -26,6 +27,9 @@ public class CouponServiceImpl implements CouponService{
 
     @Autowired
     CouponMapper couponMapper;
+
+    @Autowired
+    CouponInfoMapper couponInfoMapper;
 
     public MessengerVo getCouponInfo(MessengerVo messenger) {
         String uuid = messenger.getString("uuid");
@@ -78,7 +82,40 @@ public class CouponServiceImpl implements CouponService{
     }
 
     public MessengerVo saveCouponBatch(MessengerVo messenger) {
-        return null;
+        try {
+            logger.info("CouponServiceImpl-saveCouponBatch-参数"+messenger);
+            ArrayList<CouponInfo> list = new ArrayList<CouponInfo>();
+            CouponInfo info;
+            String jsonArray = messenger.getString("jsonArray");
+            String sellerUuid = messenger.getString("sellerUuid");
+            JSONArray array = JSONArray.parseArray(jsonArray);
+            System.out.println("总数量："+array.size());
+            for(int i = 0; i < array.size(); i++){
+                info = new CouponInfo();
+                JSONObject object = JSON.parseObject(String.valueOf(array.get(i)));
+                String number = object.getString("number");
+                String code = object.getString("code");
+                System.out.println("number:"+number+"  code:"+code);
+                info.setUuid(HuUUID.getUuid());
+                info.setNumber(number);
+                info.setCode(code);
+                info.setStatus("1");
+                info.setCouponUuid(sellerUuid);
+                list.add(info);
+            }
+            int i = couponInfoMapper.insertCouponBatch(list);
+            logger.info("插入条数"+i);
+            messenger = new MessengerVo();
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("批量插入成功");
+        } catch (Exception e) {
+            messenger = new MessengerVo();
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("批量插入异常");
+            logger.error("批量插入异常",e);
+        }
+        logger.info("CouponServiceImpl-saveCouponBatch-结果"+messenger);
+        return messenger;
     }
 
     public MessengerVo editCoupon(MessengerVo messenger) {
