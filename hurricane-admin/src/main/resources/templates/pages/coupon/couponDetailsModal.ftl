@@ -11,57 +11,50 @@
                 </h4>
             </div>
             <div class="modal-body" style="float: left;width: 350px;">
+                <input type="hidden" id="DUuid" value=""/>
                 <div class="form-group">
-                    <input type="hidden" id="sellerUuid" value=""/>
-                    <label for="sellerUuid">商城名称：</label>
-                    <span>京东商城</span>
+                    <label>商城名称：</label>
+                    <span id="DSellerUuid">京东商城</span>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" id="sellerUuid" value=""/>
-                    <label for="sellerUuid">优惠券名称：</label>
-                    <span>满30-10元</span>
+                    <label>优惠券名称：</label>
+                    <span id="DName">满30-10元</span>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" id="sellerUuid" value=""/>
-                    <label for="sellerUuid">优惠券类型：</label>
-                    <span>密码券</span>
+                    <label>优惠券类型：</label>
+                    <span id="DType">密码券</span>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" id="sellerUuid" value=""/>
-                    <label for="sellerUuid">是否过期：</label>
-                    <span>未过期</span>
+                    <label>是否过期：</label>
+                    <span id="DIsOverdue">未过期</span>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" id="sellerUuid" value=""/>
-                    <label for="sellerUuid">状态：</label>
-                    <span>启用</span>
+                    <label>状态：</label>
+                    <span id="DStatus">启用</span>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" id="sellerUuid" value=""/>
-                    <label for="sellerUuid">是否推荐：</label>
-                    <span>推荐</span>
+                    <label>是否推荐：</label>
+                    <span id="DIsRecom">推荐</span>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" id="sellerUuid" value=""/>
-                    <label for="sellerUuid">开始时间：</label>
-                    <span>2017-12-12</span>
+                    <label>开始时间：</label>
+                    <span id="DStartTime">2017-12-12</span>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" id="sellerUuid" value=""/>
-                    <label for="sellerUuid">结束时间：</label>
-                    <span>2018-12-12</span>
+                    <label>结束时间：</label>
+                    <span id="DEndTime">2018-12-12</span>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" id="sellerUuid" value=""/>
                     <label>总数量：</label>
-                    <span>100</span>
+                    <span id="DTotal">100</span>
                 </div>
                 <div class="form-group">
-                    <label>领取：</label><span>30</span>
+                    <label>领取：</label>
+                    <span id="DReceiveNum">30</span>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" id="sellerUuid" value=""/>
-                    <label>剩余：</label><span>70</span>
+                    <label>剩余：</label>
+                    <span id="DUnreceiveNum">70</span>
                 </div>
                 <hr>
                 <div class="form-group">
@@ -76,7 +69,7 @@
             </div>
             <div class="" style="height: 1500px;margin-left: 350px;border-left: solid 1px #949494;">
                 <div style="height: 50px">
-                    <h2>兑换码列表</h2>
+                    <h2>兑换码列表&ensp;<button class="btn btn-default" onclick="reloadCouponInstList()">刷新</button></h2>
                 </div>
                 <div>
                     <div class="table-responsive">
@@ -91,21 +84,7 @@
                                 <th>操作</th>
                             </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>CPSEMXQ0H6R</td>
-                                    <td></td>
-                                    <td>2017-12-12</td>
-                                    <td>未领取</td>
-                                    <td><a>删除</a> | <a>下架</a></td>
-                                </tr>
-                                <tr>
-                                    <td>CPSEMXQ0H6R</td>
-                                    <td></td>
-                                    <td>2017-12-12</td>
-                                    <td>未领取</td>
-                                    <td><a>删除</a> | <a>下架</a></td>
-                                </tr>
+                            <tbody id="couponInfoList">
                                 <tr>
                                     <td>CPSEMXQ0H6R</td>
                                     <td></td>
@@ -122,6 +101,11 @@
     </div><!-- /.modal -->
 </div>
 <script type="text/javascript">
+    function reloadCouponInstList() {
+        var DUuid = $("#DUuid").val();
+        getCouponInfoList(DUuid);
+    }
+
     function uploadExcel(flag) {
         var formData = new FormData();
         formData.append("file",$("#couponData")[0].files[0]);

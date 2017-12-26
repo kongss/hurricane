@@ -31,13 +31,30 @@ public class CouponServiceImpl implements CouponService{
     @Autowired
     CouponInfoMapper couponInfoMapper;
 
-    public MessengerVo getCouponInfo(MessengerVo messenger) {
+    public MessengerVo getCoupon(MessengerVo messenger) {
         String uuid = messenger.getString("uuid");
         Coupon coupon = couponMapper.selectByPrimaryKey(uuid);
         messenger = new MessengerVo();
         messenger.setInfo("coupon",coupon);
         messenger.setResCode(HConstants.SUCCESS);
         messenger.setResDesc("查询成功");
+        return messenger;
+    }
+
+    public MessengerVo getCouponInfoList(MessengerVo messenger) {
+        try {
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            List<Map<String, Object>> list = couponInfoMapper.selectCouponInfoList(map);
+            messenger = new MessengerVo();
+            messenger.setInfo("list",list);
+            messenger.setResDesc("查询成功");
+            messenger.setResCode(HConstants.SUCCESS);
+        } catch (Exception e) {
+            messenger = new MessengerVo();
+            messenger.setResDesc("查询失败");
+            messenger.setResCode(HConstants.ERROR);
+            logger.error("getCouponInfoList-异常",e);
+        }
         return messenger;
     }
 
@@ -87,7 +104,7 @@ public class CouponServiceImpl implements CouponService{
             ArrayList<CouponInfo> list = new ArrayList<CouponInfo>();
             CouponInfo info;
             String jsonArray = messenger.getString("jsonArray");
-            String sellerUuid = messenger.getString("sellerUuid");
+            String couponUuid = messenger.getString("couponUuid");
             JSONArray array = JSONArray.parseArray(jsonArray);
             System.out.println("总数量："+array.size());
             for(int i = 0; i < array.size(); i++){
@@ -100,7 +117,7 @@ public class CouponServiceImpl implements CouponService{
                 info.setNumber(number);
                 info.setCode(code);
                 info.setStatus("1");
-                info.setCouponUuid(sellerUuid);
+                info.setCouponUuid(couponUuid);
                 list.add(info);
             }
             int i = couponInfoMapper.insertCouponBatch(list);

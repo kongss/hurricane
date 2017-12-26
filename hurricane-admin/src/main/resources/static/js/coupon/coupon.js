@@ -16,7 +16,81 @@ $(function () {
         //加载商城下拉菜单,默认0 没有传值
         initSellerSelective(0)
     });
+
+    //详情页模态框展示
+    $('#couponDetailsModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);// 触发事件的按钮
+        var uuid = button.context.dataset.id;
+        //var name = button.context.innerHTML;
+        //console.log("------------uuid------------"+uuid);
+        //查询优惠券详情
+        getCoupon(uuid);
+        //查询优惠券兑换码列表
+        getCouponInfoList(uuid);
+    });
 });
+
+function getCoupon(uuid) {
+    $.ajax({
+        type: "POST",
+        async: "true",
+        url: "/admin/coupon/getCoupon",
+        timeout: 6000,
+        data: {"uuid":uuid},
+        //dataType: "json",
+        success:function (data) {
+            if ("0000" != data.resCode){
+                alert("查询商城信息失败！！！连管理员");
+                return false;
+            }
+            var coupon= data.map.coupon;
+            $("#DUuid").html(coupon.uuid);
+            $("#DSellerUuid").html(coupon.sellerUuid);
+            $("#DName").html(coupon.name);
+            $("#DType").html(coupon.type);
+            $("#DIsOverdue").html(coupon.isOverdue);
+            $("#DStatus").html(coupon.status);
+            $("#DIsRecom").html(coupon.isRecom);
+            $("#DStartTime").html(coupon.startTime);
+            $("#DEndTime").html(coupon.endTime);
+            $("#DTotal").html(coupon.total);
+            $("#DReceiveNum").html(coupon.receiveNum);
+            $("#DUnreceiveNum").html(coupon.unreceiveNum);
+
+        }
+    });
+}
+
+function getCouponInfoList(uuid) {
+    $.ajax({
+        type: "POST",
+        async: "true",
+        url: "/admin/coupon/getCouponInfoList",
+        timeout: 6000,
+        data: {"uuid":uuid},
+        //dataType: "json",
+        success:function (data) {
+            if ("0000" != data.resCode){
+                alert("查询商城信息失败！！！连管理员");
+                return false;
+            }
+            var htmlStr = '';
+            var ci = data.map.list;
+            for (var i=0;i<ci.length;i++){
+                htmlStr+='<tr>';
+                htmlStr+='<td>'+ci[i].number+'</td>';
+                htmlStr+='<td>'+ci[i].code+'</td>';
+                htmlStr+='<td>'+ci[i].release_time+'</td>';
+                htmlStr+='<td>'+ci[i].status+'</td>';
+                htmlStr+='<td><a onclick="">删除</a> | <a>下架</a></td>';
+                htmlStr+='</tr>';
+            }
+            $("#couponInfoList").html(htmlStr);
+
+        }
+    });
+}
+
 function cleanValue() {
     $("#sellerUuid").val("");
     $("#uuid").val("");
@@ -201,7 +275,7 @@ function couponList(currentPage,pageSize,couponList) {
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.receive_num)+'</td>';
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.unreceive_num)+'</td>';
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.create_time)+'</td>';
-                    htmlStr+='<td style="white-space: nowrap;"><button class="btn btn-default" data-id="" data-toggle="modal" data-target="#couponDetailsModal">详情</button><button class="btn btn-default" data-id="'+value.uuid+'" data-toggle="modal" data-target="#myModal">修改</button></td>';
+                    htmlStr+='<td style="white-space: nowrap;"><button class="btn btn-default" data-id="'+value.uuid+'" data-toggle="modal" data-target="#couponDetailsModal">详情</button><button class="btn btn-default" data-id="'+value.uuid+'" data-toggle="modal" data-target="#myModal">修改</button></td>';
                     htmlStr+='<tr>';
                 });
                 $("#couponList").html(htmlStr);

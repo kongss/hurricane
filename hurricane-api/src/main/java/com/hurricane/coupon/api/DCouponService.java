@@ -4,7 +4,9 @@ import com.hurricane.coupon.utils.bean.MessengerVo;
 
 public interface DCouponService {
 
-    MessengerVo getCouponInfo(MessengerVo messenger);
+    MessengerVo getCoupon(MessengerVo messenger);
+
+    MessengerVo getCouponInfoList(MessengerVo messenger);
 
     MessengerVo getCouponList(MessengerVo messenger);
 

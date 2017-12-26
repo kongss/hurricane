@@ -52,8 +52,17 @@ public class CouponController {
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("uuid",uuid);
         System.out.println("CouponController-getCoupon-参数："+messenger);
-        messenger = dCouponService.getCouponInfo(messenger);
+        messenger = dCouponService.getCoupon(messenger);
         System.out.println("CouponController-getCoupon-结果："+messenger);
+        return messenger;
+    }
+
+    @RequestMapping("/getCouponInfoList")
+    @ResponseBody
+    MessengerVo getCouponInfoList(HttpServletRequest request,String uuid){
+        MessengerVo messenger = new MessengerVo();
+        messenger.setInfo("uuid",uuid);
+        messenger = dCouponService.getCouponInfoList(messenger);
         return messenger;
     }
 
@@ -130,7 +139,7 @@ public class CouponController {
             System.out.println("jsonArray： "+jsonArray);
 
             messenger.setInfo("jsonArray",jsonArray);
-            messenger.setInfo("sellerUuid","111111111111111");
+            messenger.setInfo("couponUuid","111111111111111");
             messenger = dCouponService.saveCouponBatch(messenger);
         }
 
