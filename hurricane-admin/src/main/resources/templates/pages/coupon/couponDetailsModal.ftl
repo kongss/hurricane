@@ -79,9 +79,43 @@
                     <h2>兑换码列表</h2>
                 </div>
                 <div>
-                    sldfksdflkaj lsjdf<br/>
-                    alsjdflasffp weoiro<br/>
-                    zxnvnaslfjff qwoipo<br/>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <#--<caption>响应式表格布局</caption>-->
+                            <thead>
+                            <tr>
+                                <th>优惠券编号</th>
+                                <th>优惠券密码</th>
+                                <th>发布时间</th>
+                                <th>领取状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CPSEMXQ0H6R</td>
+                                    <td></td>
+                                    <td>2017-12-12</td>
+                                    <td>未领取</td>
+                                    <td><a>删除</a> | <a>下架</a></td>
+                                </tr>
+                                <tr>
+                                    <td>CPSEMXQ0H6R</td>
+                                    <td></td>
+                                    <td>2017-12-12</td>
+                                    <td>未领取</td>
+                                    <td><a>删除</a> | <a>下架</a></td>
+                                </tr>
+                                <tr>
+                                    <td>CPSEMXQ0H6R</td>
+                                    <td></td>
+                                    <td>2017-12-12</td>
+                                    <td>未领取</td>
+                                    <td><a>删除</a> | <a>下架</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div><!-- /.modal-content -->
