@@ -71,7 +71,7 @@
                 <div style="height: 50px">
                     <h2>兑换码列表&ensp;<button class="btn btn-default" onclick="reloadCouponInstList()">刷新</button></h2>
                 </div>
-                <div style="height: 1200px;overflow: auto;">
+                <div style="height: 1200px;overflow: auto;border: 1px solid #909090;">
                     <div class="table-responsive">
                         <table class="table">
                             <#--<caption>响应式表格布局</caption>-->
