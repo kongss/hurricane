@@ -4,9 +4,7 @@ import com.hurricane.coupon.api.DManageService;
 import com.hurricane.coupon.service.ManageService;
 import com.hurricane.coupon.utils.bean.MessengerVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
 public class DManageServiceImpl implements DManageService{
 
     @Autowired

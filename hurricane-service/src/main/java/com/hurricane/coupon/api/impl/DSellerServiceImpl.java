@@ -4,9 +4,7 @@ import com.hurricane.coupon.api.DSellerService;
 import com.hurricane.coupon.service.SellerService;
 import com.hurricane.coupon.utils.bean.MessengerVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
 public class DSellerServiceImpl implements DSellerService {
 
     @Autowired

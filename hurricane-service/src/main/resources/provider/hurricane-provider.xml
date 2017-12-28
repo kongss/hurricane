@@ -20,19 +20,19 @@
     <dubbo:protocol name="dubbo" port="20880"/>
 
     <!-- 和本地bean一样实现服务 -->
-    <!--<bean id="dUserService" class="com.hurricane.coupon.api.impl.DUserServiceImpl"/>-->
+    <bean id="dUserService" class="com.hurricane.coupon.api.impl.DUserServiceImpl"/>
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DUserService" ref="dCouponServiceImpl"/>
+    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DUserService" ref="dUserService"/>
 
-    <!--<bean id="dSellerService" class="com.hurricane.coupon.api.impl.DSellerServiceImpl"/>-->
-    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DSellerService" ref="dSellerServiceImpl"/>
+    <bean id="dSellerService" class="com.hurricane.coupon.api.impl.DSellerServiceImpl"/>
+    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DSellerService" ref="dSellerService"/>
 
-    <!--<bean id="dCouponService" class="com.hurricane.coupon.api.impl.DCouponServiceImpl"/>-->
-    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DCouponService" ref="dCouponServiceImpl"/>
+    <bean id="dCouponService" class="com.hurricane.coupon.api.impl.DCouponServiceImpl"/>
+    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DCouponService" ref="dCouponService"/>
 
-    <!--<bean id="dManageService" class="com.hurricane.coupon.api.impl.DManageServiceImpl"/>-->
-    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DManageService" ref="dManageServiceImpl"/>
+    <bean id="dManageService" class="com.hurricane.coupon.api.impl.DManageServiceImpl"/>
+    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DManageService" ref="dManageService"/>
 
-    <!--<bean id="dMenuService" class="com.hurricane.coupon.api.impl.DMenuServiceImpl"/>-->
-    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DMenuService" ref="dMenuServiceImpl"/>
+    <bean id="dMenuService" class="com.hurricane.coupon.api.impl.DMenuServiceImpl"/>
+    <dubbo:service timeout="6000" interface="com.hurricane.coupon.api.DMenuService" ref="dMenuService"/>
 </beans>
