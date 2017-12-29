@@ -19,6 +19,8 @@ public class ManageServiceImpl implements ManageService{
 
     public MessengerVo getManageInfo(MessengerVo messenger) {
         HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("username",messenger.getString("username"));
+        map.put("password",messenger.getString("password"));
         Map<String, Object> manage = manageMapper.selectManage(map);
         messenger = new MessengerVo();
         messenger.setResCode(HConstants.SUCCESS);
