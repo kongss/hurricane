@@ -62,11 +62,11 @@ public class UserServiceImpl implements UserService{
             logger.info("save:param{user} "+user);
             int i = userMapper.insertSelective(user);
             logger.info("save:result{num} "+i);
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setResCode(HConstants.SUCCESS);
             messenger.setResDesc("Save Success");
         }catch (Exception e){
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Save Error");
             logger.error("UserServiceImpl-saveUser-error ",e);
@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService{
             map.put("limitStart",(currentPage-1) * pageSize);
             map.put("limitSize",pageSize);
             List<Map<String, Object>> list = userMapper.selectUserList(map);
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setInfo("list",list);
             messenger.setInfo("pageTotal",pager.getPageTotal());
             messenger.setInfo("currentPage",pager.getCurrentPage());
@@ -103,7 +103,7 @@ public class UserServiceImpl implements UserService{
             messenger.setResCode(HConstants.SUCCESS);
             messenger.setResDesc("Query Success");
         }catch (Exception e){
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("SellerServiceImpl-getUserList-error ",e);

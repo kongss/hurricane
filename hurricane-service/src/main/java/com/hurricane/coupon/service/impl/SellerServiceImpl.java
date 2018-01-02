@@ -31,12 +31,12 @@ public class SellerServiceImpl implements SellerService {
             logger.info("SellerServiceImpl-getSellerInfo-param "+messenger);
             String uuid = messenger.getString("uuid");
             Seller seller = sellerMapper.selectByPrimaryKey(uuid);
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setInfo("seller",seller);
             messenger.setResCode(HConstants.SUCCESS);
             messenger.setResDesc("Query Success");
         } catch (Exception e) {
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("SellerServiceImpl-getSellerInfo-error "+e);
@@ -60,7 +60,7 @@ public class SellerServiceImpl implements SellerService {
             map.put("limitStart",(currentPage-1) * pageSize);
             map.put("limitSize",pageSize);
             List<Map<String, Object>> list = sellerMapper.selectSellerList(map);
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setInfo("list",list);
             messenger.setInfo("pageTotal",pager.getPageTotal());
             messenger.setInfo("currentPage",pager.getCurrentPage());
@@ -73,7 +73,7 @@ public class SellerServiceImpl implements SellerService {
             messenger.setResCode(HConstants.SUCCESS);
             messenger.setResDesc("Query Success");
         }catch (Exception e){
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("SellerServiceImpl-getSellerList-error ",e);
@@ -109,18 +109,18 @@ public class SellerServiceImpl implements SellerService {
             if(StringUtils.isEmpty(messenger.getString("uuid"))){
                 seller.setUuid(HuUUID.getUuid());
                 sellerMapper.insertSelective(seller);
-                messenger = new MessengerVo();
+                messenger.clear();
                 messenger.setResCode(HConstants.SUCCESS);
                 messenger.setResDesc("Insert Success");
             }else {
                 seller.setUuid(uuid);
                 sellerMapper.updateByPrimaryKeySelective(seller);
-                messenger = new MessengerVo();
+                messenger.clear();
                 messenger.setResCode(HConstants.SUCCESS);
                 messenger.setResDesc("Update Success");
             }
         } catch (Exception e) {
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Save Or Update Seller Error");
             logger.error("SellerServiceImpl-editSeller-error ",e);
@@ -134,12 +134,11 @@ public class SellerServiceImpl implements SellerService {
             logger.error("SellerServiceImpl-deleteSeller-param ",messenger);
             String uuid = messenger.getString("uuid");
             sellerMapper.deleteByPrimaryKey(uuid);
-            sellerMapper.deleteByPrimaryKey(uuid);
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setResCode(HConstants.SUCCESS);
             messenger.setResDesc("Delete Success");
         } catch (Exception e) {
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Delete Error");
             logger.error("SellerServiceImpl-deleteSeller-error ",e);

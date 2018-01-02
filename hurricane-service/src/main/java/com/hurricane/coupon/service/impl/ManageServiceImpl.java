@@ -28,12 +28,12 @@ public class ManageServiceImpl implements ManageService{
             map.put("username",messenger.getString("username"));
             map.put("password",messenger.getString("password"));
             Map<String, Object> manage = manageMapper.selectManage(map);
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setInfo("manage", manage);
             messenger.setResCode(HConstants.SUCCESS);
             messenger.setResDesc("Query Success");
         } catch (Exception e) {
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("ManageServiceImpl-getManageInfo-error ",e);
@@ -47,12 +47,12 @@ public class ManageServiceImpl implements ManageService{
             logger.info("ManageServiceImpl-getManageList-param ",messenger);
             HashMap<String, Object> map = new HashMap<String, Object>();
             List<Map<String, Object>> manageList = manageMapper.selectManageList(map);
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setInfo("manageList",manageList);
             messenger.setResCode(HConstants.SUCCESS);
             messenger.setResDesc("Query Success");
         } catch (Exception e) {
-            messenger = new MessengerVo();
+            messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("ManageServiceImpl-getManageList-error ",e);
