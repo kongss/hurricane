@@ -28,25 +28,26 @@ public class SellerServiceImpl implements SellerService {
 
     public MessengerVo getSellerInfo(MessengerVo messenger) {
         try {
-            logger.info("SellerServiceImpl-getSellerInfo-参数："+messenger);
+            logger.info("SellerServiceImpl-getSellerInfo-param "+messenger);
             String uuid = messenger.getString("uuid");
             Seller seller = sellerMapper.selectByPrimaryKey(uuid);
             messenger = new MessengerVo();
             messenger.setInfo("seller",seller);
             messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("查询商城信息成功");
+            messenger.setResDesc("Query Success");
         } catch (Exception e) {
-            messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("查询商城信息异常");
-            logger.error("SellerServiceImpl-getSellerInfo-异常："+e);
+            messenger = new MessengerVo();
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Query Error");
+            logger.error("SellerServiceImpl-getSellerInfo-error "+e);
         }
-        logger.info("SellerServiceImpl-getSellerInfo-结果："+messenger);
+        logger.info("SellerServiceImpl-getSellerInfo-result "+messenger);
         return messenger;
     }
 
     public MessengerVo getSellerList(MessengerVo messenger) {
-        logger.info("SellerServiceImpl-getSellerList-入参："+messenger);
         try {
+            logger.info("SellerServiceImpl-getSellerList-param "+messenger);
             int currentPage = Integer.parseInt(messenger.getString("currentPage"));//当前页
             int pageSize = Integer.parseInt(messenger.getString("pageSize"));//每页条数
 
@@ -70,14 +71,14 @@ public class SellerServiceImpl implements SellerService {
             messenger.setInfo("previousPage",pager.getPreviousPage());
             messenger.setInfo("recordTotal",pager.getRecordTotal());
             messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("查询商城列表成功");
+            messenger.setResDesc("Query Success");
         }catch (Exception e){
             messenger = new MessengerVo();
-            messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("查询商城列表异常");
-            logger.error("SellerServiceImpl-getSellerList-异常",e);
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Query Error");
+            logger.error("SellerServiceImpl-getSellerList-error ",e);
         }
-        logger.info("SellerServiceImpl-getSellerList-出参："+messenger);
+        logger.info("SellerServiceImpl-getSellerList-result "+messenger);
         return messenger;
     }
 
@@ -92,60 +93,58 @@ public class SellerServiceImpl implements SellerService {
 
     public MessengerVo editSeller(MessengerVo messenger) {
         try {
-            logger.info("SellerServiceImpl-editSeller-入参："+messenger);
-            String uuid = messenger.getString("uuid");
-            String name = messenger.getString("name");
-            String longUrl = messenger.getString("longUrl");
-            String logoPicUrl = messenger.getString("logoPicUrl");
-            String siteUrl = messenger.getString("siteUrl");
-            String source = messenger.getString("source");
-            String status = messenger.getString("status");
-            String shortUrl = messenger.getString("shortUrl");
+            logger.info("SellerServiceImpl-editSeller-param "+messenger);
             Seller seller = new Seller();
-            seller.setName(name);
-            seller.setLogoPicUrl(logoPicUrl);
-            seller.setSiteUrl(siteUrl);
-            seller.setSource(source);
-            seller.setStatus(status);
-            seller.setShortUrl(shortUrl);
-            seller.setLongUrl(longUrl);
+            seller.setName(messenger.getString("name"));
+            seller.setLogoPicUrl(messenger.getString("logoPicUrl"));
+            seller.setSiteUrl(messenger.getString("siteUrl"));
+            seller.setSource(messenger.getString("source"));
+            seller.setStatus(messenger.getString("status"));
+            seller.setShortUrl(messenger.getString("shortUrl"));
+            seller.setLongUrl(messenger.getString("longUrl"));
             seller.setCreateTime(new Date());
-            if(StringUtils.isEmpty(uuid)){
+
+            String uuid = messenger.getString("uuid");
+            logger.info((uuid == null || uuid.length() == 0) ? "Execute Insert Begin" : "Execute Update Begin");
+            if(StringUtils.isEmpty(messenger.getString("uuid"))){
                 seller.setUuid(HuUUID.getUuid());
                 sellerMapper.insertSelective(seller);
+                messenger = new MessengerVo();
+                messenger.setResCode(HConstants.SUCCESS);
+                messenger.setResDesc("Insert Success");
             }else {
                 seller.setUuid(uuid);
                 sellerMapper.updateByPrimaryKeySelective(seller);
+                messenger = new MessengerVo();
+                messenger.setResCode(HConstants.SUCCESS);
+                messenger.setResDesc("Update Success");
             }
-            messenger = new MessengerVo();
-            messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("操作商城信息成功");
         } catch (Exception e) {
             messenger = new MessengerVo();
             messenger.setResCode(HConstants.ERROR);
-            messenger.setResDesc("操作商城信息异常");
-            logger.error("SellerServiceImpl-editSeller-异常",e);
+            messenger.setResDesc("Save Or Update Seller Error");
+            logger.error("SellerServiceImpl-editSeller-error ",e);
         }
-        logger.info("SellerServiceImpl-editSeller-出参："+messenger);
+        logger.info("SellerServiceImpl-editSeller-result "+messenger);
         return messenger;
     }
 
     public MessengerVo deleteSeller(MessengerVo messenger) {
         try {
-            logger.error("SellerServiceImpl-deleteSeller-参数",messenger);
+            logger.error("SellerServiceImpl-deleteSeller-param ",messenger);
             String uuid = messenger.getString("uuid");
             sellerMapper.deleteByPrimaryKey(uuid);
             sellerMapper.deleteByPrimaryKey(uuid);
             messenger = new MessengerVo();
             messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("删除商城信息成功");
+            messenger.setResDesc("Delete Success");
         } catch (Exception e) {
             messenger = new MessengerVo();
-            messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("删除商城信息异常");
-            logger.error("SellerServiceImpl-deleteSeller-异常",e);
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Delete Error");
+            logger.error("SellerServiceImpl-deleteSeller-error ",e);
         }
-        logger.error("SellerServiceImpl-deleteSeller-结果",messenger);
+        logger.error("SellerServiceImpl-deleteSeller-result ",messenger);
         return messenger;
     }
 }

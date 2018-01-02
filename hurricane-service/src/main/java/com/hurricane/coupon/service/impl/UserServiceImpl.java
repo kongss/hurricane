@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService{
      */
     public MessengerVo saveUser(MessengerVo messenger) {
         try {
-            logger.info("UserServiceImpl-saveUser-入参："+messenger);
+            logger.info("UserServiceImpl-saveUser-param "+messenger);
             JSONObject obj = JSON.parseObject(messenger.getString("userInfo"));
             User user = new User();
             user.setUuid(HuUUID.getUuid());
@@ -59,23 +59,25 @@ public class UserServiceImpl implements UserService{
             user.setFigureurlQq1(obj.getString("figureurl_qq_1"));
             user.setFigureurlQq2(obj.getString("figureurl_qq_2"));
             user.setOpenid(obj.getString("openId"));
-            userMapper.insertSelective(user);
+            logger.info("save:param{user} "+user);
+            int i = userMapper.insertSelective(user);
+            logger.info("save:result{num} "+i);
             messenger = new MessengerVo();
             messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("保存用户成功");
+            messenger.setResDesc("Save Success");
         }catch (Exception e){
             messenger = new MessengerVo();
-            messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("保存用户异常");
-            logger.error("UserServiceImpl-saveUser-异常",e);
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Save Error");
+            logger.error("UserServiceImpl-saveUser-error ",e);
         }
-        logger.info("UserServiceImpl-saveUser-出参："+messenger);
+        logger.info("UserServiceImpl-saveUser-result "+messenger);
         return messenger;
     }
 
     public MessengerVo getUserList(MessengerVo messenger) {
         try{
-            logger.info("SellerServiceImpl-getUserList-入参："+messenger);
+            logger.info("SellerServiceImpl-getUserList-param "+messenger);
             int currentPage = Integer.parseInt(messenger.getString("currentPage"));//当前页
             int pageSize = Integer.parseInt(messenger.getString("pageSize"));//每页条数
 
@@ -99,14 +101,14 @@ public class UserServiceImpl implements UserService{
             messenger.setInfo("previousPage",pager.getPreviousPage());
             messenger.setInfo("recordTotal",pager.getRecordTotal());
             messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("查询用户列表成功");
+            messenger.setResDesc("Query Success");
         }catch (Exception e){
             messenger = new MessengerVo();
-            messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("查询用户列表异常");
-            logger.error("SellerServiceImpl-getUserList-异常",e);
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Query Error");
+            logger.error("SellerServiceImpl-getUserList-error ",e);
         }
-        logger.info("SellerServiceImpl-getUserList-出参："+messenger);
+        logger.info("SellerServiceImpl-getUserList-result "+messenger);
         return messenger;
     }
 

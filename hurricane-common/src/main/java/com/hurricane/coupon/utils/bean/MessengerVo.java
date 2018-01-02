@@ -31,6 +31,10 @@ public class MessengerVo implements Serializable{
         return String.valueOf(obj);
     }
 
+    public void clear(){
+        map.clear();
+    }
+
     public Map<String, Object> getMap() {
         return map;
     }

@@ -19,13 +19,13 @@ public class ManageController {
     }
 
     @RequestMapping("/login")
-    public String login(String username, String password){
+
+    public MessengerVo login(String username, String password){
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("username",username);
         messenger.setInfo("password",password);
         messenger = dManageService.getManageInfo(messenger);
-
-        return "redirect:/";
+        return messenger;
     }
 
 }

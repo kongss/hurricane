@@ -32,35 +32,46 @@ public class CouponServiceImpl implements CouponService{
     CouponInfoMapper couponInfoMapper;
 
     public MessengerVo getCoupon(MessengerVo messenger) {
-        String uuid = messenger.getString("uuid");
-        Coupon coupon = couponMapper.selectByPrimaryKey(uuid);
-        messenger = new MessengerVo();
-        messenger.setInfo("coupon",coupon);
-        messenger.setResCode(HConstants.SUCCESS);
-        messenger.setResDesc("查询成功");
+        try {
+            logger.info("CouponServiceImpl-getCoupon-param ",messenger);
+            String uuid = messenger.getString("uuid");
+            Coupon coupon = couponMapper.selectByPrimaryKey(uuid);
+            messenger = new MessengerVo();
+            messenger.setInfo("coupon",coupon);
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("Query Success");
+        } catch (Exception e) {
+            messenger = new MessengerVo();
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Query Error");
+            logger.error("CouponServiceImpl-getCoupon-error ",e);
+        }
+        logger.info("CouponServiceImpl-getCoupon-result ",messenger);
         return messenger;
     }
 
     public MessengerVo getCouponInfoList(MessengerVo messenger) {
         try {
+            logger.info("CouponServiceImpl-getCouponInfoList-param ",messenger);
             HashMap<String, Object> map = new HashMap<String, Object>();
             List<Map<String, Object>> list = couponInfoMapper.selectCouponInfoList(map);
             messenger = new MessengerVo();
             messenger.setInfo("list",list);
-            messenger.setResDesc("查询成功");
             messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("Query Success");
         } catch (Exception e) {
             messenger = new MessengerVo();
-            messenger.setResDesc("查询失败");
             messenger.setResCode(HConstants.ERROR);
-            logger.error("getCouponInfoList-异常",e);
+            messenger.setResDesc("Query Error");
+            logger.error("CouponServiceImpl-getCouponInfoList-error ",e);
         }
+        logger.info("CouponServiceImpl-getCouponInfoList-result ",messenger);
         return messenger;
     }
 
     public MessengerVo getCouponList(MessengerVo messenger) {
-        logger.info("CouponServiceImpl-getCouponList-参数："+messenger);
         try {
+            logger.info("CouponServiceImpl-getCouponList-param "+messenger);
             int currentPage = Integer.parseInt(messenger.getString("currentPage"));//当前页
             int pageSize = Integer.parseInt(messenger.getString("pageSize"));//每页条数
 
@@ -70,8 +81,9 @@ public class CouponServiceImpl implements CouponService{
 
             map.put("limitStart",(currentPage-1) * pageSize);
             map.put("limitSize",pageSize);
+            logger.info("query:param{map} ",map);
             List<Map<String, Object>> list = couponMapper.selectCouponList(map);
-            logger.info("CouponServiceImpl-查询结果",list);
+            logger.info("query:result{list} ",list);
             messenger = new MessengerVo();
             messenger.setInfo("list",list);
             messenger.setInfo("pageTotal",pager.getPageTotal());
@@ -83,14 +95,14 @@ public class CouponServiceImpl implements CouponService{
             messenger.setInfo("previousPage",pager.getPreviousPage());
             messenger.setInfo("recordTotal",pager.getRecordTotal());
             messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("查询优惠券列表成功");
+            messenger.setResDesc("Query Success");
         }catch (Exception e){
             messenger = new MessengerVo();
             messenger.setResCode(HConstants.ERROR);
-            messenger.setResDesc("查询优惠券列表异常");
-            logger.error("CouponServiceImpl-getCouponList-异常",e);
+            messenger.setResDesc("Query Error");
+            logger.error("CouponServiceImpl-getCouponList-error ",e);
         }
-        logger.info("CouponServiceImpl-getCouponList-出参："+messenger);
+        logger.info("CouponServiceImpl-getCouponList-result "+messenger);
         return messenger;
     }
 
@@ -100,19 +112,17 @@ public class CouponServiceImpl implements CouponService{
 
     public MessengerVo saveCouponBatch(MessengerVo messenger) {
         try {
-            logger.info("CouponServiceImpl-saveCouponBatch-参数"+messenger);
+            logger.info("CouponServiceImpl-saveCouponBatch-param "+messenger);
             ArrayList<CouponInfo> list = new ArrayList<CouponInfo>();
             CouponInfo info;
             String jsonArray = messenger.getString("jsonArray");
             String couponUuid = messenger.getString("couponUuid");
             JSONArray array = JSONArray.parseArray(jsonArray);
-            System.out.println("总数量："+array.size());
             for(int i = 0; i < array.size(); i++){
                 info = new CouponInfo();
                 JSONObject object = JSON.parseObject(String.valueOf(array.get(i)));
                 String number = object.getString("number");
                 String code = object.getString("code");
-                System.out.println("number:"+number+"  code:"+code);
                 info.setUuid(HuUUID.getUuid());
                 info.setNumber(number);
                 info.setCode(code);
@@ -120,24 +130,25 @@ public class CouponServiceImpl implements CouponService{
                 info.setCouponUuid(couponUuid);
                 list.add(info);
             }
+            logger.info("save:param{list} "+list);
             int i = couponInfoMapper.insertCouponBatch(list);
-            logger.info("插入条数"+i);
+            logger.info("save:result{num} "+i);
             messenger = new MessengerVo();
             messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("批量插入成功");
+            messenger.setResDesc("Save Success");
         } catch (Exception e) {
             messenger = new MessengerVo();
-            messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("批量插入异常");
-            logger.error("批量插入异常",e);
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Save Error");
+            logger.error("CouponServiceImpl-saveCouponBatch-error ",e);
         }
-        logger.info("CouponServiceImpl-saveCouponBatch-结果"+messenger);
+        logger.info("CouponServiceImpl-saveCouponBatch-result "+messenger);
         return messenger;
     }
 
     public MessengerVo editCoupon(MessengerVo messenger) {
         try {
-            logger.info("CouponServiceImpl-editCoupon-参数："+messenger);
+            logger.info("CouponServiceImpl-editCoupon-param "+messenger);
             Coupon coupon = new Coupon();
             coupon.setName(messenger.getString("name"));
             coupon.setDerateAmount(messenger.getString("derateAmount"));
@@ -149,27 +160,30 @@ public class CouponServiceImpl implements CouponService{
             coupon.setStatus(messenger.getString("status"));
             coupon.setIsRecom(messenger.getString("isRecom"));
             coupon.setSellerUuid(messenger.getString("sellerUuid"));
+
+            String uuid = messenger.getString("uuid");
+            logger.info((uuid == null || uuid.length() == 0) ? "Execute Insert Begin" : "Execute Update Begin");
             if (StringUtils.isEmpty(messenger.getString("uuid"))){//添加操作
                 coupon.setUuid(HuUUID.getUuid());
                 coupon.setCreateTime(new Date());
                 couponMapper.insertSelective(coupon);
                 messenger = new MessengerVo();
                 messenger.setResCode(HConstants.SUCCESS);
-                messenger.setResDesc("添加优惠券信息成功");
+                messenger.setResDesc("Insert Success");
             }else {//修改操作
                 coupon.setUuid(messenger.getString("uuid"));
                 couponMapper.updateByPrimaryKeySelective(coupon);
                 messenger = new MessengerVo();
                 messenger.setResCode(HConstants.SUCCESS);
-                messenger.setResDesc("修改优惠券信息成功");
+                messenger.setResDesc("Update Success");
             }
         } catch (Exception e) {
             messenger = new MessengerVo();
             messenger.setResCode(HConstants.ERROR);
-            messenger.setResDesc("添加/修改优惠券信息异常");
-            logger.info("CouponServiceImpl-editCoupon-异常：",e);
+            messenger.setResDesc("Save Or Update Coupon Error");
+            logger.info("CouponServiceImpl-editCoupon-error ",e);
         }
-        logger.info("CouponServiceImpl-editCoupon-结果："+messenger);
+        logger.info("CouponServiceImpl-editCoupon-result "+messenger);
         return messenger;
     }
 

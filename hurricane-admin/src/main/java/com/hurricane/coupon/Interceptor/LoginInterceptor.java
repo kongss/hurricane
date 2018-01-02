@@ -21,12 +21,12 @@ public class LoginInterceptor implements HandlerInterceptor{
         System.out.println(String.format("请求参数, url: %s, method: %s, uri: %s, params: %s", url, method, uri, queryString));
 
         HttpSession session = request.getSession();
-        if (session.getAttribute("user") == null){
+        /*if (session.getAttribute("user") == null){
             System.out.println("登录地址-------------"+request.getContextPath()+"/admin/manage/login");
             //未登录状态,重定向登录页面
             response.sendRedirect(request.getContextPath()+"/admin/manage/login");
             return false;
-        }
+        }*/
 
         return true;
 
