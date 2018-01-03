@@ -108,7 +108,7 @@ function cleanValue() {
     initSellerSelective(0)
 }
 function toEditCouponPageShow(uuid) {
-    console.log("uuid>>>>>>>>>>>>>>>>>>>>>>>>>"+uuid);
+    //console.log("uuid>>>>>>>>>>>>>>>>>>>>>>>>>"+uuid);
     $.ajax({
         type: "POST",
         async: "true",
