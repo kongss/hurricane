@@ -76,7 +76,7 @@ public class SellerServiceImpl implements SellerService {
             messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
-            logger.error("SellerServiceImpl-getSellerList-error ",e);
+            logger.error("SellerServiceImpl-getSellerList-error "+e);
         }
         logger.info("SellerServiceImpl-getSellerList-result "+messenger);
         return messenger;
@@ -123,7 +123,7 @@ public class SellerServiceImpl implements SellerService {
             messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Save Or Update Seller Error");
-            logger.error("SellerServiceImpl-editSeller-error ",e);
+            logger.error("SellerServiceImpl-editSeller-error "+e);
         }
         logger.info("SellerServiceImpl-editSeller-result "+messenger);
         return messenger;
@@ -131,7 +131,7 @@ public class SellerServiceImpl implements SellerService {
 
     public MessengerVo deleteSeller(MessengerVo messenger) {
         try {
-            logger.error("SellerServiceImpl-deleteSeller-param ",messenger);
+            logger.error("SellerServiceImpl-deleteSeller-param "+messenger);
             String uuid = messenger.getString("uuid");
             sellerMapper.deleteByPrimaryKey(uuid);
             messenger.clear();
@@ -141,9 +141,9 @@ public class SellerServiceImpl implements SellerService {
             messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Delete Error");
-            logger.error("SellerServiceImpl-deleteSeller-error ",e);
+            logger.error("SellerServiceImpl-deleteSeller-error "+e);
         }
-        logger.error("SellerServiceImpl-deleteSeller-result ",messenger);
+        logger.error("SellerServiceImpl-deleteSeller-result "+messenger);
         return messenger;
     }
 }

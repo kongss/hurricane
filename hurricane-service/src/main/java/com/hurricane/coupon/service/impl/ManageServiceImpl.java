@@ -23,7 +23,7 @@ public class ManageServiceImpl implements ManageService{
 
     public MessengerVo getManageInfo(MessengerVo messenger) {
         try {
-            logger.info("ManageServiceImpl-getManageInfo-param ",messenger);
+            logger.info("ManageServiceImpl-getManageInfo-param "+messenger);
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("username",messenger.getString("username"));
             map.put("password",messenger.getString("password"));
@@ -36,15 +36,15 @@ public class ManageServiceImpl implements ManageService{
             messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
-            logger.error("ManageServiceImpl-getManageInfo-error ",e);
+            logger.error("ManageServiceImpl-getManageInfo-error "+e);
         }
-        logger.info("ManageServiceImpl-getManageInfo-result ",messenger);
+        logger.info("ManageServiceImpl-getManageInfo-result "+messenger);
         return messenger;
     }
 
     public MessengerVo getManageList(MessengerVo messenger) {
         try {
-            logger.info("ManageServiceImpl-getManageList-param ",messenger);
+            logger.info("ManageServiceImpl-getManageList-param "+messenger);
             HashMap<String, Object> map = new HashMap<String, Object>();
             List<Map<String, Object>> manageList = manageMapper.selectManageList(map);
             messenger.clear();
@@ -55,9 +55,9 @@ public class ManageServiceImpl implements ManageService{
             messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
-            logger.error("ManageServiceImpl-getManageList-error ",e);
+            logger.error("ManageServiceImpl-getManageList-error "+e);
         }
-        logger.info("ManageServiceImpl-getManageList-result ",messenger);
+        logger.info("ManageServiceImpl-getManageList-result "+messenger);
         return messenger;
     }
 

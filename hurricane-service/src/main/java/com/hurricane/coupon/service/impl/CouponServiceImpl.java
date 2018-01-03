@@ -33,7 +33,7 @@ public class CouponServiceImpl implements CouponService{
 
     public MessengerVo getCoupon(MessengerVo messenger) {
         try {
-            logger.info("CouponServiceImpl-getCoupon-param ",messenger);
+            logger.info("CouponServiceImpl-getCoupon-param "+messenger);
             String uuid = messenger.getString("uuid");
             Coupon coupon = couponMapper.selectByPrimaryKey(uuid);
             messenger.clear();
@@ -44,15 +44,15 @@ public class CouponServiceImpl implements CouponService{
             messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
-            logger.error("CouponServiceImpl-getCoupon-error ",e);
+            logger.error("CouponServiceImpl-getCoupon-error "+e);
         }
-        logger.info("CouponServiceImpl-getCoupon-result ",messenger);
+        logger.info("CouponServiceImpl-getCoupon-result "+messenger);
         return messenger;
     }
 
     public MessengerVo getCouponInfoList(MessengerVo messenger) {
         try {
-            logger.info("CouponServiceImpl-getCouponInfoList-param ",messenger);
+            logger.info("CouponServiceImpl-getCouponInfoList-param "+messenger);
             HashMap<String, Object> map = new HashMap<String, Object>();
             List<Map<String, Object>> list = couponInfoMapper.selectCouponInfoList(map);
             messenger.clear();
@@ -63,9 +63,9 @@ public class CouponServiceImpl implements CouponService{
             messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
-            logger.error("CouponServiceImpl-getCouponInfoList-error ",e);
+            logger.error("CouponServiceImpl-getCouponInfoList-error "+e);
         }
-        logger.info("CouponServiceImpl-getCouponInfoList-result ",messenger);
+        logger.info("CouponServiceImpl-getCouponInfoList-result "+messenger);
         return messenger;
     }
 
@@ -81,9 +81,9 @@ public class CouponServiceImpl implements CouponService{
 
             map.put("limitStart",(currentPage-1) * pageSize);
             map.put("limitSize",pageSize);
-            logger.info("query:param{map} ",map);
+            logger.info("query:param{map} "+map);
             List<Map<String, Object>> list = couponMapper.selectCouponList(map);
-            logger.info("query:result{list} ",list);
+            logger.info("query:result{list} "+list);
             messenger.clear();
             messenger.setInfo("list",list);
             messenger.setInfo("pageTotal",pager.getPageTotal());
@@ -100,7 +100,7 @@ public class CouponServiceImpl implements CouponService{
             messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
-            logger.error("CouponServiceImpl-getCouponList-error ",e);
+            logger.error("CouponServiceImpl-getCouponList-error "+e);
         }
         logger.info("CouponServiceImpl-getCouponList-result "+messenger);
         return messenger;
@@ -140,7 +140,7 @@ public class CouponServiceImpl implements CouponService{
             messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Save Error");
-            logger.error("CouponServiceImpl-saveCouponBatch-error ",e);
+            logger.error("CouponServiceImpl-saveCouponBatch-error "+e);
         }
         logger.info("CouponServiceImpl-saveCouponBatch-result "+messenger);
         return messenger;
@@ -181,7 +181,7 @@ public class CouponServiceImpl implements CouponService{
             messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Save Or Update Coupon Error");
-            logger.info("CouponServiceImpl-editCoupon-error ",e);
+            logger.info("CouponServiceImpl-editCoupon-error "+e);
         }
         logger.info("CouponServiceImpl-editCoupon-result "+messenger);
         return messenger;

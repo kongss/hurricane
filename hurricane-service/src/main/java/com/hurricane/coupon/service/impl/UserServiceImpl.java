@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService{
             messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Save Error");
-            logger.error("UserServiceImpl-saveUser-error ",e);
+            logger.error("UserServiceImpl-saveUser-error "+e);
         }
         logger.info("UserServiceImpl-saveUser-result "+messenger);
         return messenger;
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService{
             messenger.clear();
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
-            logger.error("SellerServiceImpl-getUserList-error ",e);
+            logger.error("SellerServiceImpl-getUserList-error "+e);
         }
         logger.info("SellerServiceImpl-getUserList-result "+messenger);
         return messenger;

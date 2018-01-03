@@ -11,65 +11,24 @@
         </Console>
         <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
         <RollingFile name="CustomRollingFile" fileName="/home/hurricane/logs/hurricane-service.log"
-                     filePattern="/logs/%d{yyyy-MM-dd}/user_video_%i.log">
+                     filePattern="/home/hurricane/logs/%d{yyyy-MM-dd}/user_video_%i.log">
             <PatternLayout charset="UTF-8" pattern="%msg%xEx%n" />
             <Policies>
-                <TimeBasedTriggeringPolicy modulate="true"
-                                           interval="1" />
-                <SizeBasedTriggeringPolicy size="1 kb" />
+                <TimeBasedTriggeringPolicy modulate="true" interval="1" />
+                <SizeBasedTriggeringPolicy size="100MB" />
             </Policies>
         </RollingFile>
     </appenders>
 
-    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
     <loggers>
-        <logger name="com.hurricane.coupon.service.impl.CouponServiceImpl" level="info" additivity="false">
-            <appender-ref ref="Console" />
-            <appender-ref ref="CustomRollingFile" />
-        </logger>
-        <!--建立一个默认的root的logger -->
-        <root level="info">
-            <appender-ref ref="Console" />
+        <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
+        <logger name="org.springframework" level="INFO"></logger>
+        <logger name="org.mybatis" level="INFO"></logger>
+        <root level="all">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="CustomRollingFile"/>
         </root>
     </loggers>
-    <loggers>
-        <logger name="com.hurricane.coupon.service.impl.ManageServiceImpl" level="info" additivity="false">
-            <appender-ref ref="Console" />
-            <appender-ref ref="CustomRollingFile" />
-        </logger>
-        <!--建立一个默认的root的logger -->
-        <root level="info">
-            <appender-ref ref="Console" />
-        </root>
-    </loggers>
-    <loggers>
-        <logger name="com.hurricane.coupon.service.impl.MenuServiceImpl" level="info" additivity="false">
-            <appender-ref ref="Console" />
-            <appender-ref ref="CustomRollingFile" />
-        </logger>
-        <!--建立一个默认的root的logger -->
-        <root level="info">
-            <appender-ref ref="Console" />
-        </root>
-    </loggers>
-    <loggers>
-        <logger name="com.hurricane.coupon.service.impl.SellerServiceImpl" level="info" additivity="false">
-            <appender-ref ref="Console" />
-            <appender-ref ref="CustomRollingFile" />
-        </logger>
-        <!--建立一个默认的root的logger -->
-        <root level="info">
-            <appender-ref ref="Console" />
-        </root>
-    </loggers>
-    <loggers>
-        <logger name="com.hurricane.coupon.service.impl.UserServiceImpl" level="info" additivity="false">
-            <appender-ref ref="Console" />
-            <appender-ref ref="CustomRollingFile" />
-        </logger>
-        <!--建立一个默认的root的logger -->
-        <root level="info">
-            <appender-ref ref="Console" />
-        </root>
-    </loggers>
+
 </configuration>

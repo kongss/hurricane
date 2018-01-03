@@ -13,8 +13,6 @@ $(function () {
             //添加时，清除文本框残留的数值
             cleanValue();
         }
-        //加载商城下拉菜单,默认0 没有传值
-        initSellerSelective(0)
     });
 
     //详情页模态框展示
@@ -106,6 +104,8 @@ function cleanValue() {
     initCouponStatus(-1);
     initCouponIsRecom(-1);
     initCouponType(-1);
+    //加载商城下拉菜单,默认0 没有传值
+    initSellerSelective(0)
 }
 function toEditCouponPageShow(uuid) {
     console.log("uuid>>>>>>>>>>>>>>>>>>>>>>>>>"+uuid);
