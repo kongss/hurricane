@@ -58,9 +58,7 @@ public class SellerController {
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("currentPage", currentPage);
         messenger.setInfo("pageSize",pageSize);
-        System.out.println("SellerController-前"+messenger);
         messenger = dSellerService.getSellerList(messenger);
-        System.out.println("SellerController-后"+messenger);
         return messenger;
     }
 
@@ -69,9 +67,7 @@ public class SellerController {
     MessengerVo getSeller(HttpServletRequest request,String uuid){
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("uuid",uuid);
-        System.out.println("SellerController-getSeller-参数"+messenger);
         messenger = dSellerService.getSellerInfo(messenger);
-        System.out.println("SellerController-getSeller-结果"+messenger);
         return messenger;
     }
 
@@ -89,11 +85,6 @@ public class SellerController {
         messenger.setInfo("status",status);
         messenger.setInfo("shortUrl",shortUrl);
         messenger = dSellerService.editSeller(messenger);
-        if ("0000" != messenger.getResCode()){
-            System.out.println("保存商城信息失败");
-        }else {
-            System.out.println("保存商城信息成功");
-        }
         return messenger;
     }
 

@@ -37,10 +37,7 @@ public class CouponController {
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("currentPage", currentPage);
         messenger.setInfo("pageSize",pageSize);
-
-        System.out.println("CouponController-前"+messenger);
         messenger = dCouponService.getCouponList(messenger);
-        System.out.println("CouponController-后"+messenger);
         return messenger;
     }
 
@@ -49,9 +46,7 @@ public class CouponController {
     MessengerVo getCoupon(HttpServletRequest request,String uuid){
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("uuid",uuid);
-        System.out.println("CouponController-getCoupon-参数："+messenger);
         messenger = dCouponService.getCoupon(messenger);
-        System.out.println("CouponController-getCoupon-结果："+messenger);
         return messenger;
     }
 
@@ -101,8 +96,6 @@ public class CouponController {
         int colNum = row.getPhysicalNumberOfCells();
         System.out.println("rowNum:" + rowNum + "   colNum:" + colNum);
         //从1开始，跳过表头的标题
-        //Map<Object, Object> m = new LinkedHashMap<>();
-        //List<Object> list = new ArrayList<>();
         if ("show".equals(flag)) {//预览
             System.out.println(".................预览操作.................");
             int t = 1;
@@ -113,7 +106,6 @@ public class CouponController {
                 t++;
                 for (int j = 0; j < colNum; j++) {
                     Object obj = getCellFormatValue(row.getCell(j));
-                    //System.out.println("obj[" + i + "*" + j + "]======================" + obj);
                     cv += "[" + obj + "] ";
                 }
                 cv += "\n";
@@ -121,8 +113,6 @@ public class CouponController {
             }
         } else {//入库
             System.out.println(".................入库操作.................");
-            //List<Object> list = new ArrayList<>();
-            //HashSet<Object> hashSet;
             JSONObject object;
             JSONArray jsonArray = new JSONArray();
             for (int i = 1; i <= rowNum; i++) {

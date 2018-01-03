@@ -32,9 +32,7 @@ public class UserController {
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("currentPage", currentPage);
         messenger.setInfo("pageSize",pageSize);
-        System.out.println("UserController-前"+messenger);
         messenger = dUserService.getUserList(messenger);
-        System.out.println("UserController-后"+messenger);
         return messenger;
     }
     @RequestMapping("/addUser")
