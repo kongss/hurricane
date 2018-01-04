@@ -1,4 +1,4 @@
-package com.hurricane.hurricanetask;
+package com.hurricane;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
