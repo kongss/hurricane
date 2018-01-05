@@ -17,8 +17,9 @@ public class CouponOverdueTask {
     @Autowired
     DCouponService dCouponService;
 
-    @Scheduled(cron = "0 */1 *  * * * ")
-    public void checkCouponOverdue(){
+    //@Scheduled(cron = "0 */1 *  * * * ")
+    @Scheduled(cron = "0 0 1,2 * * ? ")
+    public void checkCouponOverdue(){//每天凌晨1点 2点执行
         System.out.println("Task Start");
         MessengerVo messenger = new MessengerVo();
         messenger = dCouponService.updateOverdueCoupon(messenger);
