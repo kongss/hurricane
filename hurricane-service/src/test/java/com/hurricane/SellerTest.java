@@ -22,8 +22,12 @@ public class SellerTest {
     }
 
     public static void sellerList(){
-        MessengerVo vo = new MessengerVo();
-        MessengerVo sellerList = service.getSellerList(vo);
-        System.out.println(sellerList);
+        MessengerVo messenger = new MessengerVo();
+        messenger.setInfo("limitStart",1);
+        messenger.setInfo("limitSize",5);
+
+        messenger = service.getSellerSortList(messenger);
+
+        System.out.println(messenger);
     }
 }

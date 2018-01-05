@@ -18,6 +18,10 @@ public class DSellerServiceImpl implements DSellerService {
         return sellerService.getSellerList(messenger);
     }
 
+    public MessengerVo getSellerSortList(MessengerVo messenger) {
+        return sellerService.getSellerSortList(messenger);
+    }
+
     public MessengerVo saveSeller(MessengerVo messenger) {
         return sellerService.saveSeller(messenger);
     }

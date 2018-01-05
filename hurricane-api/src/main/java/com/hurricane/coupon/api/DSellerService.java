@@ -7,6 +7,8 @@ public interface DSellerService {
 
     MessengerVo getSellerList(MessengerVo messenger);
 
+    MessengerVo getSellerSortList(MessengerVo messenger);
+
     MessengerVo saveSeller(MessengerVo messenger);
 
     MessengerVo saveSellerBatch(MessengerVo messenger);

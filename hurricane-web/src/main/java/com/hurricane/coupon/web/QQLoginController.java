@@ -48,7 +48,7 @@ public class QQLoginController {
      * @throws Exception
      */
     @RequestMapping("user/qqLogin")
-    @ResponseBody String qQLogin(String code, String state) throws Exception{
+    @ResponseBody MessengerVo qQLogin(String code, String state) throws Exception{
         if (StringUtils.isEmpty(code)){
             System.out.println("QQ登陆异常,请联系管理员");
         }
@@ -60,14 +60,15 @@ public class QQLoginController {
         /** 判断该openId是否存在-Start */
         MessengerVo vo = new MessengerVo();
         vo.setInfo("openId",openId);
-        MessengerVo userInfo = dUserService.getUserInfo(vo);
+        MessengerVo messenger = dUserService.getUserInfo(vo);
         //查询数据库是否存在
-        String user = userInfo.getString("user");
+        String user = messenger.getString("user");
         /** 判断该openId是否存在-End */
 
         if (StringUtils.isEmpty(user)){
             //该用户已经存在，直接查询个人信息
-            System.out.println("该用户已经存在，直接查询个人信息"+user);
+            System.out.println("该用户已经存在，个人信息 "+user);
+
         }else {
             //调用OpenAPI接口，获取登陆人信息入库操作
             System.out.println("调用OpenAPI接口，获取登陆人信息入库操作");
@@ -87,9 +88,10 @@ public class QQLoginController {
                 saveVo.setInfo("openId",openId);
                 dUserService.saveUser(saveVo);
             }
-
+            vo.setInfo("openId",openId);
+            messenger = dUserService.getUserInfo(vo);
         }
-        return "登录成功";
+        return messenger;
     }
 
     /**
@@ -155,7 +157,7 @@ public class QQLoginController {
     }
 
     public static void main(String[] args) {
-        String res1 = "access_token=57D94D306257DB4AB461F839BB0EABFE&expires_in=7776000&refresh_token=63260E6EE70638D841888BD061C1B16E";
+        /*String res1 = "access_token=57D94D306257DB4AB461F839BB0EABFE&expires_in=7776000&refresh_token=63260E6EE70638D841888BD061C1B16E";
         String res = "callback( {\"client_id\":\"101357263\",\"openid\":\"61F18BF351C1D738FA237DC884269A0B\"} );";
         res  = res.substring(res.indexOf("(")+1,res.indexOf(")"));
         System.out.println(res);
@@ -164,21 +166,6 @@ public class QQLoginController {
         String client_id = object.getString("client_id");
         String openid = object.getString("openid");
         System.out.println(client_id);
-        System.out.println(openid);
-
-
-
-
-        /*String[] split = res.split("&");
-        for (int i=0;i<split.length;i++){
-            String sub = split[i];
-            String[] s = sub.split("=");
-            String key = s[0];
-            String value = s[1];
-            if ("access_token".equals(key)){
-                System.out.println(value);
-            }
-        }*/
-
+        System.out.println(openid);*/
     }
 }

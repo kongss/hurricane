@@ -15,4 +15,5 @@
 
     <dubbo:reference id="dUserService" timeout="6000" registry="hurricane-service-consumer" interface="com.hurricane.coupon.api.DUserService"/>
     <dubbo:reference id="dSellerService" timeout="6000" registry="hurricane-service-consumer" interface="com.hurricane.coupon.api.DSellerService"/>
+    <dubbo:reference id="dCouponService" timeout="6000" registry="hurricane-service-consumer" interface="com.hurricane.coupon.api.DCouponService"/>
 </beans>

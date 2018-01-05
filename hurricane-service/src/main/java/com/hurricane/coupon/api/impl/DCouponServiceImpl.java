@@ -22,6 +22,10 @@ public class DCouponServiceImpl implements DCouponService{
         return couponService.getCouponList(messenger);
     }
 
+    public MessengerVo getCouponSortList(MessengerVo messenger) {
+        return couponService.getCouponSortList(messenger);
+    }
+
     public MessengerVo updateOverdueCoupon(MessengerVo messenger) {
         return couponService.updateOverdueCoupon(messenger);
     }

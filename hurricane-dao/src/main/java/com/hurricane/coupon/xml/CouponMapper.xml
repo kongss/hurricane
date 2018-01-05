@@ -287,4 +287,11 @@
   <update id="updateOverdueCoupon"  parameterType="java.util.HashMap" >
     update coupon c set c.is_overdue = '0' where curdate() > c.end_time
   </update>
+  <select id="getCouponSortList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    coupon c
+    LIMIT  #{limitStart},#{limitSize}
+  </select>
 </mapper>

@@ -201,4 +201,10 @@
     ORDER BY s.create_time DESC
     LIMIT  #{limitStart},#{limitSize}
   </select>
+  <select id="getSellerSortList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    select
+    <include refid="Base_Column_List" />
+    from seller s
+    LIMIT #{limitStart},#{limitSize}
+  </select>
 </mapper>

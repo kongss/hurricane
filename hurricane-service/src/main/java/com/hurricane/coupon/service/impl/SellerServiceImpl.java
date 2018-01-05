@@ -82,6 +82,27 @@ public class SellerServiceImpl implements SellerService {
         return messenger;
     }
 
+    public MessengerVo getSellerSortList(MessengerVo messenger) {
+        try {
+            logger.info("SellerServiceImpl-getSellerSortList-param "+messenger);
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("limitStart",messenger.getString("limitStart"));
+            map.put("limitSize",messenger.getString("limitSize"));
+            List<Map<String, Object>> list = sellerMapper.getSellerSortList(map);
+            messenger.clear();
+            messenger.setInfo("list",list);
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("Query Success");
+        } catch (Exception e) {
+            messenger.clear();
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Query Error");
+            logger.info("SellerServiceImpl-getSellerSortList-error "+e);
+        }
+        logger.info("SellerServiceImpl-getSellerSortList-result "+messenger);
+        return messenger;
+    }
+
     public MessengerVo saveSeller(MessengerVo messenger) {
         
         return messenger;
