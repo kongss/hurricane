@@ -284,4 +284,7 @@
       c.create_time desc
     LIMIT  #{limitStart},#{limitSize}
   </select>
+  <update id="updateOverdueCoupon"  parameterType="java.util.HashMap" >
+    update coupon c set c.is_overdue = '0' where curdate() > c.end_time
+  </update>
 </mapper>

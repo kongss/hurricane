@@ -106,6 +106,25 @@ public class CouponServiceImpl implements CouponService{
         return messenger;
     }
 
+    public MessengerVo updateOverdueCoupon(MessengerVo messenger) {
+        try {
+            logger.info("CouponServiceImpl-updateOverdueCoupon-param "+messenger);
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            int updateNum = couponMapper.updateOverdueCoupon(map);
+            messenger.clear();
+            messenger.setInfo("updateNum",updateNum);
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("Update Success");
+        } catch (Exception e) {
+            messenger.clear();
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Update Error");
+            logger.info("CouponServiceImpl-updateOverdueCoupon-error "+messenger);
+        }
+        logger.info("CouponServiceImpl-updateOverdueCoupon-result "+messenger);
+        return messenger;
+    }
+
     public MessengerVo saveCoupon(MessengerVo messenger) {
         return messenger;
     }
