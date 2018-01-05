@@ -23,11 +23,13 @@ public class SellerTest {
 
     public static void sellerList(){
         MessengerVo messenger = new MessengerVo();
-        messenger.setInfo("limitStart",1);
-        messenger.setInfo("limitSize",5);
+        messenger.setInfo("limitStart","1");
+        messenger.setInfo("limitSize","6");
+        messenger.setInfo("currentPage",1);
+        messenger.setInfo("pageSize",5);
 
         messenger = service.getSellerSortList(messenger);
-
+        //messenger = service.getSellerList(messenger);
         System.out.println(messenger);
     }
 }
