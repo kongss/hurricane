@@ -110,8 +110,8 @@ public class CouponServiceImpl implements CouponService{
         try {
             logger.info("CouponServiceImpl-getCouponSortList-param "+messenger);
             HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("limitStart",messenger.getString("limitStart"));
-            map.put("limitSize",messenger.getString("limitSize"));
+            map.put("limitStart",Integer.parseInt(messenger.getString("limitStart")));
+            map.put("limitSize",Integer.parseInt(messenger.getString("limitSize")));
             List<Map<String, Object>> list = couponMapper.getCouponSortList(map);
             messenger.clear();
             messenger.setInfo("list",list);

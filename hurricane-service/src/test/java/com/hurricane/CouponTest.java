@@ -14,9 +14,9 @@ public class CouponTest {
 
     public static void main(String[] args) {
         MessengerVo vo = new MessengerVo();
-        vo.setInfo("currentPage","0");
-        vo.setInfo("pageSize","2");
-        MessengerVo couponList = service.getCouponList(vo);
+        vo.setInfo("limitStart","0");
+        vo.setInfo("limitSize","2");
+        MessengerVo couponList = service.getCouponSortList(vo);
         System.out.println(couponList);
     }
 
