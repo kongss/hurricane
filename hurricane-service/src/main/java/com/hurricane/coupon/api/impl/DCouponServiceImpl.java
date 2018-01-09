@@ -10,6 +10,10 @@ public class DCouponServiceImpl implements DCouponService{
     @Autowired
     CouponService couponService;
 
+    public MessengerVo getCouponReceiveRecordList(MessengerVo messenger) {
+        return couponService.getCouponReceiveRecordList(messenger);
+    }
+
     public MessengerVo getCoupon(MessengerVo messenger) {
         return couponService.getCoupon(messenger);
     }

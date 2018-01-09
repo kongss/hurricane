@@ -135,4 +135,10 @@
       openid = #{openid,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
+  <select id="getCouponReceiveRecordList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM coupon_log cl
+    ORDER BY accept_time DESC
+  </select>
 </mapper>

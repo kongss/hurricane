@@ -5,9 +5,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hurricane.coupon.dao.CouponInfoMapper;
+import com.hurricane.coupon.dao.CouponLogMapper;
 import com.hurricane.coupon.dao.CouponMapper;
 import com.hurricane.coupon.entity.Coupon;
 import com.hurricane.coupon.entity.CouponInfo;
+import com.hurricane.coupon.entity.CouponLog;
 import com.hurricane.coupon.service.CouponService;
 import com.hurricane.coupon.utils.bean.HConstants;
 import com.hurricane.coupon.utils.bean.MessengerVo;
@@ -30,6 +32,30 @@ public class CouponServiceImpl implements CouponService{
 
     @Autowired
     CouponInfoMapper couponInfoMapper;
+
+    @Autowired
+    CouponLogMapper couponLogMapper;
+
+    public MessengerVo getCouponReceiveRecordList(MessengerVo messenger) {
+        try {
+            logger.info("CouponServiceImpl-getCouponReceiveRecordList-param "+messenger);
+            String openid = messenger.getString("openid");
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("openid",openid);
+            List<Map<String, Object>> recordList = couponLogMapper.getCouponReceiveRecordList(map);
+            messenger.clear();
+            messenger.setInfo("list",recordList);
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("Query Success");
+        } catch (Exception e) {
+            messenger.clear();
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Query Error");
+            logger.error("CouponServiceImpl-getCouponReceiveRecordList-error "+e);
+        }
+        logger.info("CouponServiceImpl-getCouponReceiveRecordList-result "+messenger);
+        return messenger;
+    }
 
     public MessengerVo getCoupon(MessengerVo messenger) {
         try {
