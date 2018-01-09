@@ -12,6 +12,8 @@ public interface DCouponService {
 
     MessengerVo getCouponSortList(MessengerVo messenger);
 
+    MessengerVo getCouponRecomList(MessengerVo messenger);
+
     MessengerVo updateOverdueCoupon(MessengerVo messenger);
 
     MessengerVo saveCoupon(MessengerVo messenger);

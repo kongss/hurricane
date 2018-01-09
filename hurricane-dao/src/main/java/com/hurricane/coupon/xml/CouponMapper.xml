@@ -290,4 +290,11 @@
     coupon c
     LIMIT  #{limitStart},#{limitSize}
   </select>
+  <select id="getCouponRecomList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    coupon c
+    LIMIT  #{limitStart},#{limitSize}
+  </select>
 </mapper>
