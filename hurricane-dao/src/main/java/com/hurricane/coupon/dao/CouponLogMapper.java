@@ -8,6 +8,8 @@ import java.util.Map;
 
 public interface CouponLogMapper {
 
+    int getUserTodayReceiveNumByOpenId(String openid);
+
     List<Map<String, Object>> getCouponReceiveRecordList(HashMap<String, Object> map);
 
     int deleteByPrimaryKey(String uuid);

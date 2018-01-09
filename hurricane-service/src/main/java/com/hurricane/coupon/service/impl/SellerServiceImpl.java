@@ -40,6 +40,7 @@ public class SellerServiceImpl implements SellerService {
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("SellerServiceImpl-getSellerInfo-error "+e);
+            return messenger;
         }
         logger.info("SellerServiceImpl-getSellerInfo-result "+messenger);
         return messenger;
@@ -77,6 +78,7 @@ public class SellerServiceImpl implements SellerService {
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("SellerServiceImpl-getSellerList-error "+e);
+            return messenger;
         }
         logger.info("SellerServiceImpl-getSellerList-result "+messenger);
         return messenger;
@@ -98,6 +100,7 @@ public class SellerServiceImpl implements SellerService {
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.info("SellerServiceImpl-getSellerSortList-error "+e);
+            return messenger;
         }
         logger.info("SellerServiceImpl-getSellerSortList-result "+messenger);
         return messenger;
@@ -145,6 +148,7 @@ public class SellerServiceImpl implements SellerService {
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Save Or Update Seller Error");
             logger.error("SellerServiceImpl-editSeller-error "+e);
+            return messenger;
         }
         logger.info("SellerServiceImpl-editSeller-result "+messenger);
         return messenger;
@@ -163,6 +167,7 @@ public class SellerServiceImpl implements SellerService {
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Delete Error");
             logger.error("SellerServiceImpl-deleteSeller-error "+e);
+            return messenger;
         }
         logger.error("SellerServiceImpl-deleteSeller-result "+messenger);
         return messenger;

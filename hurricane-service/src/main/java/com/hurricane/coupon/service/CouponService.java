@@ -4,6 +4,8 @@ import com.hurricane.coupon.utils.bean.MessengerVo;
 
 public interface CouponService {
 
+    MessengerVo takeCouponReceive(MessengerVo messenger);
+
     MessengerVo getCouponReceiveRecordList(MessengerVo messenger);
 
     MessengerVo getCoupon(MessengerVo messenger);

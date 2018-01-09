@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("SellerServiceImpl-getUserInfoByOpenId-error "+e);
+            return messenger;
         }
         logger.info("SellerServiceImpl-getUserInfoByOpenId-result "+messenger);
         return messenger;
@@ -84,6 +85,7 @@ public class UserServiceImpl implements UserService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Save Error");
             logger.error("UserServiceImpl-saveUser-error "+e);
+            return messenger;
         }
         logger.info("UserServiceImpl-saveUser-result "+messenger);
         return messenger;
@@ -121,6 +123,7 @@ public class UserServiceImpl implements UserService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("SellerServiceImpl-getUserList-error "+e);
+            return messenger;
         }
         logger.info("SellerServiceImpl-getUserList-result "+messenger);
         return messenger;

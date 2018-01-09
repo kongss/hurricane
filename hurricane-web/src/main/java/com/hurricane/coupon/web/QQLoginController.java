@@ -60,7 +60,7 @@ public class QQLoginController {
         /** 判断该openId是否存在-Start */
         MessengerVo vo = new MessengerVo();
         vo.setInfo("openId",openId);
-        MessengerVo messenger = dUserService.getUserInfo(vo);
+        MessengerVo messenger = dUserService.getUserInfoByOpenId(vo);
         //查询数据库是否存在
         String user = messenger.getString("user");
         /** 判断该openId是否存在-End */
@@ -89,7 +89,7 @@ public class QQLoginController {
                 dUserService.saveUser(saveVo);
             }
             vo.setInfo("openId",openId);
-            messenger = dUserService.getUserInfo(vo);
+            messenger = dUserService.getUserInfoByOpenId(vo);
         }
         return messenger;
     }

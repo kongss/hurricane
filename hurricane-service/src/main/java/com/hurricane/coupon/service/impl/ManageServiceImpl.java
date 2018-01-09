@@ -37,6 +37,7 @@ public class ManageServiceImpl implements ManageService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("ManageServiceImpl-getManageInfo-error "+e);
+            return messenger;
         }
         logger.info("ManageServiceImpl-getManageInfo-result "+messenger);
         return messenger;
@@ -56,6 +57,7 @@ public class ManageServiceImpl implements ManageService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("ManageServiceImpl-getManageList-error "+e);
+            return messenger;
         }
         logger.info("ManageServiceImpl-getManageList-result "+messenger);
         return messenger;

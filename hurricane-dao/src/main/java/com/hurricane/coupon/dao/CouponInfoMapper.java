@@ -8,6 +8,8 @@ import java.util.Map;
 
 public interface CouponInfoMapper {
 
+    Map<String, Object> getRandomUnReceiveCouponInfo(HashMap<String, Object> map);
+
     int deleteByPrimaryKey(String uuid);
 
     int insert(CouponInfo record);

@@ -10,4 +10,9 @@ public class HConstants {
     /** 未登录 */
     public final static String NOT_LOGIN = "0003";
 
+    /** 超次数限制 */
+    public final static String OVER_TIMES = "0004";
+    /** 无库存 */
+    public final static String NO_STOCK = "0005";
+
 }

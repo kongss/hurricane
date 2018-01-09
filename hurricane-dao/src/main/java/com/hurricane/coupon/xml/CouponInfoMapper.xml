@@ -151,4 +151,11 @@
       coupon_uuid = #{couponUuid,jdbcType=VARCHAR},
     </if>
   </select>
+  <select id="getRandomUnReceiveCouponInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM coupon_info ci
+    WHERE ci.`status` = 1
+    LIMIT 1
+  </select>
 </mapper>

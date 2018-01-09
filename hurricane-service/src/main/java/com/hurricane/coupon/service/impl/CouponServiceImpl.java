@@ -19,6 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -36,6 +37,50 @@ public class CouponServiceImpl implements CouponService{
     @Autowired
     CouponLogMapper couponLogMapper;
 
+    public MessengerVo takeCouponReceive(MessengerVo messenger) {
+        try {
+            logger.info("CouponServiceImpl-takeCouponReceive-param "+messenger);
+            //0.判断此用户今天领取次数，每天每种类型优惠券领取数量不得超过3此
+            String openId = messenger.getString("openId");
+            int num = couponLogMapper.getUserTodayReceiveNumByOpenId(openId);
+            if (num > 3){
+                messenger.clear();
+                messenger.setResCode(HConstants.OVER_TIMES);
+                messenger.setResDesc("Take Coupon Already Three Times");
+                return messenger;
+            }
+            //1.获取一个未领取的优惠券修改为已领取状态
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            Map<String, Object> couponInfo = couponInfoMapper.getRandomUnReceiveCouponInfo(map);
+            if (couponInfo == null){
+                messenger.clear();
+                messenger.setResCode(HConstants.NO_STOCK);
+                messenger.setResDesc("This Coupon Already No Stock");
+                return messenger;
+            }
+            //2.领取记录表插入一条领取记录
+            CouponLog couponLog = new CouponLog();
+            couponLog.setUuid(HuUUID.getUuid());
+            couponLog.setCouponInfoUuid(String.valueOf(couponInfo.get("uuid")));
+            couponLog.setAcceptTime(new Date());
+            couponLog.setOpenid(openId);
+            couponLogMapper.insertSelective(couponLog);
+            //3.将领取的优惠券信息传回前台
+            messenger.clear();
+            messenger.setInfo("couponInfo",couponInfo);
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("Take Coupon Success");
+        } catch (Exception e) {
+            messenger.clear();
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Take Coupon Error");
+            logger.error("CouponServiceImpl-takeCouponReceive-error "+e);
+            return messenger;
+        }
+        logger.info("CouponServiceImpl-takeCouponReceive-result "+messenger);
+        return messenger;
+    }
+
     public MessengerVo getCouponReceiveRecordList(MessengerVo messenger) {
         try {
             logger.info("CouponServiceImpl-getCouponReceiveRecordList-param "+messenger);
@@ -52,6 +97,7 @@ public class CouponServiceImpl implements CouponService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("CouponServiceImpl-getCouponReceiveRecordList-error "+e);
+            return messenger;
         }
         logger.info("CouponServiceImpl-getCouponReceiveRecordList-result "+messenger);
         return messenger;
@@ -71,6 +117,7 @@ public class CouponServiceImpl implements CouponService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("CouponServiceImpl-getCoupon-error "+e);
+            return messenger;
         }
         logger.info("CouponServiceImpl-getCoupon-result "+messenger);
         return messenger;
@@ -90,6 +137,7 @@ public class CouponServiceImpl implements CouponService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("CouponServiceImpl-getCouponInfoList-error "+e);
+            return messenger;
         }
         logger.info("CouponServiceImpl-getCouponInfoList-result "+messenger);
         return messenger;
@@ -127,6 +175,7 @@ public class CouponServiceImpl implements CouponService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("CouponServiceImpl-getCouponList-error "+e);
+            return messenger;
         }
         logger.info("CouponServiceImpl-getCouponList-result "+messenger);
         return messenger;
@@ -148,6 +197,7 @@ public class CouponServiceImpl implements CouponService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.error("CouponServiceImpl-getCouponSortList-error "+e);
+            return messenger;
         }
         logger.info("CouponServiceImpl-getCouponSortList-result "+messenger);
         return messenger;
@@ -169,6 +219,7 @@ public class CouponServiceImpl implements CouponService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Query Error");
             logger.info("CouponServiceImpl-getCouponRecomList-error "+messenger);
+            return messenger;
         }
         logger.info("CouponServiceImpl-getCouponRecomList-result "+messenger);
         return messenger;
@@ -188,6 +239,7 @@ public class CouponServiceImpl implements CouponService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Update Error");
             logger.info("CouponServiceImpl-updateOverdueCoupon-error "+messenger);
+            return messenger;
         }
         logger.info("CouponServiceImpl-updateOverdueCoupon-result "+messenger);
         return messenger;
@@ -228,6 +280,7 @@ public class CouponServiceImpl implements CouponService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Save Error");
             logger.error("CouponServiceImpl-saveCouponBatch-error "+e);
+            return messenger;
         }
         logger.info("CouponServiceImpl-saveCouponBatch-result "+messenger);
         return messenger;
@@ -269,6 +322,7 @@ public class CouponServiceImpl implements CouponService{
             messenger.setResCode(HConstants.ERROR);
             messenger.setResDesc("Save Or Update Coupon Error");
             logger.info("CouponServiceImpl-editCoupon-error "+e);
+            return messenger;
         }
         logger.info("CouponServiceImpl-editCoupon-result "+messenger);
         return messenger;
