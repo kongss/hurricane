@@ -47,6 +47,7 @@ public class CouponServiceImpl implements CouponService{
                 messenger.clear();
                 messenger.setResCode(HConstants.OVER_TIMES);
                 messenger.setResDesc("Take Coupon Already Three Times");
+                logger.info("Take Coupon Already Three Times");
                 return messenger;
             }
             //1.获取一个未领取的优惠券修改为已领取状态
@@ -56,6 +57,7 @@ public class CouponServiceImpl implements CouponService{
                 messenger.clear();
                 messenger.setResCode(HConstants.NO_STOCK);
                 messenger.setResDesc("This Coupon Already No Stock");
+                logger.info("This Coupon Already No Stock");
                 return messenger;
             }
             //2.领取记录表插入一条领取记录
