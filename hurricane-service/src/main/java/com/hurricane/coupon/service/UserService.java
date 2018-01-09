@@ -4,7 +4,7 @@ import com.hurricane.coupon.utils.bean.MessengerVo;
 
 public interface UserService {
 
-    MessengerVo getUserInfo(MessengerVo messenger);
+    MessengerVo getUserInfoByOpenId(MessengerVo messenger);
 
     MessengerVo saveUser(MessengerVo messenger);
 

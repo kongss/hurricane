@@ -10,8 +10,8 @@ public class DUserServiceImpl implements DUserService {
     @Autowired
     UserService userService;
 
-    public MessengerVo getUserInfo(MessengerVo messenger) {
-        return userService.getUserInfo(messenger);
+    public MessengerVo getUserInfoByOpenId(MessengerVo messenger) {
+        return userService.getUserInfoByOpenId(messenger);
     }
 
     public MessengerVo getUserList(MessengerVo messenger) {

@@ -309,4 +309,13 @@
     from user
     LIMIT  #{limitStart},#{limitSize}
   </select>
+  <select id="getUserInfoByOpenId" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    WHERE 1=1
+    <if test="openid != null" >
+      and openid = #{openid,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

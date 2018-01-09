@@ -32,8 +32,22 @@ public class UserServiceImpl implements UserService{
      * @param messenger
      * @return
      */
-    public MessengerVo getUserInfo(MessengerVo messenger) {
-
+    public MessengerVo getUserInfoByOpenId(MessengerVo messenger) {
+        try{
+            logger.info("SellerServiceImpl-getUserInfoByOpenId-param "+messenger);
+            String openId = messenger.getString("openId");
+            Map<String, Object> user = userMapper.getUserInfoByOpenId(openId);
+            messenger.clear();
+            messenger.setInfo("user",user);
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("Query Success");
+        }catch (Exception e){
+            messenger.clear();
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Query Error");
+            logger.error("SellerServiceImpl-getUserInfoByOpenId-error "+e);
+        }
+        logger.info("SellerServiceImpl-getUserInfoByOpenId-result "+messenger);
         return messenger;
     }
 
