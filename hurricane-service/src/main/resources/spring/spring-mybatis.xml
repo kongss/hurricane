@@ -39,7 +39,6 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
     <!-- 开启事物的注解模式 -->
-    <tx:annotation-driven transaction-manager="txManager"/>
-
+    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
 
 </beans>

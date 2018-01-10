@@ -65,6 +65,7 @@
     <log4j_version>1.2.16</log4j_version>
     <logback_version>1.2.2</logback_version>
     <log4j2-version>2.8.2</log4j2-version>
+    <aspectj-version>1.5.0</aspectj-version>
     <!-- 模板引擎:thymeleaf -->
     <thymeleaf-version>2.0.16</thymeleaf-version>
     <!-- Test libs -->
@@ -107,10 +108,26 @@
         <artifactId>mybatis</artifactId>
         <version>${mybatis_version}</version>
       </dependency>
+      <!-- springAop -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>${spring_version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aspects</artifactId>
+        <version>${spring_version}</version>
+      </dependency>
       <dependency>
         <groupId>aspectj</groupId>
         <artifactId>aspectjrt</artifactId>
-        <version>${aspectj_version}</version>
+        <version>${aspectj-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>${aspectj-version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>

@@ -195,4 +195,16 @@ public class CouponInfo implements Serializable {
     public void setCouponUuid(String couponUuid) {
         this.couponUuid = couponUuid == null ? null : couponUuid.trim();
     }
+
+    @Override
+    public String toString() {
+        return "CouponInfo{" +
+                "uuid='" + uuid + '\'' +
+                ", number='" + number + '\'' +
+                ", code='" + code + '\'' +
+                ", releaseTime=" + releaseTime +
+                ", status='" + status + '\'' +
+                ", couponUuid='" + couponUuid + '\'' +
+                '}';
+    }
 }

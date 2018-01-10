@@ -54,6 +54,7 @@ public class CouponServiceImpl implements CouponService{
             //1.获取一个未领取的优惠券修改为已领取状态
             HashMap<String, Object> map = new HashMap<String, Object>();
             Map<String, Object> couponInfo = couponInfoMapper.getRandomUnReceiveCouponInfo(map);
+            logger.info("Random Get CouponInfo Result "+couponInfo);
             if (couponInfo == null){
                 messenger.clear();
                 messenger.setResCode(HConstants.NO_STOCK);
@@ -64,11 +65,11 @@ public class CouponServiceImpl implements CouponService{
             CouponInfo info = new CouponInfo();
             info.setUuid(String.valueOf(couponInfo.get("uuid")));
             info.setStatus("2");
+            logger.info("Update CouponInfo Param "+info);
             couponInfoMapper.updateByPrimaryKeySelective(info);
             //2.领取记录表插入一条领取记录
             CouponLog couponLog = new CouponLog();
             couponLog.setUuid(HuUUID.getUuid());
-            //couponLog.setUuid(HuUUID.getUuid());
             couponLog.setCouponInfoUuid(String.valueOf(couponInfo.get("uuid")));
             couponLog.setAcceptTime(new Date());
             couponLog.setOpenid(openId);
