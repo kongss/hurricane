@@ -37,6 +37,7 @@ public class CouponServiceImpl implements CouponService{
     @Autowired
     CouponLogMapper couponLogMapper;
 
+    @Transactional
     public MessengerVo takeCouponReceive(MessengerVo messenger) {
         try {
             logger.info("CouponServiceImpl-takeCouponReceive-param "+messenger);
@@ -60,9 +61,14 @@ public class CouponServiceImpl implements CouponService{
                 logger.info("This Coupon Already No Stock");
                 return messenger;
             }
+            CouponInfo info = new CouponInfo();
+            info.setUuid(String.valueOf(couponInfo.get("uuid")));
+            info.setStatus("2");
+            couponInfoMapper.updateByPrimaryKeySelective(info);
             //2.领取记录表插入一条领取记录
             CouponLog couponLog = new CouponLog();
             couponLog.setUuid(HuUUID.getUuid());
+            //couponLog.setUuid(HuUUID.getUuid());
             couponLog.setCouponInfoUuid(String.valueOf(couponInfo.get("uuid")));
             couponLog.setAcceptTime(new Date());
             couponLog.setOpenid(openId);
