@@ -77,10 +77,9 @@
                             <#--<caption>响应式表格布局</caption>-->
                             <thead>
                             <tr>
-                                <th>优惠券编号</th>
-                                <th>优惠券密码</th>
-                                <th>发布时间</th>
-                                <th>领取状态</th>
+                                <th style="width: 200px;">优惠券编号</th>
+                                <th style="width: 200px;">优惠券密码</th>
+                                <th style="width: 200px;">领取状态</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
