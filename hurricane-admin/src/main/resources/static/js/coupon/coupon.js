@@ -43,7 +43,7 @@ function getCoupon(uuid) {
             }
             var coupon= data.map.coupon;
             var seller= data.map.seller;
-            $("#DUuid").html(coupon.uuid);
+            $("#DUuid").val(coupon.uuid);
             $("#DSellerUuid").html(seller.name);
             $("#DName").html(coupon.name);
             var typeStr = coupon.type = 0 ? "密码券" : coupon.type = 1 ? "链接券" : coupon.type = 2 ? "通用券" : "异常状态";
@@ -82,20 +82,38 @@ function getCouponInfoList(uuid) {
             for (var i=0;i<ci.length;i++){
                 var number = (ci[i].number == null || ci[i].number == '' || ci[i].number == undefined) ? "" : ci[i].number;
                 var code = (ci[i].code == null || ci[i].code == '' || ci[i].code == undefined) ? "" : ci[i].code;
-                var release_time = (ci[i].release_time == null || ci[i].release_time == '' || ci[i].release_time == undefined) ? "" : ci[i].release_time;
                 var status = (ci[i].status == null || ci[i].status == '' || ci[i].status == undefined) ? "" : ci[i].status == 1 ? "未领取" : ci[i].status == 2 ? "已领取" : ci[i].status == 3 ? "已过期" : "异常状态";
                 htmlStr+='<tr>';
                 htmlStr+='<td>'+number+'</td>';
                 htmlStr+='<td>'+code+'</td>';
-                htmlStr+='<td>'+release_time+'</td>';
                 htmlStr+='<td>'+status+'</td>';
-                htmlStr+='<td><a onclick="">删除</a> | <a>下架</a></td>';
+                htmlStr+='<td><a style="cursor: pointer" onclick="deleteCouponInfo(\''+ci[i].uuid+'\')">删除</a></td>';
                 htmlStr+='</tr>';
             }
             $("#couponInfoList").html(htmlStr);
 
         }
     });
+}
+
+function deleteCouponInfo(uuid) {
+    console.log("uuid==================="+uuid);
+    $.ajax({
+        type: "POST",
+        async: "true",
+        url: "/admin/coupon/deleteCoupon",
+        timeout: 6000,
+        data: {"uuid":uuid},
+        //dataType: "json",
+        success:function (data) {
+            if ("0000" != data.resCode){
+                alert("删除失败！！！连管理员");
+                return false;
+            }
+            alert("删除成功！！");
+        }
+    });
+    reloadCouponInstList();
 }
 
 function cleanValue() {

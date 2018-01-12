@@ -136,9 +136,10 @@ public class CouponController {
 
     @RequestMapping("/deleteCoupon")
     @ResponseBody
-    MessengerVo deleteCoupon(){
+    MessengerVo deleteCoupon(String uuid){
         MessengerVo messenger = new MessengerVo();
-
+        messenger.setInfo("uuid",uuid);
+        messenger = dCouponService.deleteCoupon(messenger);
         return messenger;
     }
     private static Object getCellFormatValue(Cell cell) {

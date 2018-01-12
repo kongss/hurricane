@@ -11,7 +11,7 @@
                 </h4>
             </div>
             <div class="modal-body" style="float: left;width: 350px;">
-                <input type="hidden" id="DUuid" value=""/>
+                <input type="hidden" id="DUuid" value="" />
                 <div class="form-group">
                     <label>商城名称：</label>
                     <span id="DSellerUuid">京东商城</span>

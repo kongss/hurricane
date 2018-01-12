@@ -345,6 +345,21 @@ public class CouponServiceImpl implements CouponService{
     }
 
     public MessengerVo deleteCoupon(MessengerVo messenger) {
-        return null;
+        try {
+            logger.info("CouponServiceImpl-deleteCoupon-param "+messenger);
+            String uuid = messenger.getString("uuid");
+            couponInfoMapper.deleteByPrimaryKey(uuid);
+            messenger.clear();
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("Delete Success");
+        } catch (Exception e) {
+            messenger.clear();
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Delete Error");
+            logger.info("CouponServiceImpl-deleteCoupon-error "+e);
+            return messenger;
+        }
+        logger.info("CouponServiceImpl-deleteCoupon-result "+messenger);
+        return messenger;
     }
 }
