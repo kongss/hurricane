@@ -103,6 +103,7 @@ function deleteCouponInfo(uuid) {
         async: "true",
         url: "/admin/coupon/deleteCoupon",
         timeout: 6000,
+        async:false,
         data: {"uuid":uuid},
         //dataType: "json",
         success:function (data) {
