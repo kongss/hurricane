@@ -42,13 +42,18 @@ function getCoupon(uuid) {
                 return false;
             }
             var coupon= data.map.coupon;
+            var seller= data.map.seller;
             $("#DUuid").html(coupon.uuid);
-            $("#DSellerUuid").html(coupon.sellerUuid);
+            $("#DSellerUuid").html(seller.name);
             $("#DName").html(coupon.name);
-            $("#DType").html(coupon.type);
-            $("#DIsOverdue").html(coupon.isOverdue);
-            $("#DStatus").html(coupon.status);
-            $("#DIsRecom").html(coupon.isRecom);
+            var typeStr = coupon.type = 0 ? "密码券" : coupon.type = 1 ? "链接券" : coupon.type = 2 ? "通用券" : "异常状态";
+            $("#DType").html(typeStr);
+            var isOverdueStr = coupon.isOverdue = 0 ? "已过期" : coupon.isOverdue = 1 ? "未过期" :"异常状态";
+            $("#DIsOverdue").html(isOverdueStr);
+            var statusStr = coupon.status = 0 ? "禁用" : coupon.status = 1 ? "启用" :"异常状态";
+            $("#DStatus").html(statusStr);
+            var isRecomStr = coupon.isRecom = 0 ? "不推荐" : coupon.isRecom = 1 ? "推荐" :"异常状态";
+            $("#DIsRecom").html(isRecomStr);
             $("#DStartTime").html(coupon.startTime);
             $("#DEndTime").html(coupon.endTime);
             $("#DTotal").html(coupon.total);
@@ -75,11 +80,15 @@ function getCouponInfoList(uuid) {
             var htmlStr = '';
             var ci = data.map.list;
             for (var i=0;i<ci.length;i++){
+                var number = (ci[i].number == null || ci[i].number == '' || ci[i].number == undefined) ? "" : ci[i].number;
+                var code = (ci[i].code == null || ci[i].code == '' || ci[i].code == undefined) ? "" : ci[i].code;
+                var release_time = (ci[i].release_time == null || ci[i].release_time == '' || ci[i].release_time == undefined) ? "" : ci[i].release_time;
+                var status = (ci[i].status == null || ci[i].status == '' || ci[i].status == undefined) ? "" : ci[i].status == 1 ? "未领取" : ci[i].status == 2 ? "已领取" : ci[i].status == 3 ? "已过期" : "异常状态";
                 htmlStr+='<tr>';
-                htmlStr+='<td>'+ci[i].number+'</td>';
-                htmlStr+='<td>'+ci[i].code+'</td>';
-                htmlStr+='<td>'+ci[i].release_time+'</td>';
-                htmlStr+='<td>'+ci[i].status+'</td>';
+                htmlStr+='<td>'+number+'</td>';
+                htmlStr+='<td>'+code+'</td>';
+                htmlStr+='<td>'+release_time+'</td>';
+                htmlStr+='<td>'+status+'</td>';
                 htmlStr+='<td><a onclick="">删除</a> | <a>下架</a></td>';
                 htmlStr+='</tr>';
             }

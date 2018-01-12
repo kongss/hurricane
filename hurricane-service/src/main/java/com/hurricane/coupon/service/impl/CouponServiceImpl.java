@@ -7,9 +7,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.hurricane.coupon.dao.CouponInfoMapper;
 import com.hurricane.coupon.dao.CouponLogMapper;
 import com.hurricane.coupon.dao.CouponMapper;
+import com.hurricane.coupon.dao.SellerMapper;
 import com.hurricane.coupon.entity.Coupon;
 import com.hurricane.coupon.entity.CouponInfo;
 import com.hurricane.coupon.entity.CouponLog;
+import com.hurricane.coupon.entity.Seller;
 import com.hurricane.coupon.service.CouponService;
 import com.hurricane.coupon.utils.bean.HConstants;
 import com.hurricane.coupon.utils.bean.MessengerVo;
@@ -36,6 +38,9 @@ public class CouponServiceImpl implements CouponService{
 
     @Autowired
     CouponLogMapper couponLogMapper;
+
+    @Autowired
+    SellerMapper sellerMapper;
 
     @Transactional
     public MessengerVo takeCouponReceive(MessengerVo messenger) {
@@ -117,8 +122,10 @@ public class CouponServiceImpl implements CouponService{
             logger.info("CouponServiceImpl-getCoupon-param "+messenger);
             String uuid = messenger.getString("uuid");
             Coupon coupon = couponMapper.selectByPrimaryKey(uuid);
+            Seller seller = sellerMapper.selectByPrimaryKey(coupon.getSellerUuid());
             messenger.clear();
             messenger.setInfo("coupon",coupon);
+            messenger.setInfo("seller",seller);
             messenger.setResCode(HConstants.SUCCESS);
             messenger.setResDesc("Query Success");
         } catch (Exception e) {
