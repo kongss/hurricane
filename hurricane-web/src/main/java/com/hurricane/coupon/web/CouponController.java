@@ -1,5 +1,6 @@
 package com.hurricane.coupon.web;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.hurricane.coupon.api.DCouponService;
 import com.hurricane.coupon.utils.bean.MessengerVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class CouponController {
 
     @Autowired
     DCouponService dCouponService;
 
+    /**
+     * 首页推荐优惠券列表
+     * @param limitStart
+     * @param limitSize
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/coupon/couponRecomList", method = {RequestMethod.GET,RequestMethod.POST})
     public MessengerVo couponRecomList(@RequestParam(defaultValue = "0") Integer limitStart, @RequestParam (defaultValue = "20") Integer limitSize){
@@ -22,6 +31,21 @@ public class CouponController {
         messenger.setInfo("limitStart", limitStart);
         messenger.setInfo("limitSize",limitSize);
         messenger = dCouponService.getCouponRecomList(messenger);
+        return messenger;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/coupon/couponList", method = {RequestMethod.GET,RequestMethod.POST})
+    public MessengerVo couponList(@RequestParam(defaultValue = "0") String currentPage, @RequestParam (defaultValue = "20") String pageSize){
+        if (StringUtils.isEmpty(currentPage)){
+            currentPage = "1";
+        }
+        if (StringUtils.isEmpty(pageSize)){
+            pageSize = "10";
+        }
+        MessengerVo messenger = new MessengerVo();
+        messenger.setInfo("currentPage", currentPage);
+        messenger.setInfo("pageSize",pageSize);
+        messenger = dCouponService.getCouponList(messenger);
         return messenger;
     }
 }

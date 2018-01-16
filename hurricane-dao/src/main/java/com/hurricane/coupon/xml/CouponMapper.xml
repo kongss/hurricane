@@ -256,12 +256,12 @@
       seller_uuid = #{sellerUuid,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
-  <select id="selectCouponTotal" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+  <select id="getCouponTotal" parameterType="java.util.HashMap" resultType="java.lang.Integer">
     select
     count(1)
     from coupon
   </select>
-  <select id="selectCouponList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  <select id="getCouponList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
     SELECT
       s.`name` AS sName,
       s.source sSource,
@@ -273,19 +273,12 @@
   ON
       c.seller_uuid = s.uuid
   order by
-      c.create_time desc
+      c.sort desc
     LIMIT  #{limitStart},#{limitSize}
   </select>
   <update id="updateOverdueCoupon"  parameterType="java.util.HashMap" >
     update coupon c set c.is_overdue = '0' where curdate() > c.end_time
   </update>
-  <select id="getCouponSortList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-    SELECT
-    <include refid="Base_Column_List" />
-    FROM
-    coupon c
-    LIMIT  #{limitStart},#{limitSize}
-  </select>
   <select id="getCouponRecomList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
     SELECT
     <include refid="Base_Column_List" />

@@ -166,13 +166,13 @@ public class CouponServiceImpl implements CouponService{
             int pageSize = Integer.parseInt(messenger.getString("pageSize"));//每页条数
 
             HashMap<String, Object> map = new HashMap<String, Object>();
-            int total = couponMapper.selectCouponTotal(map);
+            int total = couponMapper.getCouponTotal(map);
             Pager pager = new Pager(currentPage, pageSize, total);
 
             map.put("limitStart",(currentPage-1) * pageSize);
             map.put("limitSize",pageSize);
             logger.info("query:param{map} "+map);
-            List<Map<String, Object>> list = couponMapper.selectCouponList(map);
+            List<Map<String, Object>> list = couponMapper.getCouponList(map);
             logger.info("query:result{list} "+list);
             messenger.clear();
             messenger.setInfo("list",list);
@@ -197,27 +197,6 @@ public class CouponServiceImpl implements CouponService{
         return messenger;
     }
 
-    public MessengerVo getCouponSortList(MessengerVo messenger) {
-        try {
-            logger.info("CouponServiceImpl-getCouponSortList-param "+messenger);
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("limitStart",Integer.parseInt(messenger.getString("limitStart")));
-            map.put("limitSize",Integer.parseInt(messenger.getString("limitSize")));
-            List<Map<String, Object>> list = couponMapper.getCouponSortList(map);
-            messenger.clear();
-            messenger.setInfo("list",list);
-            messenger.setResCode(HConstants.SUCCESS);
-            messenger.setResDesc("Query Success");
-        } catch (Exception e) {
-            messenger.clear();
-            messenger.setResCode(HConstants.ERROR);
-            messenger.setResDesc("Query Error");
-            logger.error("CouponServiceImpl-getCouponSortList-error "+e);
-            return messenger;
-        }
-        logger.info("CouponServiceImpl-getCouponSortList-result "+messenger);
-        return messenger;
-    }
 
     public MessengerVo getCouponRecomList(MessengerVo messenger) {
         try {
