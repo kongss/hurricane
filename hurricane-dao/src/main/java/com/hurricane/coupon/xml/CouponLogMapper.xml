@@ -133,9 +133,29 @@
   </update>
   <select id="getCouponReceiveRecordList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
     SELECT
-    <include refid="Base_Column_List" />
-    FROM coupon_log cl
-    ORDER BY accept_time DESC
+    ci.number,
+    ci.`code`,
+    c.`name`,
+    c.start_time,
+    c.end_time,
+    c.use_explain,
+    c.activity_link_url,
+    c.type,
+    c.is_recom,
+    s.`name`,
+    s.logo_pic_url,
+    s.seller_type_name
+    FROM
+    coupon_log cl,
+    coupon_info ci,
+    coupon c,
+    seller s
+    WHERE
+    cl.coupon_info_uuid = ci.uuid
+    AND ci.coupon_uuid = c.uuid
+    AND c.seller_uuid = s.uuid
+    AND cl.openid = #{openid,jdbcType=VARCHAR}
+    ORDER BY cl.accept_time DESC
   </select>
   <select id="getUserTodayReceiveNumByOpenId" parameterType="java.lang.String" resultType="java.lang.Integer">
     SELECT COUNT(1)

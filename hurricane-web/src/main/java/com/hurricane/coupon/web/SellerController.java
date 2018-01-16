@@ -51,7 +51,7 @@ public class SellerController {
     }
     @ResponseBody
     @RequestMapping(value = "/seller/sellerInfo", method = {RequestMethod.GET,RequestMethod.POST})
-    public MessengerVo sellerInfo(@RequestParam(required = true) Integer uuid){
+    public MessengerVo sellerInfo(@RequestParam(required = true) String uuid){
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("uuid",uuid);
         messenger = dSellerService.getSellerInfo(messenger);
