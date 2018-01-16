@@ -51,4 +51,12 @@ public class CouponController {
         messenger = dCouponService.getCouponReceiveRecordList(messenger);
         return messenger;
     }
+    @ResponseBody
+    @RequestMapping(value = "/coupon/takeCouponReceive", method = {RequestMethod.GET,RequestMethod.POST})
+    public MessengerVo takeCouponReceive(@RequestParam(required = true) String openid){
+        MessengerVo messenger = new MessengerVo();
+        messenger.setInfo("openid",openid);
+        messenger = dCouponService.takeCouponReceive(messenger);
+        return messenger;
+    }
 }
