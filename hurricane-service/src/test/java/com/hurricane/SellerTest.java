@@ -25,10 +25,11 @@ public class SellerTest {
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("limitStart","0");
         messenger.setInfo("limitSize","6");
+        messenger.setInfo("sellerTypeUuid","1");
 
 
-        //messenger = service.getSellerSortList(messenger);
-        service.getSellerRecomList(messenger);
+        service.getSellerSortList(messenger);
+        //service.getSellerRecomList(messenger);
 
     }
 }
