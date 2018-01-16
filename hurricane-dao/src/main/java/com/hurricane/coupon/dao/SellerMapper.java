@@ -8,6 +8,8 @@ import java.util.Map;
 
 public interface SellerMapper {
 
+    List<Map<String, Object>> getSellerRecomList(HashMap<String, Object> map);
+
     List<Map<String, Object>> getSellerSortList(HashMap<String, Object> map);
 
     int selectSellerTotal(HashMap<String, Object> map);

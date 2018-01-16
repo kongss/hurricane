@@ -10,6 +10,10 @@ public class DSellerServiceImpl implements DSellerService {
     @Autowired
     SellerService sellerService;
 
+    public MessengerVo getSellerRecomList(MessengerVo messenger) {
+        return sellerService.getSellerRecomList(messenger);
+    }
+
     public MessengerVo getSellerInfo(MessengerVo messenger) {
         return sellerService.getSellerInfo(messenger);
     }

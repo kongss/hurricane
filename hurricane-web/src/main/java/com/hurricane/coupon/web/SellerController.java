@@ -25,4 +25,13 @@ public class SellerController {
         messenger = dSellerService.getSellerSortList(messenger);
         return messenger;
     }
+    @ResponseBody
+    @RequestMapping(value = "/seller/sellerRecomList", method = {RequestMethod.GET,RequestMethod.POST})
+    public MessengerVo sellerRecomList(@RequestParam (defaultValue = "0") Integer limitStart, @RequestParam (defaultValue = "20") Integer limitSize, @RequestParam(required = true) Integer sellerTypeUuid){
+        MessengerVo messenger = new MessengerVo();
+        messenger.setInfo("limitStart", limitStart);
+        messenger.setInfo("limitSize",limitSize);
+        messenger = dSellerService.getSellerRecomList(messenger);
+        return messenger;
+    }
 }
