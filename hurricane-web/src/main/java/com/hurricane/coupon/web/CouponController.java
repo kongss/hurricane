@@ -35,13 +35,7 @@ public class CouponController {
     }
     @ResponseBody
     @RequestMapping(value = "/coupon/couponList", method = {RequestMethod.GET,RequestMethod.POST})
-    public MessengerVo couponList(@RequestParam(defaultValue = "0") String currentPage, @RequestParam (defaultValue = "20") String pageSize){
-        if (StringUtils.isEmpty(currentPage)){
-            currentPage = "1";
-        }
-        if (StringUtils.isEmpty(pageSize)){
-            pageSize = "10";
-        }
+    public MessengerVo couponList(@RequestParam(defaultValue = "1") String currentPage, @RequestParam (defaultValue = "20") String pageSize){
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("currentPage", currentPage);
         messenger.setInfo("pageSize",pageSize);
