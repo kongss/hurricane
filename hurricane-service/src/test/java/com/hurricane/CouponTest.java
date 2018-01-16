@@ -14,8 +14,9 @@ public class CouponTest {
 
     public static void main(String[] args) {
         MessengerVo vo = new MessengerVo();
-        vo.setInfo("openId","2222222222");
-        service.takeCouponReceive(vo);
+        vo.setInfo("limitStart","0");
+        vo.setInfo("limitSize","10");
+        service.getCouponRecomList(vo);
     }
 
 }

@@ -23,7 +23,6 @@ public class SellerController {
         messenger.setInfo("limitSize",limitSize);
         messenger.setInfo("sellerTypeUuid",sellerTypeUuid);
         messenger = dSellerService.getSellerSortList(messenger);
-        System.out.println(messenger);
         return messenger;
     }
 }
