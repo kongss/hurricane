@@ -16,8 +16,8 @@ public class CouponController {
     DCouponService dCouponService;
 
     @ResponseBody
-    @RequestMapping(value = "/coupon/couponList", method = {RequestMethod.GET,RequestMethod.POST})
-    public MessengerVo sellerList(@RequestParam(defaultValue = "0") Integer limitStart, @RequestParam (defaultValue = "20") Integer limitSize){
+    @RequestMapping(value = "/coupon/couponRecomList", method = {RequestMethod.GET,RequestMethod.POST})
+    public MessengerVo couponRecomList(@RequestParam(defaultValue = "0") Integer limitStart, @RequestParam (defaultValue = "20") Integer limitSize){
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("limitStart", limitStart);
         messenger.setInfo("limitSize",limitSize);
