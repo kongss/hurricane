@@ -90,6 +90,7 @@ public class SellerServiceImpl implements SellerService {
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("limitStart",Integer.parseInt(messenger.getString("limitStart")));
             map.put("limitSize",Integer.parseInt(messenger.getString("limitSize")));
+            map.put("sellerTypeUuid",Integer.parseInt(messenger.getString("sellerTypeUuid")));
             List<Map<String, Object>> list = sellerMapper.getSellerSortList(map);
             messenger.clear();
             messenger.setInfo("list",list);
