@@ -273,7 +273,7 @@
   ON
       c.seller_uuid = s.uuid
   order by
-      c.sort desc
+      c.sort desc,c.create_time desc
     LIMIT  #{limitStart},#{limitSize}
   </select>
   <update id="updateOverdueCoupon"  parameterType="java.util.HashMap" >
