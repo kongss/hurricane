@@ -15,6 +15,13 @@ public class SellerController {
     @Autowired
     DSellerService dSellerService;
 
+    /**
+     * 首页分类商城列表，商城大全 同一个接口，数据内容相同，展示样式不同
+     * @param limitStart
+     * @param limitSize
+     * @param sellerTypeUuid
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/seller/sellerList", method = {RequestMethod.GET,RequestMethod.POST})
     public MessengerVo sellerList(@RequestParam (defaultValue = "0") Integer limitStart, @RequestParam (defaultValue = "20") Integer limitSize, @RequestParam(required = true) Integer sellerTypeUuid){
