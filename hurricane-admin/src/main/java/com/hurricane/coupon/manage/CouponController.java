@@ -34,9 +34,17 @@ public class CouponController {
         if (StringUtils.isEmpty(pageSize)){
             pageSize = "10";
         }
+        String sellerSource = request.getParameter("sellerSource");//商城来源
+        String couponType = request.getParameter("couponType");//优惠券类型
+        String sellerName = request.getParameter("sellerName");//商城名称
+
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("currentPage", currentPage);
         messenger.setInfo("pageSize",pageSize);
+        messenger.setInfo("sellerSource",sellerSource);
+        messenger.setInfo("couponType",couponType);
+        messenger.setInfo("sellerName",sellerName);
+
         messenger = dCouponService.getCouponList(messenger);
         return messenger;
     }

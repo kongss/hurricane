@@ -18,21 +18,23 @@
 <form class="navbar-form navbar-left" role="search" style="margin-left: 6px;">
     <div class="form-group">
         <span style="font-size: 16px;">来源：</span>
-        <select class="form-control">
-            <option>请选择</option>
-            <option>多麦</option>
-            <option>亿起发</option>
+        <input type="hidden" id="sourceL" name="sourceL"/>
+        <select class="form-control" onchange="onChangeSearchParam('sourceL',this)">
+            <option value="-1">请选择</option>
+            <option value="1">多麦</option>
+            <option value="2">亿起发</option>
         </select>
         &ensp;&ensp;&ensp;
         <span style="font-size: 16px;">券类型：</span>
-        <select class="form-control">
-            <option>请选择</option>
-            <option>密码券</option>
-            <option>链接券</option>
-            <option>通用券</option>
+        <input type="hidden" id="typeL" name="typeL"/>
+        <select class="form-control" onchange="onChangeSearchParam('typeL',this)">
+            <option value="-1">请选择</option>
+            <option value="0">密码券</option>
+            <option value="1">链接券</option>
+            <option value="2">通用券</option>
         </select>
         &ensp;&ensp;&ensp;
-        <span style="font-size: 16px;">商城名称：</span><input type="text" class="form-control" />
+        <span style="font-size: 16px;">商城名称：</span><input type="text" id="nameL" name="nameL" class="form-control" />
     </div>
     <button type="submit" class="btn btn-default">搜索</button>
 </form>

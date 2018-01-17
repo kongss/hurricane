@@ -266,12 +266,18 @@ function initSellerSelective(sellerUuid) {
 }
 
 function couponList(currentPage,pageSize) {
+    var sourceL = $("#sourceL").val();
+    sourceL = (sourceL == null || sourceL == '' || sourceL == 'undefined') ? "" : sourceL;
+    var typeL = $("#typeL").val();
+    typeL = (typeL == null || typeL == '' || typeL == 'undefined') ? "" : typeL;
+    var nameL = $("#nameL").val();
+    nameL = (nameL == null || nameL == '' || nameL == 'undefined') ? "" : nameL;
     $.ajax({
         type: "POST",
         async: "true",
         url: "/admin/coupon/couponList",
         timeout: 6000,
-        data: {"currentPage":currentPage,"pageSize":pageSize},
+        data: {"currentPage":currentPage,"pageSize":pageSize,"sellerSource":sourceL,"couponType":typeL,"sellerName":nameL},
         //dataType: "json",
         success:function (data) {
             if ("0000" != data.resCode){
@@ -320,4 +326,12 @@ function checkEmpty(param) {
         return '';
     }
     return param;
+}
+
+function onChangeSearchParam(key,v) {
+    if (v.value == '-1'){
+        $("#"+key+"").val('');
+    }else {
+        $("#"+key+"").val(v.value);
+    }
 }

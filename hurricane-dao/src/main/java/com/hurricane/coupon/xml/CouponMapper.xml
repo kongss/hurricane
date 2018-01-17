@@ -272,8 +272,17 @@
       seller s
   ON
       c.seller_uuid = s.uuid
-  order by
-      c.sort desc,c.create_time desc
+  where 1=1
+  <if test="sellerSource != null" >
+    and s.source = #{sellerSource,jdbcType=VARCHAR}
+  </if>
+  <if test="couponType != null" >
+    and c.type = #{couponType,jdbcType=VARCHAR}
+  </if>
+  <if test="sellerName != null" >
+    and s.name LIKE CONCAT(CONCAT('%', #{sellerName}), '%')
+  </if>
+  order by c.sort desc,c.create_time desc
     LIMIT  #{limitStart},#{limitSize}
   </select>
   <update id="updateOverdueCoupon"  parameterType="java.util.HashMap" >

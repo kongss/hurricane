@@ -164,6 +164,9 @@ public class CouponServiceImpl implements CouponService{
             logger.info("CouponServiceImpl-getCouponList-param "+messenger);
             int currentPage = Integer.parseInt(messenger.getString("currentPage"));//当前页
             int pageSize = Integer.parseInt(messenger.getString("pageSize"));//每页条数
+            String sellerSource = messenger.getString("sellerSource");
+            String couponType = messenger.getString("couponType");
+            String sellerName = messenger.getString("sellerName");
 
             HashMap<String, Object> map = new HashMap<String, Object>();
             int total = couponMapper.getCouponTotal(map);
@@ -171,6 +174,16 @@ public class CouponServiceImpl implements CouponService{
 
             map.put("limitStart",(currentPage-1) * pageSize);
             map.put("limitSize",pageSize);
+            if (StringUtils.isNotEmpty(sellerSource)){
+                map.put("sellerSource",sellerSource);
+            }
+            if (StringUtils.isNotEmpty(couponType)){
+                map.put("couponType",couponType);
+            }
+            if (StringUtils.isNotEmpty(sellerName)){
+                map.put("sellerName",sellerName);
+            }
+
             logger.info("query:param{map} "+map);
             List<Map<String, Object>> list = couponMapper.getCouponList(map);
             logger.info("query:result{list} "+list);

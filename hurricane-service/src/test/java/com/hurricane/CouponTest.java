@@ -16,6 +16,9 @@ public class CouponTest {
         MessengerVo vo = new MessengerVo();
         vo.setInfo("currentPage","1");
         vo.setInfo("pageSize","10");
+        vo.setInfo("sellerSource","2");
+        vo.setInfo("couponType","2");
+        vo.setInfo("sellerName","网易严选");
 
         service.getCouponList(vo);
     }
