@@ -218,7 +218,7 @@
       and seller_type_uuid = #{sellerTypeUuid,jdbcType=VARCHAR}
     </if>
     <if test="name != null" >
-      and name = CONCAT(CONCAT('%', #{name}), '%');
+      and name LIKE CONCAT(CONCAT('%', #{name}), '%')
     </if>
     ORDER BY s.create_time DESC
     LIMIT  #{limitStart},#{limitSize}
