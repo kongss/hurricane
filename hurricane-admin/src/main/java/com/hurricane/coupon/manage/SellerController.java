@@ -55,9 +55,18 @@ public class SellerController {
         if (StringUtils.isEmpty(pageSize)){
             pageSize = "10";
         }
+        String source = request.getParameter("source");//每页条数
+        String status = request.getParameter("status");//每页条数
+        String sellerTypeUuid = request.getParameter("sellerTypeUuid");//每页条数
+        String name = request.getParameter("name");//每页条数
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("currentPage", currentPage);
         messenger.setInfo("pageSize",pageSize);
+        messenger.setInfo("source",source);
+        messenger.setInfo("status",status);
+        messenger.setInfo("sellerTypeUuid",sellerTypeUuid);
+        messenger.setInfo("name",name);
+
         messenger = dSellerService.getSellerList(messenger);
         return messenger;
     }

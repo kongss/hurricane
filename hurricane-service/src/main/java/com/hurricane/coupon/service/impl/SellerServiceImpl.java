@@ -73,6 +73,10 @@ public class SellerServiceImpl implements SellerService {
             logger.info("SellerServiceImpl-getSellerList-param "+messenger);
             int currentPage = Integer.parseInt(messenger.getString("currentPage"));//当前页
             int pageSize = Integer.parseInt(messenger.getString("pageSize"));//每页条数
+            String source = messenger.getString("source");//每页条数
+            String status = messenger.getString("status");//每页条数
+            String sellerTypeUuid = messenger.getString("sellerTypeUuid");//每页条数
+            String name = messenger.getString("name");//每页条数
 
             HashMap<String, Object> map = new HashMap<String, Object>();
             //查询总条数
@@ -82,6 +86,11 @@ public class SellerServiceImpl implements SellerService {
 
             map.put("limitStart",(currentPage-1) * pageSize);
             map.put("limitSize",pageSize);
+            map.put("source",source);
+            map.put("status",status);
+            map.put("sellerTypeUuid",sellerTypeUuid);
+            map.put("name",name);
+
             List<Map<String, Object>> list = sellerMapper.selectSellerList(map);
             messenger.clear();
             messenger.setInfo("list",list);
