@@ -297,7 +297,7 @@ function couponList(currentPage,pageSize) {
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.start_time)+'</td>';
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.end_time)+'</td>';
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.activity_link_url)+'</td>';
-                    var typeStr = value.type == 1 ? "密码券" : value.type == 2 ? "链接券" : value.type == 3 ? "通用" : "";
+                    var typeStr = value.type == 0 ? "密码券" : value.type == 1 ? "链接券" : value.type == 2 ? "通用" : "";
                     htmlStr+='<td style="white-space: nowrap;">'+typeStr+'</td>';
                     var statusStr = value.status == 0 ? "禁用" : "启用";
                     htmlStr+='<td style="white-space: nowrap;">'+statusStr+'</td>';
