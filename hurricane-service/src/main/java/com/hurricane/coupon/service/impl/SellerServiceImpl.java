@@ -86,10 +86,18 @@ public class SellerServiceImpl implements SellerService {
 
             map.put("limitStart",(currentPage-1) * pageSize);
             map.put("limitSize",pageSize);
-            map.put("source",source);
-            map.put("status",status);
-            map.put("sellerTypeUuid",sellerTypeUuid);
-            map.put("name",name);
+            if (StringUtils.isNotEmpty(source)){
+                map.put("source",source);
+            }
+            if (StringUtils.isNotEmpty(status)){
+                map.put("status",status);
+            }
+            if (StringUtils.isNotEmpty(sellerTypeUuid)){
+                map.put("sellerTypeUuid",sellerTypeUuid);
+            }
+            if (StringUtils.isNotEmpty(name)){
+                map.put("name",name);
+            }
 
             List<Map<String, Object>> list = sellerMapper.selectSellerList(map);
             messenger.clear();

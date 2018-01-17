@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,7 +45,7 @@ public class SellerController {
     @Value("${key}")
     String key;//初始为空值，存储时的文件名称
 
-    @RequestMapping("/sellerList")
+    @RequestMapping(value = "/sellerList", method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
     MessengerVo sellerList(HttpServletRequest request){
         String currentPage = request.getParameter("currentPage");//当前页
@@ -55,10 +56,11 @@ public class SellerController {
         if (StringUtils.isEmpty(pageSize)){
             pageSize = "10";
         }
-        String source = request.getParameter("source");//每页条数
-        String status = request.getParameter("status");//每页条数
-        String sellerTypeUuid = request.getParameter("sellerTypeUuid");//每页条数
-        String name = request.getParameter("name");//每页条数
+
+        String source = request.getParameter("source");//来源
+        String status = request.getParameter("status");//状态
+        String sellerTypeUuid = request.getParameter("sellerTypeUuid");//商城类型
+        String name = request.getParameter("name");//名称
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("currentPage", currentPage);
         messenger.setInfo("pageSize",pageSize);

@@ -99,12 +99,20 @@ function initCouponType(source) {
 }
 
 function couponList(currentPage,pageSize) {
+    var sourceL = $("#sourceL").val();
+    sourceL = (sourceL == null || sourceL == '' || sourceL == 'undefined') ? "" : sourceL;
+    var statusL = $("#statusL").val();
+    statusL = (statusL == null || statusL == '' || statusL == 'undefined') ? "" : statusL;
+    var sellerTypeUuidL = $("#sellerTypeUuidL").val();
+    sellerTypeUuidL = (sellerTypeUuidL == null || sellerTypeUuidL == '' || sellerTypeUuidL == 'undefined') ? "" : sellerTypeUuidL;
+    var nameL = $("#nameL").val();
+    nameL = (nameL == null || nameL == '' || nameL == 'undefined') ? "" : nameL;
     $.ajax({
         type: "POST",
         async: "true",
         url: "/admin/seller/sellerList",
         timeout: 6000,
-        data: {"currentPage":currentPage,"pageSize":pageSize},
+        data: {"currentPage":currentPage,"pageSize":pageSize,"source":sourceL,"status":statusL,"sellerTypeUuid":sellerTypeUuidL,"name":nameL},
         //dataType: "json",
         success:function (data) {
             if ("0000" != data.resCode){
@@ -133,6 +141,8 @@ function couponList(currentPage,pageSize) {
                 $("#sellerList").html(htmlStr);
                 //分页
                 page(data);
+            }else{
+                $("#sellerList").html('');
             }
         }
     });
@@ -163,4 +173,11 @@ function deleteSeller(uuid) {
             window.location.reload();
         }
     });
+}
+function onChangeSearchParam(key,v) {
+    if (v.value == '-1'){
+        $("#"+key+"").val('');
+    }else {
+        $("#"+key+"").val(v.value);
+    }
 }

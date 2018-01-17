@@ -18,34 +18,36 @@
 <form class="navbar-form navbar-left" role="search" style="margin-left: 6px;">
     <div class="form-group">
         <span style="font-size: 16px;">来源：</span>
-        <select class="form-control">
-            <option>请选择</option>
-            <option>多麦</option>
-            <option>亿起发</option>
+        <input type="hidden" id="sourceL" name="sourceL"/>
+        <select class="form-control" onchange="onChangeSearchParam('sourceL',this)">
+            <option value="-1">请选择</option>
+            <option value="1">多麦</option>
+            <option value="2">亿起发</option>
         </select>
         &ensp;&ensp;&ensp;
         <span style="font-size: 16px;">状态：</span>
-        <select class="form-control">
-            <option>请选择</option>
-            <option>启用</option>
-            <option>禁用</option>
+        <input type="hidden" id="statusL" name="statusL"/>
+        <select class="form-control" onchange="onChangeSearchParam('statusL',this)">
+            <option value="-1">请选择</option>
+            <option value="1">启用</option>
+            <option value="0">禁用</option>
         </select>
         &ensp;&ensp;&ensp;
         <span style="font-size: 16px;">商城类型：</span>
-        <select class="form-control">
-            <option>请选择</option>
-            <option>综合商城</option>
-            <option>珠宝首饰</option>
+        <input type="hidden" id="sellerTypeUuidL" name="sellerTypeUuidL"/>
+        <select class="form-control" onchange="onChangeSearchParam('sellerTypeUuidL',this)">
+            <option value="-1">请选择</option>
+            <option value="aaa">综合商城</option>
+            <option value="bbb">珠宝首饰</option>
         </select>
         &ensp;&ensp;&ensp;
-        <span style="font-size: 16px;">商城名称：</span><input type="text" class="form-control" />
+        <span style="font-size: 16px;">商城名称：</span><input type="text" id="nameL" name="nameL" class="form-control" />
     </div>
-    <button type="submit" class="btn btn-default">搜索</button>
+    <button type="button" class="btn btn-default" onclick="couponList(1,10)">搜索</button>
 </form>
 <br>
 <#include "addSellerModal.ftl">
 <div class="container" style="float: left;margin-left: 6px;">
-    <#--<button type="button" class="btn btn-default">添加</button>-->
     <!-- 按钮触发模态框 -->
     <button class="btn btn-default" data-id="" data-toggle="modal" data-target="#myModal">添加</button>
     &ensp;
