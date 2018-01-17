@@ -49,7 +49,7 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th style="white-space: nowrap;word-break: keep-all;"><input type="checkbox"/></th>
+            <#--<th style="white-space: nowrap;word-break: keep-all;"><input type="checkbox"/></th>-->
             <th style="white-space: nowrap;word-break: keep-all;">商城名称</th>
             <th style="white-space: nowrap;word-break: keep-all;">来源</th>
             <th style="white-space: nowrap;word-break: keep-all;">券名称</th>

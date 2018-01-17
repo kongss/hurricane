@@ -124,7 +124,7 @@ function couponList(currentPage,pageSize) {
                 var htmlStr = '';
                 $.each(object, function(name, value) {
                     htmlStr+='<tr>';
-                    htmlStr+='<td><input type="checkbox"/></td>';
+                    /*htmlStr+='<td><input type="checkbox"/></td>';*/
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.name)+'</td>';
                     htmlStr+='<td style="white-space: nowrap;"><img style="height: 60px;" src="'+checkEmpty(value.logo_pic_url)+'"></td>';
                     htmlStr+='<td style="white-space: nowrap;">'+checkEmpty(value.site_url)+'</td>';

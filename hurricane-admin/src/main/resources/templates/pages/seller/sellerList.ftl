@@ -51,13 +51,13 @@
     <!-- 按钮触发模态框 -->
     <button class="btn btn-default" data-id="" data-toggle="modal" data-target="#myModal">添加</button>
     &ensp;
-    <button type="button" class="btn btn-default">批量删除</button>
+    <#--<button type="button" class="btn btn-default">批量删除</button>-->
 </div>
 <div class="container" style="overflow: auto;margin-left: 5px;margin-top: 10px;width: 98%;">
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th style="white-space: nowrap;word-break: keep-all;"><input type="checkbox"/></th>
+            <#--<th style="white-space: nowrap;word-break: keep-all;"><input type="checkbox"/></th>-->
             <th style="white-space: nowrap;word-break: keep-all;">商城名称</th>
             <th style="white-space: nowrap;word-break: keep-all;">商城Logo</th>
             <th style="white-space: nowrap;word-break: keep-all;">网站链接</th>
