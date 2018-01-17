@@ -1,5 +1,5 @@
 $(function () {
-    sellerList();
+    couponList(1,10);
     //绑定模态框展示的方法
     $('#myModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);// 触发事件的按钮
@@ -98,13 +98,13 @@ function initCouponType(source) {
     $("#sellerSource").html(htmlStr);
 }
 
-function sellerList() {
+function couponList(currentPage,pageSize) {
     $.ajax({
         type: "POST",
         async: "true",
         url: "/admin/seller/sellerList",
         timeout: 6000,
-        data: {},
+        data: {"currentPage":currentPage,"pageSize":pageSize},
         //dataType: "json",
         success:function (data) {
             if ("0000" != data.resCode){

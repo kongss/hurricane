@@ -17,8 +17,7 @@ public class LoginInterceptor implements HandlerInterceptor{
         String method = request.getMethod();
         String uri = request.getRequestURI();
         String queryString = request.getQueryString();
-        System.out.println(request.getParameterMap());
-        System.out.println(String.format("请求参数, url: %s, method: %s, uri: %s, params: %s", url, method, uri, queryString));
+        System.out.println(String.format("拦截:请求参数, url: %s, method: %s, params: %s", url, method, queryString));
 
         HttpSession session = request.getSession();
         /*if (session.getAttribute("user") == null){

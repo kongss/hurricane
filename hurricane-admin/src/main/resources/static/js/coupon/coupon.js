@@ -265,7 +265,7 @@ function initSellerSelective(sellerUuid) {
     });
 }
 
-function couponList(currentPage,pageSize,couponList) {
+function couponList(currentPage,pageSize) {
     $.ajax({
         type: "POST",
         async: "true",

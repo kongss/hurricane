@@ -1,14 +1,14 @@
 $(function () {
-    userList();
+    couponList(1,10);
 });
 
-function userList() {
+function couponList(currentPage,pageSize) {
     $.ajax({
         type: "POST",
         async: "true",
         url: "/admin/user/userList",
         timeout: 6000,
-        data: {},
+        data: {"currentPage":currentPage,"pageSize":pageSize},
         //dataType: "json",
         success:function (data) {
             if ("0000" != data.resCode){
