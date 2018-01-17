@@ -143,6 +143,7 @@ function couponList(currentPage,pageSize) {
                 page(data);
             }else{
                 $("#sellerList").html('');
+                $(".pagination").html('');
             }
         }
     });

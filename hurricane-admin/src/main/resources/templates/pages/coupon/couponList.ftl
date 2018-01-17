@@ -36,7 +36,7 @@
         &ensp;&ensp;&ensp;
         <span style="font-size: 16px;">商城名称：</span><input type="text" id="nameL" name="nameL" class="form-control" />
     </div>
-    <button type="submit" class="btn btn-default">搜索</button>
+    <button type="button" class="btn btn-default" onclick="couponList(1,10)">搜索</button>
 </form>
 <br>
 <#include "addCouponModal.ftl">

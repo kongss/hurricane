@@ -316,6 +316,9 @@ function couponList(currentPage,pageSize) {
                 //分页
                 page(data);
 
+            }else {
+                $("#couponList").html('');
+                $(".pagination").html('');
             }
         }
     });

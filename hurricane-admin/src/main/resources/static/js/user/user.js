@@ -29,6 +29,9 @@ function couponList(currentPage,pageSize) {
                 $("#userList").html(htmlStr);
                 //分页
                 page(data);
+            }else{
+                $("#userList").html('');
+                $(".pagination").html('');
             }
         }
     });
