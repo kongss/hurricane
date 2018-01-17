@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +75,7 @@ public class UserServiceImpl implements UserService{
             user.setFigureurlQq1(obj.getString("figureurl_qq_1"));
             user.setFigureurlQq2(obj.getString("figureurl_qq_2"));
             user.setOpenid(obj.getString("openId"));
+            user.setCreateTime(new Date());
             logger.info("save:param{user} "+user);
             int i = userMapper.insertSelective(user);
             logger.info("save:result{num} "+i);
