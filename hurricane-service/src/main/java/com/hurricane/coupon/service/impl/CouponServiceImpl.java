@@ -169,11 +169,6 @@ public class CouponServiceImpl implements CouponService{
             String sellerName = messenger.getString("sellerName");
 
             HashMap<String, Object> map = new HashMap<String, Object>();
-            int total = couponMapper.getCouponTotal(map);
-            Pager pager = new Pager(currentPage, pageSize, total);
-
-            map.put("limitStart",(currentPage-1) * pageSize);
-            map.put("limitSize",pageSize);
             if (StringUtils.isNotEmpty(sellerSource)){
                 map.put("sellerSource",sellerSource);
             }
@@ -183,6 +178,11 @@ public class CouponServiceImpl implements CouponService{
             if (StringUtils.isNotEmpty(sellerName)){
                 map.put("sellerName",sellerName);
             }
+            int total = couponMapper.getCouponTotal(map);
+            Pager pager = new Pager(currentPage, pageSize, total);
+
+            map.put("limitStart",(currentPage-1) * pageSize);
+            map.put("limitSize",pageSize);
 
             logger.info("query:param{map} "+map);
             List<Map<String, Object>> list = couponMapper.getCouponList(map);

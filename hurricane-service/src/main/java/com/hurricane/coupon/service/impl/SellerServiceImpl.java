@@ -79,13 +79,6 @@ public class SellerServiceImpl implements SellerService {
             String name = messenger.getString("name");//每页条数
 
             HashMap<String, Object> map = new HashMap<String, Object>();
-            //查询总条数
-            int total = sellerMapper.selectSellerTotal(map);
-            //构造方法计算分页参数
-            Pager pager = new Pager(currentPage, pageSize, total);
-
-            map.put("limitStart",(currentPage-1) * pageSize);
-            map.put("limitSize",pageSize);
             if (StringUtils.isNotEmpty(source)){
                 map.put("source",source);
             }
@@ -98,6 +91,13 @@ public class SellerServiceImpl implements SellerService {
             if (StringUtils.isNotEmpty(name)){
                 map.put("name",name);
             }
+            //查询总条数
+            int total = sellerMapper.selectSellerTotal(map);
+            //构造方法计算分页参数
+            Pager pager = new Pager(currentPage, pageSize, total);
+
+            map.put("limitStart",(currentPage-1) * pageSize);
+            map.put("limitSize",pageSize);
 
             List<Map<String, Object>> list = sellerMapper.selectSellerList(map);
             messenger.clear();

@@ -257,9 +257,24 @@
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
   <select id="getCouponTotal" parameterType="java.util.HashMap" resultType="java.lang.Integer">
-    select
-    count(1)
-    from coupon
+    SELECT
+    COUNT(1)
+    FROM
+    coupon c
+    LEFT JOIN
+    seller s
+    ON
+    c.seller_uuid = s.uuid
+    where 1=1
+    <if test="sellerSource != null" >
+      and s.source = #{sellerSource,jdbcType=VARCHAR}
+    </if>
+    <if test="couponType != null" >
+      and c.type = #{couponType,jdbcType=VARCHAR}
+    </if>
+    <if test="sellerName != null" >
+      and s.name LIKE CONCAT(CONCAT('%', #{sellerName}), '%')
+    </if>
   </select>
   <select id="getCouponList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
     SELECT

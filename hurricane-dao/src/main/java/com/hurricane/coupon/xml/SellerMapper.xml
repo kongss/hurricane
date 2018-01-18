@@ -202,6 +202,19 @@
     select
     count(1)
     from seller
+    where 1=1
+    <if test="source != null" >
+      and source = #{source,jdbcType=VARCHAR}
+    </if>
+    <if test="status != null" >
+      and status = #{status,jdbcType=VARCHAR}
+    </if>
+    <if test="sellerTypeUuid != null" >
+      and seller_type_uuid = #{sellerTypeUuid,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null" >
+      and name LIKE CONCAT(CONCAT('%', #{name}), '%')
+    </if>
   </select>
   <select id="selectSellerList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
     select
