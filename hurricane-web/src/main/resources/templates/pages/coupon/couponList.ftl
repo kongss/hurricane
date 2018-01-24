@@ -28,22 +28,6 @@
         <div class="coupon-info">1</div>
         <div class="coupon-info">2</div>
     </div>
-    <div class="coupon-group">
-        <div class="coupon-info">1</div>
-        <div class="coupon-info">2</div>
-    </div>
-    <div class="coupon-group">
-        <div class="coupon-info">1</div>
-        <div class="coupon-info">2</div>
-    </div>
-    <div class="coupon-group">
-        <div class="coupon-info">1</div>
-        <div class="coupon-info">2</div>
-    </div>
-    <div class="coupon-group">
-        <div class="coupon-info">1</div>
-        <div class="coupon-info">2</div>
-    </div>
 
 </div>
 <div class="coupon-list-page" style="text-align: center;">

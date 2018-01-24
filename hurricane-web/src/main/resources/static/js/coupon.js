@@ -1,18 +1,17 @@
 $(function () {
-    sellerList();
+    couponList();
 });
 
-function sellerList() {
+function couponList() {
     $.ajax({
         type: "POST",
-        url: "/seller/sellerList",
+        url: "/coupon/couponList",
         timeout: 6000,
-        data: {"sellerTypeUuid":""},
         success:function (data) {
-            var sList = data.map.list;
-            if (data.resCode == '0000' && sList.length > 0){
+            var cList = data.map.list;
+            if (data.resCode == '0000' && cList.length > 0){
                 var html = '';
-                for(var i=0; i<sList.length; i++){
+                for(var i=0; i<cList.length; i++){
                     html+='<div class="coupon-group">';
                     html+='<div class="coupon-info">111111</div>';
                     html+='</div>';

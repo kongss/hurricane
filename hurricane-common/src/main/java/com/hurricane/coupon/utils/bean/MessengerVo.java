@@ -22,7 +22,7 @@ public class MessengerVo implements Serializable{
 
     /** 获取map对象 */
     public String getString(String key){
-        Object obj = map.get(key);
+        Object obj = map.get(key) == null ? "" : map.get(key);
         if (obj != null){
             if (obj.getClass().getSimpleName().equals("BigDecimal")){
                 return ((BigDecimal)obj).toPlainString();
