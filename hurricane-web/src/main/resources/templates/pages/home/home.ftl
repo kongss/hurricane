@@ -38,32 +38,11 @@
         <ul class="seller-ul" id="pic-list">
             <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
             <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
-            <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
         </ul>
     </div>
 </div>
 <div class="container-fluid coupon-list">
-    <div class="coupon-content">
+    <div class="coupon-content" id="c-list">
         <div class="coupon-group">
             <div class="coupon-d sInfo">
                 <img style="height: 60px;width: 160px;" src="/doc/img/iq-logo.png">
@@ -91,18 +70,13 @@
             <div class="coupon-d cAction">
                 <span class="get-span">领<br>取</span>
             </div>
-        </div>
-        <div class="coupon-group">
-            <div class="coupon-d sInfo">1</div>
-            <div class="coupon-d cInfo">2</div>
-            <div class="coupon-d cAction">3</div>
         </div>
 
     </div>
     <div class="seller-recommend">
         <div><h4>推荐商城</h4></div>
         <div class="recommend-list">
-            <ul class="recommend-content">
+            <ul class="recommend-content" id="s-r-list">
                 <li class="recommend-group"><img style="height: 60px;width: 160px;" src="/doc/img/iq-logo.png"></li>
                 <li class="recommend-group"><img style="height: 60px;width: 160px;" src="/doc/img/iq-logo.png"></li>
                 <li class="recommend-group"><img style="height: 60px;width: 160px;" src="/doc/img/iq-logo.png"></li>

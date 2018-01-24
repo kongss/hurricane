@@ -58,7 +58,7 @@ public class SellerController {
      */
     @ResponseBody
     @RequestMapping(value = "/seller/sellerRecomList", method = {RequestMethod.GET,RequestMethod.POST})
-    public MessengerVo sellerRecomList(@RequestParam (defaultValue = "0") Integer limitStart, @RequestParam (defaultValue = "20") Integer limitSize, @RequestParam(required = true) Integer sellerTypeUuid){
+    public MessengerVo sellerRecomList(@RequestParam (defaultValue = "0") Integer limitStart, @RequestParam (defaultValue = "20") Integer limitSize){
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("limitStart", limitStart);
         messenger.setInfo("limitSize",limitSize);
