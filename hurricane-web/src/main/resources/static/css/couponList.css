@@ -1,0 +1,18 @@
+.coupon-all{
+    background-color: #efefef;
+    text-align: center;
+    width: 900px;
+    height: 800px;
+    margin: 0 auto;
+    border-bottom: 1px solid #dcdcdc;
+    border-left: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+}
+.coupon-info{
+    float: left;
+    height: 100px;
+    width: 420px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: azure;
+}

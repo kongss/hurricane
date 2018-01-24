@@ -1,0 +1,25 @@
+.search{
+    background-color: #a5a5a5;
+    height: 120px;
+}
+.iq-logo{
+    float: left;
+    padding-left: 85px;
+    padding-top: 25px;
+}
+
+.search-input ul{
+    height: 110px;
+    line-height: 180px;
+    margin-left: 370px;
+}
+.search-input li{
+    float: left;
+    list-style-type:none;
+    font-size: 20px;
+    margin-left: 50px;
+    height: 110px;
+}
+.search-input li span{
+    cursor: pointer;
+}

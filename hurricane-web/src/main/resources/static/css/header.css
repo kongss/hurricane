@@ -1,0 +1,16 @@
+.header{
+    background-color: #4c4c4c;
+    height: 35px;
+}
+.login-info{
+    line-height: 35px;
+    padding-left: 125px;
+    float: left;
+    color: #fbfbfb;
+    font-size: 15px;
+}
+.login-button{
+    line-height: 35px;
+    float: right;
+    padding-right: 250px;
+}

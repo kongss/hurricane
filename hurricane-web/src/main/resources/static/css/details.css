@@ -1,0 +1,18 @@
+.seller-content{
+    background-color: #efefef;
+    text-align: center;
+    width: 900px;
+    height: 800px;
+    margin: 0 auto;
+    border-bottom: 1px solid #dcdcdc;
+    border-left: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+}
+.seller-info{
+    height: 180px;
+    background-color: #b1fff3;
+}
+.coupon-list{
+    height: 500px;
+    background-color: #31b0d5;
+}

@@ -16,6 +16,22 @@ public class SellerController {
     DSellerService dSellerService;
 
     /**
+     * 跳转商城列表页
+     * @return
+     */
+    @RequestMapping("/toSeller")
+    String toSeller(){
+        return "seller/sellerList" ;
+    }
+    /**
+     * 跳转商城详情页
+     * @return
+     */
+    @RequestMapping("/toSellerDetails")
+    String toSellerDetails(){
+        return "seller/sellerDetails" ;
+    }
+    /**
      * 首页分类商城列表，商城大全 同一个接口，数据内容相同，展示样式不同
      * @param limitStart
      * @param limitSize

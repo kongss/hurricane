@@ -18,6 +18,11 @@ public class CouponController {
     @Autowired
     DCouponService dCouponService;
 
+    @RequestMapping("/toCoupon")
+    String toCoupon(){
+        return "coupon/couponList" ;
+    }
+
     /**
      * 首页推荐优惠券列表
      * @param limitStart

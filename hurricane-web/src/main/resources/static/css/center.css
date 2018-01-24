@@ -1,0 +1,22 @@
+.center-all{
+    background-color: #efefef;
+    text-align: center;
+    width: 900px;
+    height: 800px;
+    margin: 0 auto;
+    border-bottom: 1px solid #dcdcdc;
+    border-left: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+}
+.center-menu{
+    height: 500px;
+    background-color: #a3ffcb;
+    float: left;
+    width: 215px;
+}
+.center-list{
+    margin-left: 220px;
+    height: 590px;
+    width: 667px;
+    background-color: #bdbfd6;
+}
