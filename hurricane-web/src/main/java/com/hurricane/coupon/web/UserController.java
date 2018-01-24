@@ -15,6 +15,10 @@ public class UserController {
     @Autowired
     DUserService dUserService;
 
+    @RequestMapping("/toCenter")
+    String toCenter(){
+        return "center/center" ;
+    }
     @ResponseBody
     @RequestMapping(value = "/user/userInfo", method = {RequestMethod.GET,RequestMethod.POST})
     public MessengerVo sellerInfo(@RequestParam(required = true) Integer openId){
