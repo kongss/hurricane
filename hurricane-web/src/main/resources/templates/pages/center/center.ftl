@@ -26,8 +26,6 @@
         <img style="height: 350px" src="/doc/img/couList.png">
     </div>
 </div>
-<div class="container-fluid footer">
-    5
-</div>
+<#include "../common/footer.ftl">
 </body>
 </html>

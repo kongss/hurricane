@@ -109,8 +109,6 @@
         </div>
     </div>
 </div>
-<div class="container-fluid footer">
-    5
-</div>
+<#include "../common/footer.ftl">
 </body>
 </html>

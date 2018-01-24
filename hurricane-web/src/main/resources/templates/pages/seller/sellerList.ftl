@@ -27,8 +27,6 @@
         <img style="height: 423px;" src="/doc/img/list.png">
     </div>
 </div>
-<div class="container-fluid footer">
-    5
-</div>
+<#include "../common/footer.ftl">
 </body>
 </html>

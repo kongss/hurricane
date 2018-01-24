@@ -56,8 +56,6 @@
         <li><a href="#">&raquo;</a></li>
     </ul>
 </div>
-<div class="container-fluid footer">
-    5
-</div>
+<#include "../common/footer.ftl">
 </body>
 </html>
