@@ -7,6 +7,7 @@ function couponList() {
         type: "POST",
         url: "/coupon/couponList",
         timeout: 6000,
+        data: {"currentPage":1,"pageSize":8},
         success:function (data) {
             var cList = data.map.list;
             if (data.resCode == '0000' && cList.length > 0){
