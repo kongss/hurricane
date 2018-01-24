@@ -40,7 +40,7 @@ public class SellerController {
      */
     @ResponseBody
     @RequestMapping(value = "/seller/sellerList", method = {RequestMethod.GET,RequestMethod.POST})
-    public MessengerVo sellerList(@RequestParam (defaultValue = "0") Integer limitStart, @RequestParam (defaultValue = "20") Integer limitSize, @RequestParam(required = true) Integer sellerTypeUuid){
+    public MessengerVo sellerList(@RequestParam (defaultValue = "0") Integer limitStart, @RequestParam (defaultValue = "20") Integer limitSize, @RequestParam(required = true) String sellerTypeUuid){
         MessengerVo messenger = new MessengerVo();
         messenger.setInfo("limitStart", limitStart);
         messenger.setInfo("limitSize",limitSize);
@@ -53,7 +53,6 @@ public class SellerController {
      * 商城推荐列表接口
      * @param limitStart
      * @param limitSize
-     * @param sellerTypeUuid
      * @return
      */
     @ResponseBody

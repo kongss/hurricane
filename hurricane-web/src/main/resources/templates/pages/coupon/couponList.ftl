@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="/js/common/jquery.min.js"></script>
     <script src="/js/common/bootstrap.min.js"></script>
+    <script src="/js/coupon.js"></script>
 
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
@@ -18,7 +19,7 @@
 <#include "../common/header.ftl">
 <#-- 导航栏 -->
 <#include "../common/navigationBar.ftl">
-<div class="coupon-all">
+<div class="coupon-all" id="coupon-all">
     <div class="coupon-group">
         <div class="coupon-info">1</div>
         <div class="coupon-info">2</div>
