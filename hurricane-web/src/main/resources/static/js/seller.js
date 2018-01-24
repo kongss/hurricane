@@ -1,13 +1,13 @@
 $(function () {
-    sellerTypeList(type);
+    sellerTypeList();
+    sellerList(1);
 });
 
-function sellerTypeList(type) {
+function sellerTypeList() {
     $.ajax({
         type: "POST",
-        url: "/coupon/couponList",
+        url: "/seller/sellerTypeList",
         timeout: 6000,
-        data: {"currentPage":1,"pageSize":8},
         success:function (data) {
             var cList = data.map.list;
             if (data.resCode == '0000' && cList.length > 0){
@@ -17,8 +17,28 @@ function sellerTypeList(type) {
                     html+='<div class="coupon-info">111111</div>';
                     html+='</div>';
                 }
-                $("#coupon-all").html(html);
+                $("#seller-menu").html(html);
             }
         }
     });
+}
+
+function sellerList(type) {
+    $.ajax({
+        type: "POST",
+        url: "/seller/sellerList",
+        timeout: 6000,
+        data: {"sellerTypeUuid":type},
+        success:function (data) {
+            var sList = data.map.list;
+            if (data.resCode == '0000' && sList.length > 0){
+                var html = '2222';
+                for(var i=0; i<sList.length; i++){
+
+                }
+                $("#seller-all").html(html);
+            }
+        }
+    });
+
 }

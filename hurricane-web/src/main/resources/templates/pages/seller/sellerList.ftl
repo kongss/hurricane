@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="/js/common/jquery.min.js"></script>
     <script src="/js/common/bootstrap.min.js"></script>
+    <script src="/js/seller.js"></script>
 
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
@@ -19,11 +20,11 @@
 <#-- 导航栏 -->
 <#include "../common/navigationBar.ftl">
 <div class="seller-all">
-    <div class="seller-menu">
+    <div class="seller-menu" id="seller-menu">
         商城列表目录
         <img src="/doc/img/sList.png">
     </div>
-    <div class="seller-list">
+    <div class="seller-list" id="seller-all">
         <img style="height: 423px;" src="/doc/img/list.png">
     </div>
 </div>
