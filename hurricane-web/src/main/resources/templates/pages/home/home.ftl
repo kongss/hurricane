@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="/js/common/jquery.min.js"></script>
     <script src="/js/common/bootstrap.min.js"></script>
+    <script src="/js/home.js"></script>
 
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
@@ -21,20 +22,20 @@
 <div class="container-fluid seller-list">
     <div class="seller-content">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#">综合商城</a></li>
-            <li><a href="#">理财保险</a></li>
-            <li><a href="#">手机数码</a></li>
-            <li><a href="#">珠宝首饰</a></li>
-            <li><a href="#">服装服饰</a></li>
-            <li class="active"><a href="#">家用电器</a></li>
-            <li><a href="#">户外运动</a></li>
-            <li><a href="#">汽车用品</a></li>
-            <li><a href="#">医药保健</a></li>
-            <li class="active"><a href="#">图书音像</a></li>
+            <li class="active"><a href="#" onclick="sellerList(1)">综合商城</a></li>
+            <li><a href="#" onclick="sellerList(10)">理财保险</a></li>
+            <li><a href="#" onclick="sellerList(2)">手机数码</a></li>
+            <li><a href="#" onclick="sellerList(3)">珠宝首饰</a></li>
+            <li><a href="#" onclick="sellerList(4)">服装服饰</a></li>
+            <li><a href="#" onclick="sellerList(5)">家用电器</a></li>
+            <li><a href="#" onclick="sellerList(6)">户外运动</a></li>
+            <li><a href="#" onclick="sellerList(7)">汽车用品</a></li>
+            <li><a href="#" onclick="sellerList(8)">医药保健</a></li>
+            <li><a href="#" onclick="sellerList(9)">图书音像</a></li>
         </ul>
     </div>
     <div class="seller-show">
-        <ul class="seller-ul">
+        <ul class="seller-ul" id="pic-list">
             <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
             <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
             <li class="seller-li"><img class="seller-pic" src="/doc/img/iq-logo.png"></li>
