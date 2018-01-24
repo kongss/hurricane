@@ -3,6 +3,9 @@ package com.hurricane.coupon.service;
 import com.hurricane.coupon.utils.bean.MessengerVo;
 
 public interface SellerService {
+
+    MessengerVo getSellerTypeList(MessengerVo messenger);
+
     MessengerVo getSellerRecomList(MessengerVo messenger);
 
     MessengerVo getSellerInfo(MessengerVo messenger);

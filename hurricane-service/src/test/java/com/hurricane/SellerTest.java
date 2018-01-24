@@ -26,10 +26,7 @@ public class SellerTest {
         messenger.setInfo("limitStart","0");
         messenger.setInfo("limitSize","6");
         messenger.setInfo("sellerTypeUuid","1");
-
-
-        service.getSellerSortList(messenger);
-        //service.getSellerRecomList(messenger);
+        service.getSellerTypeList(messenger);
 
     }
 }

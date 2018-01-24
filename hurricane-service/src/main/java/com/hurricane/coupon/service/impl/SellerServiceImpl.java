@@ -2,6 +2,7 @@ package com.hurricane.coupon.service.impl;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.hurricane.coupon.dao.SellerMapper;
+import com.hurricane.coupon.dao.SellerTypeDictMapper;
 import com.hurricane.coupon.entity.Seller;
 import com.hurricane.coupon.service.SellerService;
 import com.hurricane.coupon.utils.bean.HConstants;
@@ -25,6 +26,29 @@ public class SellerServiceImpl implements SellerService {
 
     @Autowired
     SellerMapper sellerMapper;
+
+    @Autowired
+    SellerTypeDictMapper sellerTypeDictMapper;
+
+    public MessengerVo getSellerTypeList(MessengerVo messenger) {
+        try {
+            logger.info("SellerServiceImpl-getSellerTypeList-param "+messenger);
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            List<Map<String, Object>> list = sellerTypeDictMapper.getSellerTypeList(map);
+            messenger.clear();
+            messenger.setInfo("list",list);
+            messenger.setResCode(HConstants.SUCCESS);
+            messenger.setResDesc("Query Success");
+        } catch (Exception e) {
+            messenger.clear();
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("Query Error");
+            logger.error("SellerServiceImpl-getSellerTypeList-error "+e);
+            return messenger;
+        }
+        logger.info("SellerServiceImpl-getSellerTypeList-result "+messenger);
+        return messenger;
+    }
 
     public MessengerVo getSellerRecomList(MessengerVo messenger) {
         try {

@@ -72,4 +72,12 @@ public class SellerController {
         messenger = dSellerService.getSellerInfo(messenger);
         return messenger;
     }
+    @ResponseBody
+    @RequestMapping(value = "/seller/sellerTypeList", method = {RequestMethod.GET,RequestMethod.POST})
+    public MessengerVo sellerTypeList(){
+        MessengerVo messenger = new MessengerVo();
+        messenger = dSellerService.getSellerTypeList(messenger);
+        return messenger;
+    }
+
 }
