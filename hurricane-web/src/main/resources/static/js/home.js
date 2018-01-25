@@ -40,7 +40,7 @@ function couponRecomList() {
                     html+='<p style="font-size: 18px">'+cList[i].sName+'</p>';
                     html+='</div>';
                     html+='<div class="coupon-d cInfo">';
-                    html+='<span style="font-size: 50px">'+cList[i].cName+'</span><br>';
+                    html+='<span style="font-size: 30px">'+cList[i].cName+'</span><br>';
                     html+='<span>'+cList[i].derate_amount+'</span><br>';
                     html+='<span>'+cList[i].start_time+'至'+cList[i].end_time+'</span>';
                     html+='</div>';

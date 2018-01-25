@@ -11,7 +11,7 @@
         <span class="click-surprise" style="cursor: pointer">点击惊喜</span>
     </div>
     <div class="login-button">
-        <img src="/doc/img/qq_login_button.png">
-        <img src="/doc/img/qq_login_button.png">
+        <a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101357263&redirect_uri=http://www.iquanbb.com/user/qqLogin&state=state"><img src="/doc/img/qq_login_button.png"></a>
+        <a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101357263&redirect_uri=http://www.iquanbb.com/user/qqLogin&state=state"><img src="/doc/img/qq_login_button.png"></a>
     </div>
 </div>
