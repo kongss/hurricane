@@ -305,10 +305,24 @@
   </update>
   <select id="getCouponRecomList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
     SELECT
-    <include refid="Base_Column_List" />
+    s.name,
+		s.logo_pic_url,
+		s.seller_type_name,
+		c.name,
+		c.derate_amount,
+		c.start_time,
+		c.end_time,
+		c.use_explain,
+		c.activity_link_url,
+		c.type,
+		c.is_recom,
+		c.receive_num,
+		c.unreceive_num,
+		c.total
     FROM
-    coupon c
-    WHERE c. STATUS = '1' AND c.is_overdue = '1'
+    coupon c,seller s
+    WHERE c.seller_uuid = s.uuid
+		AND c. STATUS = '1' AND c.is_overdue = '1' AND s.status = '1'
     ORDER BY c.is_recom DESC
     LIMIT  #{limitStart},#{limitSize}
   </select>
