@@ -37,7 +37,9 @@ public class UserServiceImpl implements UserService{
         try{
             logger.info("SellerServiceImpl-getUserInfoByOpenId-param "+messenger);
             String openId = messenger.getString("openId");
-            Map<String, Object> user = userMapper.getUserInfoByOpenId(openId);
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("openId",openId);
+            Map<String, Object> user = userMapper.getUserInfoByOpenId(map);
             messenger.clear();
             messenger.setInfo("user",user);
             messenger.setResCode(HConstants.SUCCESS);

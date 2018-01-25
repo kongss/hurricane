@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface UserMapper {
 
-    Map<String, Object> getUserInfoByOpenId(String openid);
+    Map<String, Object> getUserInfoByOpenId(HashMap<String, Object> map);
 
     int selectUserTotal(HashMap<String, Object> map);
 
