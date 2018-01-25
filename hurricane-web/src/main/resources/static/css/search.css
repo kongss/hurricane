@@ -23,3 +23,12 @@
 .search-input li span{
     cursor: pointer;
 }
+.search-input ul li a{
+    color: #000000;
+    text-decoration: none;
+}
+.iq-logo a{
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}

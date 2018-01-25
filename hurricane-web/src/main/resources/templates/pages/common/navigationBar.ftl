@@ -1,6 +1,6 @@
 <div class="container-fluid search">
     <div class="iq-logo">
-        <img src="/doc/img/iq-logo.png">
+        <a href="/"><img src="/doc/img/iq-logo.png"></a>
     </div>
     <div class="search-input">
         <ul>
