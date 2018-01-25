@@ -36,13 +36,13 @@ function couponRecomList() {
                 for(var i=0; i<cList.length; i++){
                     html+='<div class="coupon-group">';
                     html+='<div class="coupon-d sInfo">';
-                    html+='<img style="height: 60px;width: 160px;" src="/doc/img/iq-logo.png">';
-                    html+='<p style="font-size: 18px">金融理财</p>';
+                    html+='<img style="height: 60px;width: 160px;" src="'+cList[i].logo_pic_url+'">';
+                    html+='<p style="font-size: 18px">'+cList[i].sName+'</p>';
                     html+='</div>';
                     html+='<div class="coupon-d cInfo">';
-                    html+='<span style="font-size: 50px">80</span><br>';
-                    html+='<span>满600可用</span><br>';
-                    html+='<span>2017-12至2018-12</span>';
+                    html+='<span style="font-size: 50px">'+cList[i].cName+'</span><br>';
+                    html+='<span>'+cList[i].derate_amount+'</span><br>';
+                    html+='<span>'+cList[i].start_time+'至'+cList[i].end_time+'</span>';
                     html+='</div>';
                     html+='<div class="coupon-d cAction">';
                     html+='<span class="get-span">领<br>取</span>';

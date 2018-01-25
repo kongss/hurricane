@@ -305,10 +305,10 @@
   </update>
   <select id="getCouponRecomList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
     SELECT
-    s.name,
+        s.name sName,
 		s.logo_pic_url,
 		s.seller_type_name,
-		c.name,
+		c.name cName,
 		c.derate_amount,
 		c.start_time,
 		c.end_time,
