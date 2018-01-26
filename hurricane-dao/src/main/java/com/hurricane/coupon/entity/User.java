@@ -684,4 +684,32 @@ public class User implements Serializable {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uuid='" + uuid + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", figureurl='" + figureurl + '\'' +
+                ", figureurl1='" + figureurl1 + '\'' +
+                ", figureurl2='" + figureurl2 + '\'' +
+                ", figureurlQq1='" + figureurlQq1 + '\'' +
+                ", figureurlQq2='" + figureurlQq2 + '\'' +
+                ", gender='" + gender + '\'' +
+                ", isLost='" + isLost + '\'' +
+                ", isYellowVip='" + isYellowVip + '\'' +
+                ", isYellowYearVip='" + isYellowYearVip + '\'' +
+                ", level='" + level + '\'' +
+                ", msg='" + msg + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", ret='" + ret + '\'' +
+                ", source='" + source + '\'' +
+                ", vip='" + vip + '\'' +
+                ", year='" + year + '\'' +
+                ", yellowVipLevel='" + yellowVipLevel + '\'' +
+                ", openid='" + openid + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

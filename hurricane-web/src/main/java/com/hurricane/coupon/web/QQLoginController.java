@@ -4,6 +4,7 @@ import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.hurricane.coupon.api.DSellerService;
 import com.hurricane.coupon.api.DUserService;
+import com.hurricane.coupon.utils.bean.HConstants;
 import com.hurricane.coupon.utils.bean.MessengerVo;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,6 +51,7 @@ public class QQLoginController {
      */
     @RequestMapping("user/qqLogin")
     @ResponseBody MessengerVo qQLogin(String code, String state) throws Exception{
+        MessengerVo messenger=null;
         if (StringUtils.isEmpty(code)){
             System.out.println("QQ登陆异常,请联系管理员");
         }
@@ -56,16 +59,20 @@ public class QQLoginController {
         Map<String, Object> map = getOpenId(code);
         String AccessToken = String.valueOf(map.get("AccessToken"));
         String openId = String.valueOf(map.get("OpenId"));
-
-        /** 判断该openId是否存在-Start */
+        if (StringUtils.isEmpty(openId)){
+            messenger.setResCode(HConstants.ERROR);
+            messenger.setResDesc("获取openId失败");
+            return messenger;
+        }
         MessengerVo vo = new MessengerVo();
+        /** 判断该openId是否存在-Start */
         vo.setInfo("openId",openId);
-        MessengerVo messenger = dUserService.getUserInfoByOpenId(vo);
+        messenger = dUserService.getUserInfoByOpenId(vo);
         //查询数据库是否存在
         String user = messenger.getString("user");
         /** 判断该openId是否存在-End */
 
-        if (StringUtils.isEmpty(user)){
+        if (StringUtils.isNotEmpty(user)){
             //该用户已经存在，直接查询个人信息
             System.out.println("该用户已经存在，个人信息 "+user);
 

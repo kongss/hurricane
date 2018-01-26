@@ -39,7 +39,9 @@ public class UserServiceImpl implements UserService{
             String openId = messenger.getString("openId");
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("openId",openId);
+            logger.info("Query-User-param "+map);
             Map<String, Object> user = userMapper.getUserInfoByOpenId(map);
+            logger.info("Query-User-result "+user);
             messenger.clear();
             messenger.setInfo("user",user);
             messenger.setResCode(HConstants.SUCCESS);
@@ -78,7 +80,7 @@ public class UserServiceImpl implements UserService{
             user.setFigureurlQq2(obj.getString("figureurl_qq_2"));
             user.setOpenid(obj.getString("openId"));
             user.setCreateTime(new Date());
-            logger.info("save:param{user} "+user);
+            logger.info("save:param{user} "+user.toString());
             int i = userMapper.insertSelective(user);
             logger.info("save:result{num} "+i);
             messenger.clear();
