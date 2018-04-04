@@ -1,0 +1,16 @@
+1.166机器可下载zip包无法用git下载，需安装git客户端
+2.166机器对应三个网卡，部署服务时使用哪个访问外网
+3.162机器部署服务映射地址为内网地址，166无法访问
+4.广播地址不可用的话需安装zookeeper
+
+web(springboot)
+admin(springboot)
+task(springboot)
+service(dubbo)
+wiki(go)
+自动部署脚本(python)
+
+redis
+mysql
+
+	
