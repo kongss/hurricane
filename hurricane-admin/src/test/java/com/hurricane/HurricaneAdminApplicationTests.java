@@ -12,7 +12,7 @@ public class HurricaneAdminApplicationTests {
 	//merge代码 Two
 	@Test
 	public void contextLoads() {
-		 System.out.println("------");
+		 System.out.println("=========");
 	}
 
 }
