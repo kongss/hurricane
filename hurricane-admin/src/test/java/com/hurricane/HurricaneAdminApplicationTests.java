@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class HurricaneAdminApplicationTests {
 
-	//merge代码
+	//merge代码 Two
 	@Test
 	public void contextLoads() {
 	}
