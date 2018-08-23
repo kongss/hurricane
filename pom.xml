@@ -14,6 +14,7 @@
     <module>hurricane-redis-service</module>
     <module>hurricane-task</module>
     <module>hurricane-web</module>
+    <module>hurricane-mq</module>
   </modules>
   <packaging>pom</packaging>
 
