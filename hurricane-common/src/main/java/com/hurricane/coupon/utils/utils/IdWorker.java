@@ -60,6 +60,10 @@ public class IdWorker {
         this.datacenterId = datacenterId;
     }
 
+    /**
+     * 构造函数
+     * workerId/datacenterId 这两个值固定了，所以不需要IdWorker()方法赋值
+     */
     public IdWorker() {}
 
     // ==============================Methods==========================================
