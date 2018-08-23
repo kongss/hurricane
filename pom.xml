@@ -72,6 +72,7 @@
     <junit_version>4.12</junit_version>
     <easymock_version>3.4</easymock_version>
     <jmockit_version>1.33</jmockit_version>
+    <commons_version>3.4</commons_version>
     <!-- Build args -->
     <argline>-server -Xms64m -Xmx256m -XX:PermSize=64m -XX:MaxPermSize=128m -Dfile.encoding=UTF-8
       -Djava.net.preferIPv4Stack=true
@@ -292,6 +293,11 @@
         <groupId>com.alibaba</groupId>
         <artifactId>druid</artifactId>
         <version>${druid_version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons_version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
