@@ -74,6 +74,8 @@
     <easymock_version>3.4</easymock_version>
     <jmockit_version>1.33</jmockit_version>
     <commons_version>3.4</commons_version>
+    <!-- rocketmq -->
+    <rocketmq_version>3.5.9</rocketmq_version>
     <!-- Build args -->
     <argline>-server -Xms64m -Xmx256m -XX:PermSize=64m -XX:MaxPermSize=128m -Dfile.encoding=UTF-8
       -Djava.net.preferIPv4Stack=true
@@ -103,6 +105,12 @@
         <groupId>org.thymeleaf</groupId>
         <artifactId>thymeleaf</artifactId>
         <version>${thymeleaf-version}</version>
+      </dependency>
+      <!-- rocketmq -->
+      <dependency>
+        <groupId>com.alibaba.rocketmq</groupId>
+        <artifactId>rocketmq-client</artifactId>
+        <version>${rocketmq_version}</version>
       </dependency>
       <!-- mybatis核心包 -->
       <dependency>
