@@ -10,7 +10,7 @@
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="hurricane-admin" />
 
-    <dubbo:registry id="hurricane-service-consumer" protocol="zookeeper" address="zookeeper://47.94.205.206:2181"/>
+    <dubbo:registry id="hurricane-service-consumer" protocol="zookeeper" address="zookeeper://47.93.46.162:2181"/>
 
     <dubbo:reference id="dCouponService" timeout="6000" registry="hurricane-service-consumer" interface="com.hurricane.coupon.api.DCouponService"/>
 
