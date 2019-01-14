@@ -16,6 +16,11 @@
     </properties>
 
     <dependencies>
+        <!-- jdbc -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
         <!-- spring核心包 -->
         <dependency>
             <groupId>org.springframework</groupId>
